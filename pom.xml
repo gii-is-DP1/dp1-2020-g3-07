@@ -36,15 +36,15 @@
     <developers>
 		<developer>
 			<id>Dani</id>
-			<name>Daniel</name>
+			<name>Daniel Rico Ostos</name>
 			<email>daricostos@gmail.com</email>
 			<url></url>
 			<roles>
-				<role>leader</role>
+				<role>Leader</role>
 			</roles>
 			<properties>
 				<picUrl>
-					
+					https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Cristiano-ronaldo-juventus-2019_%28cropped%29.jpg/245px-Cristiano-ronaldo-juventus-2019_%28cropped%29.jpg
 				</picUrl>
 			</properties>
 		</developer>
