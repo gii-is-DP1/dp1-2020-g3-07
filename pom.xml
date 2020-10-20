@@ -32,6 +32,7 @@
 
     </properties>
 
+
     
     <developers>
 		<developer>
@@ -61,6 +62,16 @@
 				<picUrl></picUrl>
 			</properties>
 		</developer>
+      
+    <developer>
+		 	<id>robpazriv</id>
+		 	<name>Roberto</name>
+		 	<email>robertopazrivera00@gmail.com</email>
+		 	<url>http://www.tmht.com/leo</url>
+		 	<roles>
+		 		<role>leader</role>
+		 	</roles>
+		 </developer>
 	</developers>
 
 
