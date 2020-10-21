@@ -32,16 +32,28 @@
 
     </properties>
 
-
-    
     <developers>
+    <developer>
+	    <id>gonzalort7</id>
+	    <name>Gonzalo</name>
+	    <email>gonzalort7@tmht.com</email>
+	    <url>http://www.tmht.com/grt7</url>
+	    <roles>
+	      <role>leader</role>
+	    </roles>
+	    <properties>
+	    <picUrl>
+	    </picUrl>
+	    </properties>
+	  </developer>
+      
 		<developer>
 			<id>Dani</id>
 			<name>Daniel Rico Ostos</name>
 			<email>daricostos@gmail.com</email>
 			<url></url>
 			<roles>
-				<role>Leader</role>
+				<role>leader</role>
 			</roles>
 			<properties>
 				<picUrl>
@@ -77,7 +89,6 @@
 
     
     
-
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
