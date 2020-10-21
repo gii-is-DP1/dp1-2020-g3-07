@@ -31,24 +31,53 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
-		<developers>
- 			<developer>
- 				<id>Frani</id>
- 				<name>Francisco</name>
- 				<email>fran@tmht.com</email>
- 				<url>http://www.tmht.com/frani</url>
- 				<roles>
- 					<role>leader</role>
- 				</roles>
- 				<properties>
- 					<picUrl></picUrl>
- 				</properties>
- 			</developer>
- <!-- More developers ...-->
-		</developers>
+
+
+    
+    <developers>
+		<developer>
+			<id>Dani</id>
+			<name>Daniel Rico Ostos</name>
+			<email>daricostos@gmail.com</email>
+			<url></url>
+			<roles>
+				<role>Leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+					https://w7.pngwing.com/pngs/295/618/png-transparent-computer-icons-avatar-user-computer-network-avatar-blue-computer-network-heroes.png
+				</picUrl>
+			</properties>
+		</developer>
+		
+		<developer>
+			<id>Frani</id>
+			<name>Francisco</name>
+			<email>fran@tmht.com</email>
+			<url>http://www.tmht.com/frani</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl></picUrl>
+			</properties>
+		</developer>
+      
+    <developer>
+		 	<id>robpazriv</id>
+		 	<name>Roberto</name>
+		 	<email>robertopazrivera00@gmail.com</email>
+		 	<url>http://www.tmht.com/leo</url>
+		 	<roles>
+		 		<role>leader</role>
+		 	</roles>
+		 </developer>
+	</developers>
+
+
     
     
-    
+
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
