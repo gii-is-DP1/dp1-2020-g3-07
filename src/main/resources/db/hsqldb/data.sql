@@ -62,3 +62,51 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
+
+
+
+
+--A CONTINUACION EMPIEZA LO MODIFICADO POR EL GRUPO
+
+
+
+--ejercicio 8 practica 1
+INSERT INTO users(username,password,enabled) VALUES ('danricost','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (4,'danricost','owner');
+
+INSERT INTO users(username,password,enabled) VALUES ('ismlunati','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (5,'ismlunati','owner');
+
+INSERT INTO users(username,password,enabled) VALUES ('rodsangon','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (6,'rodsangon','owner');
+
+INSERT INTO users(username,password,enabled) VALUES ('frabreloz','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (7,'frabreloz','owner');
+
+INSERT INTO users(username,password,enabled) VALUES ('gonrodter','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (8,'gonrodter','owner');
+
+INSERT INTO users(username,password,enabled) VALUES ('robpazriv','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (9,'robpazriv','owner');
+
+
+INSERT INTO owners VALUES (11, 'Daniel', 'Rico Ostos', '110 W. Liberty St.', 'Madison', '6085551023', 'danricost');
+INSERT INTO owners VALUES (12, 'Ismael', 'Luna Atienza', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'ismlunati');
+INSERT INTO owners VALUES (13, 'Rodrigo', 'Sanchez Gonzalez', '2693 Commerce St.', 'McFarland', '6085558763', 'rodsangon');
+INSERT INTO owners VALUES (14, 'Francisco Jose', 'Brenes Lozano', '563 Friendly St.', 'Windsor', '6085553198', 'frabreloz');
+INSERT INTO owners VALUES (15, 'Gonzalo', 'Rodriguez Terron', '2387 S. Fair Way', 'Madison', '6085552765', 'gonrodter');
+INSERT INTO owners VALUES (16, 'Roberto', 'Paz Ribera', '105 N. Lake St.', 'Monona', '6085552654', 'robpazriv');
+
+
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (14, 'mascotaDani', '2010-09-07', 1, 11);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (15, 'mascotaIsmael', '2012-08-06', 6, 12);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (16, 'mascotaRodrigo', '2011-04-17', 2, 13);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (17, 'mascotaFran', '2010-03-07', 2, 14);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (18, 'mascotaGonzalo', '2010-11-30', 3, 15);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRoberto', '2010-01-20', 4, 16);
+
+
+
+
+
+
