@@ -46,7 +46,7 @@
                 </picUrl>
             </properties>
         </developer>
-
+      
     <developer>
 	    <id>gonzalort7</id>
 	    <name>Gonzalo</name>
@@ -60,6 +60,7 @@
 	    </picUrl>
 	    </properties>
 	  </developer>
+
       
 		<developer>
 			<id>Dani</id>
@@ -88,6 +89,8 @@
 				<picUrl></picUrl>
 			</properties>
 		</developer>
+      
+      
 			<developer>
 			<id>ismlunati</id>
 			<name>Ismael</name>
@@ -98,7 +101,6 @@
 			</roles>
 			<properties>
 				<picUrl></picUrl>
-				
 			</properties>
 		</developer>
       
