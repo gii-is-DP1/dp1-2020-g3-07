@@ -46,9 +46,7 @@
                 </picUrl>
             </properties>
         </developer>
-        </developers>
 
-    <developers>
     <developer>
 	    <id>gonzalort7</id>
 	    <name>Gonzalo</name>
@@ -82,12 +80,25 @@
 			<id>Frani</id>
 			<name>Francisco</name>
 			<email>fran@tmht.com</email>
+			<url>http://www.tmht.com/</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl></picUrl>
+			</properties>
+		</developer>
+			<developer>
+			<id>ismlunati</id>
+			<name>Ismael</name>
+			<email>isma2bto@gmail.com</email>
 			<url>http://www.tmht.com/frani</url>
 			<roles>
 				<role>leader</role>
 			</roles>
 			<properties>
 				<picUrl></picUrl>
+				
 			</properties>
 		</developer>
       
