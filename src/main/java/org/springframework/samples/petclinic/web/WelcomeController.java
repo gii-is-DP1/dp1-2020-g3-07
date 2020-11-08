@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,8 @@ public class WelcomeController {
 		  Person dani = new Person();
 		  dani.setFirstName("Daniel");
 		  dani.setLastName("Rico Ostos");
+		  
+		  Collections.addAll(personas, ismael, francisco, dani, roberto, rodrigo, gonzalo);
 		  
 		  model.put("persons", personas);
 		  model.put("title", "Pizzeria");
