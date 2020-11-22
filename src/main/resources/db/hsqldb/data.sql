@@ -63,7 +63,7 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
 
-INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
+
 
 
 
@@ -112,4 +112,18 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 
 
 
+
+
+
+
+
+--A CONTINUACION EMPIEZA LO MODIFICADO POR EL GRUPO PARA EL PROYECTO
+
+
+-- insertamos empleados
+INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
+
+
+-- insertamos clientes
+INSERT INTO clientes(name, telefono, direccion, usuario, contrasena) VALUES ('Juan Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod');
 
