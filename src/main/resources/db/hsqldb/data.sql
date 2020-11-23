@@ -128,6 +128,6 @@ INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '151
 INSERT INTO clientes(name, telefono, direccion, usuario, contrasena) VALUES ('Juan Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod');
 
 -- insertamos productos
-INSERT INTO productos(name, precio, pequena) VALUES ('Juan Rodriguez', 10, 'pequena');
+INSERT INTO productos(name, precio, tamanopizza) VALUES ('Juan Rodriguez', 10, 'pequena');
 
 
