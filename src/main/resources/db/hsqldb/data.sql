@@ -131,7 +131,7 @@ INSERT INTO clientes(name, telefono, direccion, usuario, contrasena) VALUES ('Ju
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente');
 
 -- insertamos productos
-INSERT INTO productos(name, precio, pequena) VALUES ('Juan Rodriguez', 10, 'pequena');
+INSERT INTO productos(name, precio, tamanopizza) VALUES ('Juan Rodriguez', 10, 'pequena');
 
 
 
