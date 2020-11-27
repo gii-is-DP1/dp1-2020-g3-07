@@ -127,3 +127,11 @@ INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '151
 -- insertamos clientes
 INSERT INTO clientes(name, telefono, direccion, usuario, contrasena) VALUES ('Juan Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod');
 
+-- insertamos pedidos
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente');
+
+-- insertamos productos
+INSERT INTO productos(name, precio, tamanopizza) VALUES ('Juan Rodriguez', 10, 'pequena');
+
+
+

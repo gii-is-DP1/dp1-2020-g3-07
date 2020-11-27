@@ -26,11 +26,11 @@ public class EmpleadoService {
 		return empleadoRepo.findAll();
 	}
 	
-	@Transactional
-	public void save(Empleados empleado) {
-		empleadoRepo.save(empleado);
-	}
-	
+//	@Transactional
+//	public void save(Empleados empleado) {
+//		empleadoRepo.save(empleado);
+//	}
+//	
 //	@Transactional(readOnly = true)
 //	public Empleados findEmpleadoById(int id) throws DataAccessException {
 //		return empleadoRepo.findById(id);
