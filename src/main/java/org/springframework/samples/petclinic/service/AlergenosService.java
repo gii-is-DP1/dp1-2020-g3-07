@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AlergenosService {
 	@Autowired
-	private AlergenosRepository AlergenosRepos;
+	private  AlergenosRepository AlergenosRepos;
 	
 	@Transactional
-	public Iterable<Alergenos> findAll(){
+	public  Iterable<Alergenos> findAll(){
 		return AlergenosRepos.findAll();
 	}
 

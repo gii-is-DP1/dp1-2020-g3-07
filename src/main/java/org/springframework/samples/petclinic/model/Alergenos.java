@@ -17,5 +17,5 @@ import lombok.Data;
 public class Alergenos extends NamedEntity{
 	@Column(name="Alergenos")
 	@Enumerated(value=EnumType.STRING)
-	private Alergeno alergenos;
+	private Alergeno Alergenos;
 }
