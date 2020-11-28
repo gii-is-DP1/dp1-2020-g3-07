@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "dependientes")
-public class Dependiente extends Empleados{
+public class Dependiente extends BaseEntity{
 
 	@Column(name = "usuario")
     @NotEmpty
