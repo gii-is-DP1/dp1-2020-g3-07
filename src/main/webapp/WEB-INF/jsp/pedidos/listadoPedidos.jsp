@@ -14,6 +14,7 @@
         <thead>
         <tr>
             <th style="width: 150px;">id</th>
+            <th>Fecha y hora</th>
             <th>comentario</th>
             <th>valoracion</th>
             <th>Metodo de pago</th>
@@ -27,6 +28,9 @@
             <tr>
                 <td>
                     <c:out value="${pedido.id}"/>
+                </td>
+                <td>
+                    <c:out value="${pedido.fecha}"/>
                 </td>
                 <td>
                     <c:out value="${pedido.comentario}"/>

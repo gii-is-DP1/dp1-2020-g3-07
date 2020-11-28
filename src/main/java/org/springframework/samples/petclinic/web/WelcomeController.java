@@ -26,7 +26,7 @@ public class WelcomeController {
 		  
 		  Person gonzalo = new Person();
 		  gonzalo.setFirstName("Gonzalo");
-		  gonzalo.setLastName("Rodríguez Terron");
+		  gonzalo.setLastName("Rodríguez Terrón");
 		  
 		  Person rodrigo = new Person();
 		  rodrigo.setFirstName("Rodrigo");

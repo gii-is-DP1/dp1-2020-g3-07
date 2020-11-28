@@ -28,7 +28,7 @@ public class Pedido extends BaseEntity {
 	
 	@Column(name = "fecha")
 	@NotEmpty
-	@DateTimeFormat(pattern = "yyyy-MM-dd:HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd :HH:mm:ss")
 	private LocalDateTime fecha;
 	
 	
