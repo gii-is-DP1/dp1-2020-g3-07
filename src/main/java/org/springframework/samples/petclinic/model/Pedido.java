@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -27,7 +26,6 @@ public class Pedido extends BaseEntity {
 //	private String idPedido;
 	
 	@Column(name = "fecha")
-	@NotEmpty
 	@DateTimeFormat(pattern = "yyyy-MM-dd :HH:mm:ss")
 	private LocalDateTime fecha;
 	
@@ -54,7 +52,16 @@ public class Pedido extends BaseEntity {
 		pendiente,
 		enReparto,
 		entregado;
-}	
-	
-	
 }
+		
+	@NotNull
+	@Column(name="tipopedido")
+	@Enumerated(value = EnumType.STRING)
+	private tipoPedido tipopedido;
+	public enum tipoPedido {
+		aDomicilio,
+		enLocal;
+}	
+}
+	
+	
