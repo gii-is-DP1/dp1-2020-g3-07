@@ -1,13 +1,11 @@
 package org.springframework.samples.petclinic.model;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 
 import lombok.Data;
 
