@@ -14,9 +14,11 @@
         <thead>
         <tr>
             <th style="width: 150px;">id</th>
-            <th style="width: 200px;">name</th>
             <th>comentario</th>
             <th>valoracion</th>
+            <th>Metodo de pago</th>
+            <th>Estado de pedido</th>
+            
          
         </tr>
         </thead>
@@ -27,13 +29,16 @@
                     <c:out value="${pedido.id}"/>
                 </td>
                 <td>
-                    <c:out value="${pedido.name}"/>
-                </td>
-                <td>
                     <c:out value="${pedido.comentario}"/>
                 </td>
                 <td>
                     <c:out value="${pedido.valoracion}"/>
+                </td>
+                <td>
+                    <c:out value="${pedido.metodopago}"/>
+                </td>
+                <td>
+                    <c:out value="${pedido.estadopedido}"/>
                 </td>
           
 

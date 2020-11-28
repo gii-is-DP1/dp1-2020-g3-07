@@ -1,10 +1,13 @@
 package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
@@ -17,16 +20,17 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "pedidos")
-public class Pedido extends NamedEntity {
+public class Pedido extends BaseEntity {
 
 //	@Column(name = "idPedido")
 //	@NotEmpty
 //	private String idPedido;
 	
-//	@Column(name = "fechaHora")
-//	@NotEmpty
-//	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss Z z")
-//	private LocalDate fechaHora;
+	@Column(name = "fecha")
+	@NotEmpty
+	@DateTimeFormat(pattern = "yyyy-MM-dd:HH:mm:ss")
+	private LocalDateTime fecha;
+	
 	
 	@Column(name = "comentario")
 	private String comentario;
@@ -34,15 +38,23 @@ public class Pedido extends NamedEntity {
 	@Column(name = "valoracion")
 	private Integer valoracion;
 	
-
+	@NotNull
+	@Column(name="metodopago")
+    @Enumerated(value = EnumType.STRING)
+    private Metodopago metodopago;
+	public enum Metodopago {
+		efectivo,
+		tarjeta;
+}
+	@NotNull
+	@Column(name="estadopedido")
+    @Enumerated(value = EnumType.STRING)
+    private Estadopedido estadopedido;
+	public enum Estadopedido {
+		pendiente,
+		enReparto,
+		entregado;
+}	
 	
-
-//	@NotEmpty
-//	@Embedded
-//	private metodoPago metodoPago;
-//
-//	@NotNull
-//	@Embedded
-//	private estadoPedido estadoPedido;
 	
 }
