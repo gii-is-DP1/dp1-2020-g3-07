@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "empleados")
-public class Empleados extends NamedEntity{
+public class Empleados extends BaseEntity{
     @Column(name = "nombre")
     @NotEmpty
     private String nombre;
