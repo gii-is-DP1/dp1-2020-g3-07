@@ -19,6 +19,7 @@
             <th>valoracion</th>
             <th>Metodo de pago</th>
             <th>Estado de pedido</th>
+            <th>Tipo de pedido</th>
             <th>Acciones</th>
             
          
@@ -44,6 +45,9 @@
                 </td>
                 <td>
                     <c:out value="${pedidos.estadopedido}"/>
+                </td>
+                <td>
+                    <c:out value="${pedidos.tipopedido}"/>
                 </td>
                 <td>
                     <spring:url value="pedidos/delete/{pedidoID}" var="pedidoUrl">
