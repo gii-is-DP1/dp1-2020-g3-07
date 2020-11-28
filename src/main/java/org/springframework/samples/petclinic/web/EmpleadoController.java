@@ -1,10 +1,13 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Dependiente;
 import org.springframework.samples.petclinic.model.Empleados;
+import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.service.DependienteService;
 import org.springframework.samples.petclinic.service.EmpleadoService;
 import org.springframework.stereotype.Controller;
@@ -19,10 +22,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/empleados")
 public class EmpleadoController {
-	private static final String VIEWS_EMPLEADO_UPDATE_FORM = "empleados/editEmpleado";
+	
+	
+//	private static final String VIEWS_EMPLEADO_UPDATE_FORM = "empleados/editEmpleado";
 	
 //	@Autowired
 //	private EmpleadoService empleadoService;
+	
+	
 	
 	@Autowired
 	private DependienteService depeService;
@@ -43,6 +50,11 @@ public class EmpleadoController {
 		
 		return vista;
 	}
+	
+	
+	
+	
+	
 	
 //	@PostMapping(path="/save/{empleadoId}")
 //	public String salvarEvento(@Valid Empleados empleado, BindingResult result, ModelMap modelMap) {
@@ -75,4 +87,16 @@ public class EmpleadoController {
 //            return "redirect:/empleados/{empleadoId}";
 //        }
 //    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

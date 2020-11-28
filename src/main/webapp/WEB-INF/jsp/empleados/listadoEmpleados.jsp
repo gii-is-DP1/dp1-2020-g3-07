@@ -83,10 +83,15 @@
                     <c:out value="${dependiente.fechanacimiento}"/>
                 </td>
                 <td>
-                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl">
+                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl1">
                     	<spring:param name = "dependienteId" value ="${dependiente.id}"/>
                     </spring:url>
-                    <a href = "${fn:escapeXml(dependienteUrl)}">Edit</a>
+                    <a href = "${fn:escapeXml(dependienteUrl1)}">Editar</a>
+                    
+                    <spring:url value="dependientes/delete/{dependienteId}" var="dependienteUrl2">
+       				 <spring:param name="dependienteId" value="${dependiente.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(dependienteUrl2)}" >Eliminar</a>
                 </td>
                 
                 
@@ -98,7 +103,7 @@
         </tbody>
     </table>
     
-    
+    <a class="btn btn-default" href='<spring:url value="/dependientes/new" htmlEscape="true"/>'>Añadir dependiente</a>
     
     
     
