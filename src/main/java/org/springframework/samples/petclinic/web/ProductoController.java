@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,6 +53,20 @@ public class ProductoController {
 			this.productoService.saveProducto(producto);
 			return "redirect:/productos";
 		}
+	}
+	
+	
+	@GetMapping(value="/delete/{productoID}")
+	public String borrarProducto(@PathVariable("productoID") int productoID, ModelMap modelMap) {
+		String vista = "productos/listadoProductos";
+		Optional<Producto> producto = productoService.findProductoById(productoID);
+		if(producto.isPresent()) {
+			productoService.deleteProducto(producto.get());
+			modelMap.addAttribute("message", "Producto borrado correctamente");
+		} else {
+			modelMap.addAttribute("message", "Producto no encontrado");
+		}
+		return vista;
 	}
 
 }
