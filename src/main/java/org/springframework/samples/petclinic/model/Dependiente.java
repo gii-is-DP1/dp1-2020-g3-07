@@ -16,8 +16,8 @@ public class Dependiente extends Empleados{
     @NotEmpty
 	String usuario;
 	
-	@Column(name = "contraseña")
+	@Column(name = "contrasena")
     @NotEmpty
-	String contraseña;
+	String contrasena;
 	
 }

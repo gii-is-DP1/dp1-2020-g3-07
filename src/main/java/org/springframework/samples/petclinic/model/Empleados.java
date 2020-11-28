@@ -23,9 +23,9 @@ public class Empleados extends BaseEntity{
     private String dni;
     @Column(name = "sueldo")
     @NotEmpty
-    private Integer sueldo;
+    private String sueldo;
     @Column(name = "fechanacimiento")
-    @NotEmpty
+//    @NotEmpty
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechanacimiento;
     
