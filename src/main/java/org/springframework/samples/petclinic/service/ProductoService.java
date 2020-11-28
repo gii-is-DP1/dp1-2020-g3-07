@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Producto;
@@ -22,11 +24,23 @@ public class ProductoService {
 		return productoRepo.findAll();
 	}
 	
+	@Transactional(readOnly = true)
+	public Optional<Producto> findProductoById(int id) throws DataAccessException {
+		return productoRepo.findById(id);
+	}
+
+	
 	@Transactional
 	public void saveProducto(Producto producto) throws DataAccessException {
-		//creating owner
 		productoRepo.save(producto);	
 	}
+	
+	@Transactional
+	public void deleteProducto(Producto producto) throws DataAccessException {
+		productoRepo.delete(producto);	
+	}
+	
+	
 	
 
 }

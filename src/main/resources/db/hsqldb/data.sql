@@ -123,7 +123,7 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 
 
 -- insertamos empleados
-INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
+--INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
 
 
 -- insertamos clientes

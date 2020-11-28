@@ -15,7 +15,8 @@
         <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Tamaño</th>         
+            <th>Tamaño</th>
+            <th>Acciones</th>      
         </tr>
         </thead>
         <tbody>
@@ -29,6 +30,12 @@
                 </td>
                 <td>
                     <c:out value="${productos.tamanopizza}"/>
+                </td>
+                <td>
+                    <spring:url value="productos/delete/{productoID}" var="productoUrl">
+       				 <spring:param name="productoID" value="${productos.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(productoUrl)}" class="btn btn-default">Eliminar producto</a>
                 </td>
             </tr>
         </c:forEach>
