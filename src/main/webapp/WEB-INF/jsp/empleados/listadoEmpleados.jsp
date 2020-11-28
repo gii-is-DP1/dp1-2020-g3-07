@@ -8,7 +8,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="empleados">
-    <h2>Empleados</h2>
+    <%-- <h2>Empleados</h2>
 
     <table id="empleadosTable" class="table table-striped">
         <thead>
@@ -50,5 +50,160 @@
             </tr>
         </c:forEach>
         </tbody>
+    </table> --%>
+    
+    
+    
+    <h2>Dependientes</h2>
+    
+    <table id="dependientesTable" class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Nombre</th>
+            <th style="width: 200px;">DNI</th>
+            <th>Sueldo</th>
+            <th>Fecha de nacimiento</th>
+            <th>Accion</th>
+         
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${dependientes}" var="dependiente">
+            <tr>
+                <td>
+                    <c:out value="${dependiente.nombre}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.dni}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.sueldo}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.fechanacimiento}"/>
+                </td>
+                <td>
+                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl">
+                    	<spring:param name = "dependienteId" value ="${dependiente.id}"/>
+                    </spring:url>
+                    <a href = "${fn:escapeXml(dependienteUrl)}">Edit</a>
+                </td>
+                
+                
+                
+
+                
+            </tr>
+        </c:forEach>
+        </tbody>
     </table>
+    
+    
+    
+    
+    
+    
+    
+    
+    <h2>Repartidores</h2>
+    
+    <table id="dependientesTable" class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Nombre</th>
+            <th style="width: 200px;">DNI</th>
+            <th>Sueldo</th>
+            <th>Fecha de nacimiento</th>
+            <th>Accion</th>
+         
+        </tr>
+        </thead>
+        <tbody>
+        <%-- <c:forEach items="${dependientes}" var="dependiente">
+            <tr>
+                <td>
+                    <c:out value="${dependiente.nombre}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.dni}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.sueldo}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.fechanacimiento}"/>
+                </td>
+                <td>
+                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl">
+                    	<spring:param name = "dependienteId" value ="${dependiente.id}"/>
+                    </spring:url>
+                    <a href = "${fn:escapeXml(dependienteUrl)}">Edit</a>
+                </td>
+                
+                
+                
+
+                
+            </tr>
+        </c:forEach> --%>
+        </tbody>
+    </table>
+    
+    
+    
+    
+    
+    
+    
+    
+    <h2>Cocineros</h2>
+    
+    <table id="dependientesTable" class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Nombre</th>
+            <th style="width: 200px;">DNI</th>
+            <th>Sueldo</th>
+            <th>Fecha de nacimiento</th>
+            <th>Accion</th>
+         
+        </tr>
+        </thead>
+        <tbody>
+        <%-- <c:forEach items="${dependientes}" var="dependiente">
+            <tr>
+                <td>
+                    <c:out value="${dependiente.nombre}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.dni}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.sueldo}"/>
+                </td>
+                <td>
+                    <c:out value="${dependiente.fechanacimiento}"/>
+                </td>
+                <td>
+                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl">
+                    	<spring:param name = "dependienteId" value ="${dependiente.id}"/>
+                    </spring:url>
+                    <a href = "${fn:escapeXml(dependienteUrl)}">Edit</a>
+                </td>
+                
+                
+                
+
+                
+            </tr>
+        </c:forEach> --%>
+        </tbody>
+    </table>
+    
+    
+    
+    
+    
+    
+    
 </petclinic:layout>

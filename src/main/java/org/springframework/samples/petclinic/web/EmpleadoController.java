@@ -3,7 +3,9 @@ package org.springframework.samples.petclinic.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Dependiente;
 import org.springframework.samples.petclinic.model.Empleados;
+import org.springframework.samples.petclinic.service.DependienteService;
 import org.springframework.samples.petclinic.service.EmpleadoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +21,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EmpleadoController {
 	private static final String VIEWS_EMPLEADO_UPDATE_FORM = "empleados/editEmpleado";
 	
+//	@Autowired
+//	private EmpleadoService empleadoService;
+	
 	@Autowired
-	private EmpleadoService empleadoService;
+	private DependienteService depeService;
 
 	
 	@GetMapping()
 	public String listadoEmpleados(ModelMap modelMap) {
 		String vista = "empleados/listadoEmpleados";
-		Iterable<Empleados> empleados = empleadoService.findAll();
-		modelMap.addAttribute("empleados", empleados);
+		
+		Iterable<Dependiente> dependientes = depeService.findAll();
+		// aqui se crearian tambien los iterables cocineros y repartidores
+		
+//		Iterable<Empleados> empleados = empleadoService.findAll();
+//		modelMap.addAttribute("empleados", empleados);
+		
+		modelMap.addAttribute("dependientes", dependientes);
+		// aqui se añadirian al modelMap los iterables cocineros y repartidores antes creados
+		
 		return vista;
 	}
 	
