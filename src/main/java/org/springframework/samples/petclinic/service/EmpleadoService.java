@@ -7,7 +7,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Empleados;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.EmpleadoRepository;
-import org.springframework.samples.petclinic.repository.springdatajpa.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
