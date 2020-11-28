@@ -30,25 +30,25 @@
 				
 				<petclinic:menuItem active="${name eq 'Clientes'}" url="/clientes"
 					title="clientes">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
 					<span>Clientes</span>
 				</petclinic:menuItem>
 				
 				<petclinic:menuItem active="${name eq 'Empleados'}" url="/empleados"
 					title="empleados">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<span>Empleados</span>
 				</petclinic:menuItem>
 				
 				<petclinic:menuItem active="${name eq 'Pedidos'}" url="/pedidos"
 					title="pedidos">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 					<span>Pedidos</span>
 				</petclinic:menuItem>
 				
 				<petclinic:menuItem active="${name eq 'Productos'}" url="/productos"
 					title="productos">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Productos</span>
 				</petclinic:menuItem>
 
