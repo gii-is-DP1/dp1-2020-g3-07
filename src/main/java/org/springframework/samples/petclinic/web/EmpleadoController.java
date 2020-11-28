@@ -5,11 +5,15 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Cocinero;
 import org.springframework.samples.petclinic.model.Dependiente;
 import org.springframework.samples.petclinic.model.Empleados;
 import org.springframework.samples.petclinic.model.Producto;
+import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.service.CocineroService;
 import org.springframework.samples.petclinic.service.DependienteService;
 import org.springframework.samples.petclinic.service.EmpleadoService;
+import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -33,6 +37,12 @@ public class EmpleadoController {
 	
 	@Autowired
 	private DependienteService depeService;
+	
+	@Autowired
+	private RepartidorService repaService;
+	
+	@Autowired
+	private CocineroService cociService;
 
 	
 	@GetMapping()
@@ -40,12 +50,16 @@ public class EmpleadoController {
 		String vista = "empleados/listadoEmpleados";
 		
 		Iterable<Dependiente> dependientes = depeService.findAll();
+		Iterable<Repartidor> repartidores = repaService.findAll();
+		Iterable<Cocinero> cocineros = cociService.findAll();
 		// aqui se crearian tambien los iterables cocineros y repartidores
 		
 //		Iterable<Empleados> empleados = empleadoService.findAll();
 //		modelMap.addAttribute("empleados", empleados);
 		
 		modelMap.addAttribute("dependientes", dependientes);
+		modelMap.addAttribute("repartidores", repartidores);
+		modelMap.addAttribute("cocineros", cocineros);
 		// aqui se añadirian al modelMap los iterables cocineros y repartidores antes creados
 		
 		return vista;

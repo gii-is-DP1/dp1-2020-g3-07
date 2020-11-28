@@ -112,7 +112,7 @@
     
     <h2>Repartidores</h2>
     
-    <table id="dependientesTable" class="table table-striped">
+    <table id="repartidoresTable" class="table table-striped">
         <thead>
         <tr>
             <th style="width: 150px;">Nombre</th>
@@ -124,25 +124,30 @@
         </tr>
         </thead>
         <tbody>
-        <%-- <c:forEach items="${dependientes}" var="dependiente">
+        <c:forEach items="${repartidores}" var="repartidor">
             <tr>
                 <td>
-                    <c:out value="${dependiente.nombre}"/>
+                    <c:out value="${repartidor.nombre}"/>
                 </td>
                 <td>
-                    <c:out value="${dependiente.dni}"/>
+                    <c:out value="${repartidor.dni}"/>
                 </td>
                 <td>
-                    <c:out value="${dependiente.sueldo}"/>
+                    <c:out value="${repartidor.sueldo}"/>
                 </td>
                 <td>
-                    <c:out value="${dependiente.fechanacimiento}"/>
+                    <c:out value="${repartidor.fechanacimiento}"/>
                 </td>
                 <td>
-                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl">
-                    	<spring:param name = "dependienteId" value ="${dependiente.id}"/>
+                    <spring:url value = "/repartidores/save/{repartidorId}" var = "repartidorUrl1">
+                    	<spring:param name = "repartidorId" value ="${repartidor.id}"/>
                     </spring:url>
-                    <a href = "${fn:escapeXml(dependienteUrl)}">Edit</a>
+                    <a href = "${fn:escapeXml(repartidorUrl1)}">Editar</a>
+                    
+                    <spring:url value="repartidores/delete/{repartidorId}" var="repartidorUrl2">
+       				 <spring:param name="repartidorId" value="${repartidor.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(repartidorUrl2)}" >Eliminar</a>
                 </td>
                 
                 
@@ -150,11 +155,11 @@
 
                 
             </tr>
-        </c:forEach> --%>
+        </c:forEach>
         </tbody>
     </table>
     
-    
+    <a class="btn btn-default" href='<spring:url value="/repartidores/new" htmlEscape="true"/>'>Añadir repartidor</a>
     
     
     
@@ -163,7 +168,7 @@
     
     <h2>Cocineros</h2>
     
-    <table id="dependientesTable" class="table table-striped">
+    <table id="cocinerosTable" class="table table-striped">
         <thead>
         <tr>
             <th style="width: 150px;">Nombre</th>
@@ -175,25 +180,30 @@
         </tr>
         </thead>
         <tbody>
-        <%-- <c:forEach items="${dependientes}" var="dependiente">
+        <c:forEach items="${cocineros}" var="cocinero">
             <tr>
                 <td>
-                    <c:out value="${dependiente.nombre}"/>
+                    <c:out value="${cocinero.nombre}"/>
                 </td>
                 <td>
-                    <c:out value="${dependiente.dni}"/>
+                    <c:out value="${cocinero.dni}"/>
                 </td>
                 <td>
-                    <c:out value="${dependiente.sueldo}"/>
+                    <c:out value="${cocinero.sueldo}"/>
                 </td>
                 <td>
-                    <c:out value="${dependiente.fechanacimiento}"/>
+                    <c:out value="${cocinero.fechanacimiento}"/>
                 </td>
                 <td>
-                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl">
-                    	<spring:param name = "dependienteId" value ="${dependiente.id}"/>
+                    <spring:url value = "/cocineros/save/{cocineroId}" var = "cocineroUrl1">
+                    	<spring:param name = "cocineroId" value ="${cocinero.id}"/>
                     </spring:url>
-                    <a href = "${fn:escapeXml(dependienteUrl)}">Edit</a>
+                    <a href = "${fn:escapeXml(cocineroUrl1)}">Editar</a>
+                    
+                    <spring:url value="cocineros/delete/{cocineroId}" var="cocineroUrl2">
+       				 <spring:param name="cocineroId" value="${cocinero.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(cocineroUrl2)}" >Eliminar</a>
                 </td>
                 
                 
@@ -201,11 +211,11 @@
 
                 
             </tr>
-        </c:forEach> --%>
+        </c:forEach>
         </tbody>
     </table>
     
-    
+    <a class="btn btn-default" href='<spring:url value="/cocineros/new" htmlEscape="true"/>'>Añadir cocinero</a>
     
     
     
