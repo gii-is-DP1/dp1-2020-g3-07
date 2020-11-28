@@ -126,7 +126,7 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 --INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
 
 -- -- insertamos dependientes
--- INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento, usuario, contraseña) VALUES ('Paco', '15151515R', 2000, '2013-01-01', 'dependiente1', 'clave');
+INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento, usuario, contraseña) VALUES ('Paco', '15151515R', 2000, '2013-01-01', 'dependiente1', 'clave');
 
 
 -- insertamos clientes
