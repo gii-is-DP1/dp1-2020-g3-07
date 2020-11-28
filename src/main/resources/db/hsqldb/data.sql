@@ -95,10 +95,12 @@ INSERT INTO authorities(id,username,authority) VALUES (9,'robpazriv','owner');
 
 INSERT INTO owners VALUES (11, 'Daniel', 'Rico Ostos', '110 W. Liberty St.', 'Madison', '6085551023', 'danricost');
 INSERT INTO owners VALUES (12, 'Ismael', 'Luna Atienza', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'ismlunati');
-INSERT INTO owners VALUES (13, 'Rodrigo', 'Sanchez Gonzalez', '2693 Commerce St.', 'McFarland', '6085558763', 'rodsangon');
+INSERT INTO owners VALUES (13, 'Rodrigo', 'Sánchez González', '2693 Commerce St.', 'McFarland', '6085558763', 'rodsangon');
 INSERT INTO owners VALUES (14, 'Francisco Jose', 'Brenes Lozano', '563 Friendly St.', 'Windsor', '6085553198', 'frabreloz');
-INSERT INTO owners VALUES (15, 'Gonzalo', 'Rodriguez Terron', '2387 S. Fair Way', 'Madison', '6085552765', 'gonrodter');
-INSERT INTO owners VALUES (16, 'Roberto', 'Paz Ribera', '105 N. Lake St.', 'Monona', '6085552654', 'robpazriv');
+INSERT INTO owners VALUES (15, 'Gonzalo', 'Rodríguez Terrón', '2387 S. Fair Way', 'Madison', '6085552765', 'gonrodter');
+INSERT INTO owners VALUES (16, 'Roberto', 'Paz Rivera', '105 N. Lake St.', 'Monona', '6085552654', 'robpazriv');
+
+
 
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (14, 'mascotaDani', '2010-09-07', 1, 11);
