@@ -1,12 +1,12 @@
 package org.springframework.samples.petclinic.web;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.stereotype.Controller;
@@ -51,6 +51,7 @@ public class PedidoController {
 			}
 			else {
 				//creating owner, user and authorities
+				pedido.setFecha(LocalDateTime.now());
 				this.pedidoService.savePedido(pedido);
 				return "redirect:/pedidos";
 			}
@@ -58,7 +59,6 @@ public class PedidoController {
 		
 		@GetMapping(value="/delete/{pedidoID}")
 		public String borrarPedido(@PathVariable("pedidoID") int pedidoID, ModelMap modelMap) {
-			String vista = "pedidos/listadoPedidos";
 			Optional<Pedido> pedido = pedidoService.findPedidoById(pedidoID);
 			if(pedido.isPresent()) {
 				pedidoService.deletePedido(pedido.get());
@@ -66,7 +66,7 @@ public class PedidoController {
 			} else {
 				modelMap.addAttribute("message", "Pedido no encontrado");
 			}
-			return vista;
+			return "redirect:/pedidos";
 		}
 
 }
