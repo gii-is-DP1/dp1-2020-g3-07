@@ -15,7 +15,7 @@
         <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Tamaño</th>
+            <th>TamaÃ±o</th>
             <th>Acciones</th>      
         </tr>
         </thead>
@@ -40,12 +40,12 @@
     				<spring:url value = "/productos/save/{productoID}" var = "productoUrl1">
                     	<spring:param name = "productoID" value ="${productos.id}"/>
                     </spring:url>
-                    <a href = "${fn:escapeXml(productoUrl1)}">Editar</a>
+                    <a href = "${fn:escapeXml(productoUrl1)}" class="btn btn-default">Editar</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/productos/new" htmlEscape="true"/>'>Añadir producto</a>
+    <a class="btn btn-default" href='<spring:url value="/productos/new" htmlEscape="true"/>'>AÃ±adir producto</a>
 </petclinic:layout>
