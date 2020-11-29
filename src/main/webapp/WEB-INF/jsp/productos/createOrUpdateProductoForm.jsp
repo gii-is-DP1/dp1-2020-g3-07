@@ -22,6 +22,9 @@
                     <c:when test="${productos['new']}">
                         <button class="btn btn-default" type="submit">Añadir productos</button>
                     </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-default" type="submit">Actualizar producto</button>
+                    </c:otherwise>
                 </c:choose>
             </div>
         </div>

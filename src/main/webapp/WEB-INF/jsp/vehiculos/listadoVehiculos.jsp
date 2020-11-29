@@ -10,23 +10,24 @@
 <petclinic:layout pageName="vehiculos">
     <h2>Vehiculos</h2>
 
-    <table id="vehiculoTable" class="table table-striped">
+    <table id="vehiculosTable" class="table table-striped">
         <thead>
         <tr>
             <th style="width: 150px;">Matricula</th>
-            <th style="width: 200px;">Tipo de Vehiculo</th>
+            <th style="width: 200px;">Tipo de vehiculo</th>
          
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${vehiculos}" var="vehiculo">
             <tr>
-                <td>
+                 <td>
                     <c:out value="${vehiculo.matricula}"/>
-                </td>
+                </td> 
+                
                 <td>
-                    <c:out value="${vehiculo.tipoVehiculo}"/>
-                </td>            
+                    <c:out value="${vehiculo.tipovehiculo}"/>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
