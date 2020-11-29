@@ -48,11 +48,8 @@ public class ProductoServiceTest {
 		Optional<Producto> producto = this.productoService.findProductoById(1);
 		String oldName = producto.get().getName();
 		String newName = oldName + "X";
-
 		producto.get().setName(newName);
 		this.productoService.saveProducto(producto.get());
-
-		// retrieving new name from database
 		producto = this.productoService.findProductoById(1);
 		assertThat(producto.get().getName()).isEqualTo(newName);
 	}

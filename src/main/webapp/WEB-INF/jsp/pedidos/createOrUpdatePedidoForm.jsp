@@ -12,7 +12,6 @@
     </h2>
     <form:form modelAttribute="pedidos" class="form-horizontal" id="add-pedidos-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="fecha" name="fecha"/> 
             <petclinic:inputField label="comentario" name="comentario"/>
             <petclinic:inputField label="valoracion" name="valoracion"/>
             <petclinic:inputField label="metodopago" name="metodopago"/>

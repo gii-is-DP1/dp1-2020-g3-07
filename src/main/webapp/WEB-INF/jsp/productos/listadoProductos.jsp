@@ -15,7 +15,7 @@
         <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Tamaño</th>
+            <th>Tamano</th>
             <th>Acciones</th>      
         </tr>
         </thead>
