@@ -13,8 +13,9 @@
     <table id="vehiculosTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Matricula</th>
-            <th style="width: 200px;">Tipo de vehiculo</th>
+            <th>Matricula</th>
+            <th>Tipo de vehiculo</th>
+            <th>Acciones</th> 
          
         </tr>
         </thead>
@@ -24,12 +25,24 @@
                  <td>
                     <c:out value="${vehiculo.matricula}"/>
                 </td> 
-                
                 <td>
                     <c:out value="${vehiculo.tipovehiculo}"/>
+                </td>
+                <td>
+                    <spring:url value="vehiculos/delete/{vehiculoID}" var="vehiculoUrl">
+       				 <spring:param name="vehiculoID" value="${vehiculo.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(vehiculoUrl)}" class="btn btn-default" >Eliminar vehiculo</a>
+    				
+    				<spring:url value = "/vehiculos/save/{vehiculoID}" var = "vehiculoUrl1">
+                    	<spring:param name = "vehiculoID" value ="${vehiculo.id}"/>
+                    </spring:url>
+                    <a href = "${fn:escapeXml(vehiculoUrl1)}" class="btn btn-default">Editar</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
+    <a class="btn btn-default" href='<spring:url value="/vehiculos/new" htmlEscape="true"/>'>Añadir vehículo</a>
 </petclinic:layout>
