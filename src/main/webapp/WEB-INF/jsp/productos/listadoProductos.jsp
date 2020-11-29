@@ -36,6 +36,11 @@
        				 <spring:param name="productoID" value="${productos.id}"/>
     				</spring:url>
     				<a href="${fn:escapeXml(productoUrl)}" class="btn btn-default">Eliminar producto</a>
+    				
+    				<spring:url value = "/productos/save/{productoID}" var = "productoUrl1">
+                    	<spring:param name = "productoID" value ="${productos.id}"/>
+                    </spring:url>
+                    <a href = "${fn:escapeXml(productoUrl1)}">Editar</a>
                 </td>
             </tr>
         </c:forEach>
