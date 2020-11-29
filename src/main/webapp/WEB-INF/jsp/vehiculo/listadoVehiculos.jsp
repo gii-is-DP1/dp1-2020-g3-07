@@ -7,7 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="empleados">
+<petclinic:layout pageName="vehiculos">
     <h2>Vehiculos</h2>
 
     <table id="vehiculosTable" class="table table-striped">
@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${vehiculo}" var="vehiculo">
+        <c:forEach items="${vehiculos}" var="vehiculo">
             <tr>
                 <td>
                     <c:out value="${vehiculo.matricula}"/>

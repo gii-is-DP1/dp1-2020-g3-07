@@ -51,6 +51,12 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Productos</span>
 				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'Vehiculos'}" url="/vehiculos"
+					title="vehiculos">
+					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+					<span>Vehiculos</span>
+				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
