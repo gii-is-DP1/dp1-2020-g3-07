@@ -11,10 +11,10 @@ import lombok.Data;
 @Table(name = "vehiculos")
 public class Vehiculo extends NamedEntity{
 	
-	@Column(name = "Matricula")
+	@Column(name = "matricula")
 	private String matricula;
 	
-	@Column(name = "Tipo de Vehiculo")
+	@Column(name = "tipoDeVehiculo")
 	private TipoVehiculo tipoVehiculo;
 
 }
