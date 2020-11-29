@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VehiculoService {
+	
 	@Autowired
 	private VehiculoRepository VehiculoRepo;
 	
