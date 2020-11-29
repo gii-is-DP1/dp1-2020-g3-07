@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Alergenos")
+@RequestMapping("/vehiculos")
 public class VehiculoController {
 	
 	@Autowired
@@ -18,7 +18,7 @@ public class VehiculoController {
 	
 	@GetMapping()
 	public String listadoVehiculos(ModelMap modelMap) {
-		String vista = "vehiculos/listadoVehiculo";
+		String vista = "vehiculos/listadoVehiculos";
 		Iterable<Vehiculo> vehiculos = vehiculoService.findAll();
 		modelMap.addAttribute("vehiculos", vehiculos);
 		return vista;

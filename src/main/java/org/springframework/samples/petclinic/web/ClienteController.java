@@ -1,25 +1,61 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.service.ClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
-
+	
+	
+	private static final String VIEWS_CLIENTE_INSERT_FORM = "clientes/altaClienteForm";
+	private final ClienteService clienteService;
+	
+	
 	@Autowired
-	ClienteService clientServ;
+	public ClienteController(ClienteService clienteService) {
+		this.clienteService = clienteService;
+	}
+	
+	
 	
 	@GetMapping()
-	public String listadoCliente(ModelMap model) {
-		Iterable<Cliente> empleados = clientServ.findAll();
-		model.addAttribute("clientes", empleados);
+	public String listadoCliente(ModelMap modelMap) {
+		Iterable<Cliente> empleados = clienteService.findAll();
+		modelMap.addAttribute("clientes", empleados);
 		return "clientes/listadoClientes";
+	}
+	
+	
+	
+	@GetMapping(value = "/new")
+	public String initCreationForm(Map<String, Object> model) {
+		Cliente cliente = new Cliente();
+		model.put("clientes", cliente);
+		return VIEWS_CLIENTE_INSERT_FORM;
+	}
+
+	@PostMapping(value = "/new")
+	public String processCreationForm(@Valid Cliente cliente, BindingResult result) {
+		if (result.hasErrors()) {
+			return VIEWS_CLIENTE_INSERT_FORM;
+		}
+		else {
+			//creating owner, user and authorities
+			this.clienteService.saveCliente(cliente);
+			return "redirect:/clientes";
+		}
 	}
 	
 }
