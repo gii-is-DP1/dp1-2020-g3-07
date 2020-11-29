@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/vehiculos")
 public class VehiculoController {
-	
-	@Autowired
-	private VehiculoService vehiculoService;
 
+	@Autowired
+	VehiculoService vehiculoServ;
 	
 	@GetMapping()
-	public String listadoVehiculos(ModelMap modelMap) {
-		String vista = "vehiculos/listadoVehiculos";
-		Iterable<Vehiculo> vehiculos = vehiculoService.findAll();
-		modelMap.addAttribute("vehiculos", vehiculos);
-		return vista;
+	public String listadoVehiculo(ModelMap model) {
+		Iterable<Vehiculo> vehiculos = vehiculoServ.findAll();
+		model.addAttribute("vehiculos", vehiculos);
+		return "vehiculos/listadoVehiculos";
 	}
+	
 }
