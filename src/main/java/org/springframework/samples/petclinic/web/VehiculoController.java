@@ -59,7 +59,6 @@ public class VehiculoController {
 	
 	@GetMapping(value="/delete/{vehiculoID}")
 	public String borrarVehiculo(@PathVariable("vehiculoID") int vehiculoID, ModelMap modelMap) {
-		String vista = "vehiculos/listadoVehiculos";
 		Optional<Vehiculo> vehiculo = vehiculoService.findVehiculoById(vehiculoID);
 		if(vehiculo.isPresent()) {
 			vehiculoService.deleteVehiculo(vehiculo.get());
@@ -67,7 +66,7 @@ public class VehiculoController {
 		} else {
 			modelMap.addAttribute("message", "Vehiculo no encontrado");
 		}
-		return vista;
+		return "redirect:/productos";
 	}
 	
 	@GetMapping(value = "/save/{vehiculoID}")

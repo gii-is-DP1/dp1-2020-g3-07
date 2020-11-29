@@ -16,6 +16,11 @@ public class DependienteService {
 	DependienteRepository dependienteRepos;
 	
 	@Transactional
+	public int dependienteCount() {
+		return (int) dependienteRepos.count();
+	}
+	
+	@Transactional
 	public Iterable<Dependiente> findAll(){
 		return dependienteRepos.findAll();
 	}
