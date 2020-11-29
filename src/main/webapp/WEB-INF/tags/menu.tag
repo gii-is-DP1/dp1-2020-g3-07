@@ -27,6 +27,30 @@
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 					<span>Home</span>
 				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'Clientes'}" url="/clientes"
+					title="clientes">
+					<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+					<span>Clientes</span>
+				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'Empleados'}" url="/empleados"
+					title="empleados">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Empleados</span>
+				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'Pedidos'}" url="/pedidos"
+					title="pedidos">
+					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+					<span>Pedidos</span>
+				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'Productos'}" url="/productos"
+					title="productos">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Productos</span>
+				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
@@ -40,12 +64,12 @@
 					<span>Veterinarians</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
+<!--				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="trigger a RuntimeException to see how it is handled">
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Error</span>
 				</petclinic:menuItem>
-
+-->
 			</ul>
 
 
@@ -58,7 +82,7 @@
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> 
+						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span>ï¿½
 							<strong><sec:authentication property="name" /></strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -12,9 +13,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "empleados")
-public class Empleados extends NamedEntity{
+@MappedSuperclass
+public class Empleados extends BaseEntity{
     @Column(name = "nombre")
     @NotEmpty
     private String nombre;
@@ -23,11 +23,13 @@ public class Empleados extends NamedEntity{
     private String dni;
     @Column(name = "sueldo")
     @NotEmpty
-    private Integer sueldo;
+    private String sueldo;
     @Column(name = "fechanacimiento")
-    @NotEmpty
+//    @NotEmpty
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechanacimiento;
+    
+    //
 
 }
 
