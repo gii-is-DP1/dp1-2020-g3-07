@@ -22,27 +22,27 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${clientes}" var="cliente">
+        <c:forEach items="${clientes}" var="clientes">
             <tr>
 <%--                 <td>
                     <c:out value="${cliente.nombreApellidos}"/>
                 </td> --%>
                 
                 <td>
-                    <c:out value="${cliente.name}"/>
+                    <c:out value="${clientes.name}"/>
                 </td>
                 
                 <td>
-                    <c:out value="${cliente.telefono}"/>
+                    <c:out value="${clientes.telefono}"/>
                 </td>
                 <td>
-                    <c:out value="${cliente.direccion}"/>
+                    <c:out value="${clientes.direccion}"/>
                 </td>
                 <td>
-                    <c:out value="${cliente.usuario}"/>
+                    <c:out value="${clientes.usuario}"/>
                 </td>
                 <td>
-                    <c:out value="${cliente.contrasena}"/>
+                    <c:out value="${clientes.contrasena}"/>
                 </td>
                 
                 
