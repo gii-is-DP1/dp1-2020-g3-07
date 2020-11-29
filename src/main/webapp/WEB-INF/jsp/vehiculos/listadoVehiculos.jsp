@@ -14,7 +14,7 @@
         <thead>
         <tr>
             <th style="width: 150px;">Matricula</th>
-            <th style="width: 200px;">Tipo de vehículo</th>
+            <th style="width: 200px;">Tipo de vehiculo</th>
          
         </tr>
         </thead>

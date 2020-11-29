@@ -21,10 +21,6 @@ public class Vehiculo extends BaseEntity{
 	@Column(name = "tipovehiculo")
 	@NotEmpty
 	@Enumerated(value = EnumType.STRING)
-	private TipoVehiculo tipoVehiculo;
-	public enum TipoVehiculo {
-		Coche,
-		Moto;
-}	
+	private TipoVehiculo tipovehiculo;	
 
 }
