@@ -59,7 +59,6 @@ public class ProductoController {
 	
 	@GetMapping(value="/delete/{productoID}")
 	public String borrarProducto(@PathVariable("productoID") int productoID, ModelMap modelMap) {
-		String vista = "productos/listadoProductos";
 		Optional<Producto> producto = productoService.findProductoById(productoID);
 		if(producto.isPresent()) {
 			productoService.deleteProducto(producto.get());
@@ -67,7 +66,7 @@ public class ProductoController {
 		} else {
 			modelMap.addAttribute("message", "Producto no encontrado");
 		}
-		return vista;
+		return "redirect:/productos";
 	}
 	
 	@GetMapping(value = "/save/{productoID}")
