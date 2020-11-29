@@ -95,10 +95,12 @@ INSERT INTO authorities(id,username,authority) VALUES (9,'robpazriv','owner');
 
 INSERT INTO owners VALUES (11, 'Daniel', 'Rico Ostos', '110 W. Liberty St.', 'Madison', '6085551023', 'danricost');
 INSERT INTO owners VALUES (12, 'Ismael', 'Luna Atienza', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'ismlunati');
-INSERT INTO owners VALUES (13, 'Rodrigo', 'Sanchez Gonzalez', '2693 Commerce St.', 'McFarland', '6085558763', 'rodsangon');
+INSERT INTO owners VALUES (13, 'Rodrigo', 'Sánchez González', '2693 Commerce St.', 'McFarland', '6085558763', 'rodsangon');
 INSERT INTO owners VALUES (14, 'Francisco Jose', 'Brenes Lozano', '563 Friendly St.', 'Windsor', '6085553198', 'frabreloz');
-INSERT INTO owners VALUES (15, 'Gonzalo', 'Rodriguez Terron', '2387 S. Fair Way', 'Madison', '6085552765', 'gonrodter');
-INSERT INTO owners VALUES (16, 'Roberto', 'Paz Ribera', '105 N. Lake St.', 'Monona', '6085552654', 'robpazriv');
+INSERT INTO owners VALUES (15, 'Gonzalo', 'Rodríguez Terrón', '2387 S. Fair Way', 'Madison', '6085552765', 'gonrodter');
+INSERT INTO owners VALUES (16, 'Roberto', 'Paz Rivera', '105 N. Lake St.', 'Monona', '6085552654', 'robpazriv');
+
+
 
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (14, 'mascotaDani', '2010-09-07', 1, 11);
@@ -121,14 +123,22 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 
 
 -- insertamos empleados
-INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
+--INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
 
+-- insertamos dependientes
+INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Paco', '15151515R', 2000, '2013-01-01', 'dependiente1', 'clave');
+
+-- insertamos repartidores
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Jorge', '77133335P', 10000, '2022-11-21', 'repartidor1', 'clave');
+
+-- insertamos cocineros
+INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Cristian', '79051555L', 400, '1845-08-15', 'cocinero1', 'clave');
 
 -- insertamos clientes
 INSERT INTO clientes(name, telefono, direccion, usuario, contrasena) VALUES ('Juan Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod');
 
 -- insertamos pedidos
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente', 'enLocal');
 
 -- insertamos productos
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Margarita', 10, 'pequena');

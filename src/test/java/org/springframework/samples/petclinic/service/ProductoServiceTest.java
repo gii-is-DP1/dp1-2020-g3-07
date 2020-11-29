@@ -18,4 +18,10 @@ public class ProductoServiceTest {
 		int count = productoService.productoCount();
 		assertEquals(count,1);
 	}
+	
+	@Test
+	public void testFindById() {
+		String nombre = productoService.findProductoById(1).get().getName();
+		assertEquals(nombre, "Pizza Margarita");
+	}
 }

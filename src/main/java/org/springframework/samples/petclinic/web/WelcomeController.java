@@ -26,14 +26,14 @@ public class WelcomeController {
 		  
 		  Person gonzalo = new Person();
 		  gonzalo.setFirstName("Gonzalo");
-		  gonzalo.setLastName("Rodriguez Terron");
+		  gonzalo.setLastName("Rodríguez Terrón");
 		  
 		  Person rodrigo = new Person();
 		  rodrigo.setFirstName("Rodrigo");
-		  rodrigo.setLastName("Sanchez Gonzalez");
+		  rodrigo.setLastName("Sánchez González");
 		  
 		  Person francisco = new Person();
-		  francisco.setFirstName("Francisco Jose");
+		  francisco.setFirstName("Francisco José");
 		  francisco.setLastName("Brenes Lozano");
 		  
 		  Person ismael = new Person();
@@ -42,7 +42,7 @@ public class WelcomeController {
 		  
 		  Person roberto = new Person();
 		  roberto.setFirstName("Roberto");
-		  roberto.setLastName("Paz Ribera");
+		  roberto.setLastName("Paz Rivera");
 		  
 		  Person dani = new Person();
 		  dani.setFirstName("Daniel");

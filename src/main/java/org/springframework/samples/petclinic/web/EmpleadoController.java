@@ -1,10 +1,19 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Cocinero;
+import org.springframework.samples.petclinic.model.Dependiente;
 import org.springframework.samples.petclinic.model.Empleados;
+import org.springframework.samples.petclinic.model.Producto;
+import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.service.CocineroService;
+import org.springframework.samples.petclinic.service.DependienteService;
 import org.springframework.samples.petclinic.service.EmpleadoService;
+import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,19 +26,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/empleados")
 public class EmpleadoController {
-	private static final String VIEWS_EMPLEADO_UPDATE_FORM = "empleados/editEmpleado";
+	
+	
+//	private static final String VIEWS_EMPLEADO_UPDATE_FORM = "empleados/editEmpleado";
+	
+//	@Autowired
+//	private EmpleadoService empleadoService;
+	
+	
 	
 	@Autowired
-	private EmpleadoService empleadoService;
+	private DependienteService depeService;
+	
+	@Autowired
+	private RepartidorService repaService;
+	
+	@Autowired
+	private CocineroService cociService;
 
 	
 	@GetMapping()
 	public String listadoEmpleados(ModelMap modelMap) {
 		String vista = "empleados/listadoEmpleados";
-		Iterable<Empleados> empleados = empleadoService.findAll();
-		modelMap.addAttribute("empleados", empleados);
+		
+		Iterable<Dependiente> dependientes = depeService.findAll();
+		Iterable<Repartidor> repartidores = repaService.findAll();
+		Iterable<Cocinero> cocineros = cociService.findAll();
+		// aqui se crearian tambien los iterables cocineros y repartidores
+		
+//		Iterable<Empleados> empleados = empleadoService.findAll();
+//		modelMap.addAttribute("empleados", empleados);
+		
+		modelMap.addAttribute("dependientes", dependientes);
+		modelMap.addAttribute("repartidores", repartidores);
+		modelMap.addAttribute("cocineros", cocineros);
+		// aqui se añadirian al modelMap los iterables cocineros y repartidores antes creados
+		
 		return vista;
 	}
+	
+	
+	
+	
+	
 	
 //	@PostMapping(path="/save/{empleadoId}")
 //	public String salvarEvento(@Valid Empleados empleado, BindingResult result, ModelMap modelMap) {
@@ -62,4 +101,16 @@ public class EmpleadoController {
 //            return "redirect:/empleados/{empleadoId}";
 //        }
 //    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
