@@ -16,6 +16,11 @@ public class RepartidorService {
 	RepartidorRepository repartidorRepos;
 	
 	@Transactional
+	public int repartidorCount() {
+		return (int) repartidorRepos.count();
+	}
+	
+	@Transactional
 	public Iterable<Repartidor> findAll(){
 		return repartidorRepos.findAll();
 	}

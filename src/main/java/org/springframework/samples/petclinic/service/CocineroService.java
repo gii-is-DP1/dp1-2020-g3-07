@@ -16,6 +16,11 @@ public class CocineroService {
 	CocineroRepository cocineroRepos;
 	
 	@Transactional
+	public int cocineroCount() {
+		return (int) cocineroRepos.count();
+	}
+	
+	@Transactional
 	public Iterable<Cocinero> findAll(){
 		return cocineroRepos.findAll();
 	}
