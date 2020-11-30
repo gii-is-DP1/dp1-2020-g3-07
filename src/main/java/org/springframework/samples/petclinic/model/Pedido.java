@@ -19,7 +19,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "pedidos")
-public class Pedido extends BaseEntity {
+public class Pedido extends BaseEntity implements Comparable<Pedido>{
 
 //	@Column(name = "idPedido")
 //	@NotEmpty
@@ -61,7 +61,16 @@ public class Pedido extends BaseEntity {
 	public enum tipoPedido {
 		aDomicilio,
 		enLocal;
-}	
+}
+	@Override
+	public int compareTo(Pedido o) {
+		if ( fecha.isBefore(o.getFecha())) {
+			return -1;
+		}if(fecha.isAfter(o.getFecha())) {
+			return 1;
+		}
+		return 0;
+	}	
 }
 	
 	

@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Cocinero;
 import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.service.ProductoService;
 import org.springframework.stereotype.Controller;
@@ -60,7 +59,6 @@ public class ProductoController {
 	
 	@GetMapping(value="/delete/{productoID}")
 	public String borrarProducto(@PathVariable("productoID") int productoID, ModelMap modelMap) {
-		String vista = "productos/listadoProductos";
 		Optional<Producto> producto = productoService.findProductoById(productoID);
 		if(producto.isPresent()) {
 			productoService.deleteProducto(producto.get());
@@ -68,7 +66,7 @@ public class ProductoController {
 		} else {
 			modelMap.addAttribute("message", "Producto no encontrado");
 		}
-		return vista;
+		return "redirect:/productos";
 	}
 	
 	@GetMapping(value = "/save/{productoID}")

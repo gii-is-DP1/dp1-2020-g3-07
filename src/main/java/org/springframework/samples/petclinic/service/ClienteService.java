@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Cliente;
@@ -28,6 +30,10 @@ public class ClienteService {
 	public void saveCliente(Cliente cliente) throws DataAccessException {
 		//creating users
 		clientRepos.save(cliente);	
+	}
+
+	public Optional<Cliente> findClienteById(int id)throws DataAccessException {
+		return clientRepos.findById(id);
 	}
 	
 	
