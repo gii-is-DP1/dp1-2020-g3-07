@@ -20,5 +20,8 @@ public class Producto extends NamedEntity{
     @Column(name="tamanopizza")
     @Enumerated(value = EnumType.STRING)
     private Tamanopizza tamanopizza;
+    
+    @Column(name = "descripcion")
+    private String descripcion;
 
 }
