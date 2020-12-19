@@ -8,6 +8,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
@@ -29,7 +30,9 @@ public class Empleados extends BaseEntity{
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechanacimiento;
     
-    //
+    @Column(name = "cuentaBancaria")
+    @CreditCardNumber
+    private String cuentaBancaria;
 
 }
 
