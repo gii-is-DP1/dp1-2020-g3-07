@@ -22,7 +22,7 @@ public class Reparto extends BaseEntity{
 	@Column(name = "fecha")
     @NotEmpty
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate fechaHora;
+	private LocalDate fecha;
 
 	@Column(name = "horaInicio")
     @NotEmpty

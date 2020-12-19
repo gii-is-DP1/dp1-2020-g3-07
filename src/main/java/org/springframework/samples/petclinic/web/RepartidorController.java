@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.model.Reparto;
 import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,6 +84,19 @@ public class RepartidorController {
 			d.setId(repartidorID);
 			this.repaService.saveRepartidor(d);
 			return "redirect:/empleados";
+		}
+	}
+	
+	@GetMapping(value = "/{repartidorID}/repartos")
+	public String mostrarRepartos(Model model, @PathVariable("repartidorID") int repartidorID) {
+		Optional<Repartidor> r = repaService.findRepartidorById(repartidorID);
+		if(!r.isPresent()) {
+			return "redirect: /empleados";
+		}else {
+			model.addAttribute("repartidor", r.get());
+			Iterable<Reparto> repartos = r.get().getRepartos();
+			model.addAttribute("repartos", repartos);
+			return "repartidores/repartosRepartidor";
 		}
 	}
 	

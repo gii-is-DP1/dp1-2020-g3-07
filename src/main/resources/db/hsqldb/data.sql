@@ -146,4 +146,10 @@ INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Margarita', 10, 
 --insertamos vehiculo
 INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
 
+-- insertamos reparto
+INSERT INTO repartos(fecha, HORA_INICIO, HORA_FIN) VALUES ('1999-11-12', '12:11:11', '13:11:11');
+
+-- relacion repartidores-reparto
+INSERT INTO REPARTIDORES_REPARTOS(REPARTIDOR_ID, REPARTOS_ID) VALUES ('1', '1');
+
 
