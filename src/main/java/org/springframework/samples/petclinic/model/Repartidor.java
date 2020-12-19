@@ -1,9 +1,11 @@
 package org.springframework.samples.petclinic.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
@@ -20,5 +22,8 @@ public class Repartidor extends Empleados{
 	@Column(name = "contrasena")
     @NotEmpty
 	String contrasena;
+	
+	@OneToMany
+	private Set<Reparto> repartos;
 	
 }
