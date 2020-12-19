@@ -143,5 +143,7 @@ INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, t
 -- insertamos productos
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Margarita', 10, 'pequena');
 
+--insertamos vehiculo
+INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
 
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.service.ProductoService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,7 +59,6 @@ public class ProductoController {
 	
 	@GetMapping(value="/delete/{productoID}")
 	public String borrarProducto(@PathVariable("productoID") int productoID, ModelMap modelMap) {
-		String vista = "productos/listadoProductos";
 		Optional<Producto> producto = productoService.findProductoById(productoID);
 		if(producto.isPresent()) {
 			productoService.deleteProducto(producto.get());
@@ -66,7 +66,32 @@ public class ProductoController {
 		} else {
 			modelMap.addAttribute("message", "Producto no encontrado");
 		}
-		return vista;
+		return "redirect:/productos";
+	}
+	
+	@GetMapping(value = "/save/{productoID}")
+	public String initUpdateForm(@PathVariable("productoID") int productoID, Model model) {
+		Optional<Producto> producto = this.productoService.findProductoById(productoID);
+		if(producto.isPresent()) {
+			model.addAttribute("productos", producto.get());
+			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
+		} else {
+			model.addAttribute("message", "Producto no encontrado");
+			return "redirect:/productos";
+		}
+	}
+
+	@PostMapping(value = "/save/{productoID}")
+	public String processUpdateForm(@Valid Producto producto, BindingResult result,
+			@PathVariable("productoID") int productoID) {
+		if (result.hasErrors()) {
+			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
+		}
+		else {
+			producto.setId(productoID);
+			this.productoService.saveProducto(producto);
+			return "redirect:/productos";
+		}
 	}
 
 }
