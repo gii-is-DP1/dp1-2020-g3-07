@@ -2,9 +2,11 @@ package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -31,4 +33,10 @@ public class Reparto extends BaseEntity{
     @DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime horaFin;
 
+	@ManyToMany
+	private Set<Pedido> pedidos;
+	
+	@ManyToMany
+	private Set<Vehiculo> vehiculos;
+	
 }

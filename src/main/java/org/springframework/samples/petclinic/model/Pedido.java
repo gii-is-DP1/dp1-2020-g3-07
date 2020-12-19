@@ -7,6 +7,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
@@ -70,7 +71,11 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 			return 1;
 		}
 		return 0;
-	}	
+	}
+	
+	@ManyToOne
+	private Cliente cliente;
+	
 }
 	
 	
