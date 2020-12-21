@@ -73,7 +73,7 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 		return 0;
 	}
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Cliente cliente;
 	
 }
