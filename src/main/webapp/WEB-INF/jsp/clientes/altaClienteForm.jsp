@@ -12,12 +12,13 @@
     </h2>
      <form:form modelAttribute="clientes" class="form-horizontal" id="add-clientes-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="name" name="name"/>
-        
+            <petclinic:inputField label="nombre" name="nombre"/>
+            <petclinic:inputField label="apellidos" name="apellidos"/>
             <petclinic:inputField label="telefono" name="telefono"/>
             <petclinic:inputField label="direccion" name="direccion"/>
-            <petclinic:inputField label="usuario" name="usuario"/>
-             <petclinic:inputField label="contrasena" name="contrasena"/>
+            <petclinic:inputField label="email" name="email"/>
+            <petclinic:inputField label="contrasena" name="contrasena"/>
+            <petclinic:inputField label="fechanacimiento" name="fechanacimiento"/>
             
         </div>
         <div class="form-group">

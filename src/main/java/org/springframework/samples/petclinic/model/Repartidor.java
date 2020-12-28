@@ -9,11 +9,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "repartidores")
-public class Repartidor extends Empleados{
+public class Repartidor extends Empleado{
 
 	@Column(name = "usuario")
     @NotEmpty

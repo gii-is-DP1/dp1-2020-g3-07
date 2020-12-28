@@ -13,25 +13,24 @@
     <table id="empleadosTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Nombre y Apellidos</th>
-            <th style="width: 200px;">Teléfono</th>
-            <th>Dirección</th>
-            <th>Usuario</th>
-            <th>Contraseña</th>
+            <th style="width: 150px;">Nombre</th>
+            <th style="width: 150px;">Apellidos</th>
+            <th style="width: 200px;">TelÃ©fono</th>
+            <th>DirecciÃ³n</th>
+            <th>Email</th>
+            <th>Fecha de nacimiento</th>
          
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${clientes}" var="clientes">
             <tr>
-<%--                 <td>
-                    <c:out value="${cliente.nombreApellidos}"/>
-                </td> --%>
-                
-                <td>
-                    <c:out value="${clientes.name}"/>
+                 <td>
+                    <c:out value="${clientes.nombre}"/>
                 </td>
-                
+                <td>
+                    <c:out value="${clientes.apellidos}"/>
+                </td>
                 <td>
                     <c:out value="${clientes.telefono}"/>
                 </td>
@@ -39,10 +38,10 @@
                     <c:out value="${clientes.direccion}"/>
                 </td>
                 <td>
-                    <c:out value="${clientes.usuario}"/>
+                    <c:out value="${clientes.email}"/>
                 </td>
                 <td>
-                    <c:out value="${clientes.contrasena}"/>
+                    <c:out value="${clientes.fechanacimiento}"/>
                 </td>
                 
                 
