@@ -1,13 +1,16 @@
 package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
@@ -77,6 +80,9 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	private Cliente cliente;
 	
 	// quitado optional false
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<LineaPedido> lineaPedidos;
 	
 }
 	
