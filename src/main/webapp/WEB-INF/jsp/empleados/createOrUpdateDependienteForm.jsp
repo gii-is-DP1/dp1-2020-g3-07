@@ -23,7 +23,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${dependiente['new']}">
-                        <button class="btn btn-default" type="submit">Añadir dependiente</button>
+                        <button class="btn btn-default" type="submit">Aï¿½adir dependiente</button>
                     </c:when>
                     <c:otherwise>
                         <button class="btn btn-default" type="submit">Actualizar datos dependiente</button>

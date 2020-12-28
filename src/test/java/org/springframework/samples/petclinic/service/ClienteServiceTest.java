@@ -33,7 +33,7 @@ public class ClienteServiceTest {
 		cliente.setDireccion("Los Naranjos");
 		//cliente.setName("Manuel");
 		cliente.setTelefono(123456789);
-		cliente.setUsuario("Mperez");
+		cliente.setEmail("Mperez");
 		
 		this.clientServ.saveCliente(cliente);
 		assertThat(cliente.getId().intValue()).isEqualTo(2);
@@ -43,15 +43,15 @@ public class ClienteServiceTest {
     @Transactional
 	public void editCliente() {
 	        Optional<Cliente> cliente = this.clientServ.findClienteById(1);
-	        String oldName = cliente.get().getName();
+	        String oldName = cliente.get().getNombre();
 	        String newName = oldName + "X";
 
-	        cliente.get().setName(newName);
+	        cliente.get().setNombre(newName);
 	        this.clientServ.saveCliente(cliente.get());
 
 	        // retrieving new name from database
 	        cliente = this.clientServ.findClienteById(1);
-	        assertThat(cliente.get().getName()).isEqualTo(newName);
+	        assertThat(cliente.get().getNombre()).isEqualTo(newName);
 	}
 }
 

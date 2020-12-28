@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -16,8 +17,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "pedidos")
 public class Pedido extends BaseEntity implements Comparable<Pedido>{

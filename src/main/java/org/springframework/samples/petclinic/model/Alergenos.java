@@ -13,8 +13,11 @@ import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "Alergenos")
 
