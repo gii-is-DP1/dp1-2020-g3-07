@@ -43,29 +43,19 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@NotNull
 	@Column(name="metodopago")
     @Enumerated(value = EnumType.STRING)
-    private Metodopago metodopago;
-	public enum Metodopago {
-		efectivo,
-		tarjeta;
-}
+    private metodoPago metodopago;
+
 	@NotNull
 	@Column(name="estadopedido")
     @Enumerated(value = EnumType.STRING)
-    private Estadopedido estadopedido;
-	public enum Estadopedido {
-		pendiente,
-		enReparto,
-		entregado;
-}
+    private estadoPedido estadopedido;
+
 		
 	@NotNull
 	@Column(name="tipopedido")
 	@Enumerated(value = EnumType.STRING)
 	private tipoPedido tipopedido;
-	public enum tipoPedido {
-		aDomicilio,
-		enLocal;
-}
+	
 	@Override
 	public int compareTo(Pedido o) {
 		if ( fecha.isBefore(o.getFecha())) {
