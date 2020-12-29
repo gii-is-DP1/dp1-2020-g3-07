@@ -1,9 +1,11 @@
--- One admin user, named admin1 with passwor 4dm1n and authority admin
-INSERT INTO users(username,password,enabled) VALUES ('admin1','4dm1n',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
+-- One admin user, named curro with passwor curro and authority admin
+INSERT INTO users(username,password,enabled) VALUES ('curro','curro',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (1,'curro','admin');
+
 -- One owner user, named owner1 with passwor 0wn3r
 INSERT INTO users(username,password,enabled) VALUES ('owner1','0wn3r',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
+
 -- One vet user, named vet1 with passwor v3t
 INSERT INTO users(username,password,enabled) VALUES ('vet1','v3t',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
@@ -135,7 +137,10 @@ INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrase
 INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Cristian', '79051555L', 400, '1845-08-15', 'cocinero1', 'clave');
 
 -- insertamos clientes
-INSERT INTO clientes(nombre, apellidos, telefono, direccion, email, contrasena, fechanacimiento) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod', '1999-09-21');
+--INSERT INTO clientes(nombre, apellidos, telefono, direccion, email, contrasena, fechanacimiento) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod', '1999-09-21');
+INSERT INTO users(username,password,enabled) VALUES ('juan@gmail.com','juan',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'juan@gmail.com','cliente');
+INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', '1999-09-21', 'juan@gmail.com');
 
 -- insertamos pedidos
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente', 'enLocal');
