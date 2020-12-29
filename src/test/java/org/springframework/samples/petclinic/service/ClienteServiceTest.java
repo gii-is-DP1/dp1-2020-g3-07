@@ -29,11 +29,11 @@ public class ClienteServiceTest {
 	@Transactional
 	public void insertCliente() {
 		Cliente cliente = new Cliente();
-		cliente.setContrasena("1234");
+//		cliente.setContrasena("1234");
 		cliente.setDireccion("Los Naranjos");
 		//cliente.setName("Manuel");
 		cliente.setTelefono(123456789);
-		cliente.setEmail("Mperez");
+//		cliente.setEmail("Mperez");
 		
 		this.clientServ.saveCliente(cliente);
 		assertThat(cliente.getId().intValue()).isEqualTo(2);

@@ -15,8 +15,8 @@
         <tr>
             <th style="width: 150px;">Nombre</th>
             <th style="width: 150px;">Apellidos</th>
-            <th style="width: 200px;">TelÃ©fono</th>
-            <th>DirecciÃ³n</th>
+            <th style="width: 200px;">Teléfono</th>
+            <th>Dirección</th>
             <th>Email</th>
             <th>Fecha de nacimiento</th>
          
@@ -38,7 +38,7 @@
                     <c:out value="${clientes.direccion}"/>
                 </td>
                 <td>
-                    <c:out value="${clientes.email}"/>
+                    <c:out value="${clientes.user.username}"/>
                 </td>
                 <td>
                     <c:out value="${clientes.fechanacimiento}"/>
@@ -47,6 +47,10 @@
                 
             </tr>
         </c:forEach>
+        
         </tbody>
     </table>
+    
+    <a class="btn btn-default" href='<spring:url value="/clientes/new" htmlEscape="true"/>'>Registrar nuevo cliente</a>
+    
 </petclinic:layout>

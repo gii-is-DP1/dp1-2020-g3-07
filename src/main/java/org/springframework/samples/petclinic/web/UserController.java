@@ -20,8 +20,10 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
+import org.springframework.samples.petclinic.service.ClienteService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.samples.petclinic.service.UserService;
@@ -39,13 +41,22 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
-	private static final String VIEWS_OWNER_CREATE_FORM = "users/createOwnerForm";
+//	private static final String VIEWS_OWNER_CREATE_FORM = "users/createOwnerForm";
+	private static final String VIEWS_CLIENTE_INSERT_FORM = "clientes/altaClienteForm";
 
-	private final OwnerService ownerService;
+	//private final OwnerService ownerService;
+	private final ClienteService cliSer;
+	
+	private final AuthoritiesService authSer;
 
+//	@Autowired
+//	public UserController(OwnerService clinicService) {
+//		this.ownerService = clinicService;
+//	}
 	@Autowired
-	public UserController(OwnerService clinicService) {
-		this.ownerService = clinicService;
+	public UserController(ClienteService clinicService, AuthoritiesService as) {
+		this.cliSer = clinicService;
+		this.authSer = as;
 	}
 
 	@InitBinder
@@ -53,21 +64,40 @@ public class UserController {
 		dataBinder.setDisallowedFields("id");
 	}
 
+//	@GetMapping(value = "/users/new")
+//	public String initCreationForm(Map<String, Object> model) {
+//		Owner owner = new Owner();
+//		model.put("owner", owner);
+//		return VIEWS_OWNER_CREATE_FORM;
+//	}
 	@GetMapping(value = "/users/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Owner owner = new Owner();
-		model.put("owner", owner);
-		return VIEWS_OWNER_CREATE_FORM;
+		Cliente c = new Cliente();
+		model.put("cliente", c);
+		return VIEWS_CLIENTE_INSERT_FORM;
 	}
 
+//	@PostMapping(value = "/users/new")
+//	public String processCreationForm(@Valid Owner owner, BindingResult result) {
+//		if (result.hasErrors()) {
+//			return VIEWS_OWNER_CREATE_FORM;
+//		}
+//		else {
+//			//creating owner, user, and authority
+//			this.ownerService.saveOwner(owner);
+//			return "redirect:/";
+//		}
+//	}
 	@PostMapping(value = "/users/new")
-	public String processCreationForm(@Valid Owner owner, BindingResult result) {
+	public String processCreationForm(@Valid Cliente c, BindingResult result) {
 		if (result.hasErrors()) {
-			return VIEWS_OWNER_CREATE_FORM;
+			return VIEWS_CLIENTE_INSERT_FORM;
 		}
 		else {
 			//creating owner, user, and authority
-			this.ownerService.saveOwner(owner);
+			c.getUser().setEnabled(true);
+			this.cliSer.saveCliente(c);
+			authSer.saveAuthorities(c.getUser().getUsername(), "cliente");
 			return "redirect:/";
 		}
 	}
