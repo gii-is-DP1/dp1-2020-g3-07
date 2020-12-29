@@ -8,7 +8,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Pedido;
+import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.service.PedidoService;
+import org.springframework.samples.petclinic.service.ProductoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,11 +24,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PedidoController {
 	
 		private static final String VIEWS_PEDIDO_CREATE_OR_UPDATE_FORM = "pedidos/createOrUpdatePedidoForm";
+		private static final String VIEWS_PEDIDO_SELECCION_PRODUCTOS = "pedidos/seleccionProductosPedidos";
 		private PedidoService pedidoService;
+		private ProductoService productoService;
 		
 		@Autowired
-		public PedidoController(PedidoService pedidoService) {
+		public PedidoController(PedidoService pedidoService, ProductoService productoService) {
 			this.pedidoService = pedidoService;
+			this.productoService = productoService;
 		}
 	
 		@GetMapping()
@@ -37,7 +42,7 @@ public class PedidoController {
 			return vista;
 		}
 		
-		@GetMapping(value = "/new")
+/*		@GetMapping(value = "/new")
 		public String initCreationForm(Map<String, Object> model) {
 			Pedido pedido = new Pedido();
 			model.put("pedidos", pedido);
@@ -55,7 +60,17 @@ public class PedidoController {
 				this.pedidoService.savePedido(pedido);
 				return "redirect:/pedidos";
 			}
-		}
+		} */
+		
+		@GetMapping(value = "/new")
+		public String initCreationForm(Map<String, Object> model) {
+			Pedido pedido = new Pedido();
+			model.put("pedidos", pedido);
+			Iterable<Producto> productos = productoService.findAll();
+			model.put("productos", productos);
+			return VIEWS_PEDIDO_SELECCION_PRODUCTOS;
+		}		
+		
 		
 		@GetMapping(value="/delete/{pedidoID}")
 		public String borrarPedido(@PathVariable("pedidoID") int pedidoID, ModelMap modelMap) {

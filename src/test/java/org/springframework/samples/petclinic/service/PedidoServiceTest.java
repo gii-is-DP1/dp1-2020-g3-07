@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Pedido;
-import org.springframework.samples.petclinic.model.Pedido.Estadopedido;
-import org.springframework.samples.petclinic.model.Pedido.Metodopago;
-import org.springframework.samples.petclinic.model.Pedido.tipoPedido;
+import org.springframework.samples.petclinic.model.estadoPedido;
+import org.springframework.samples.petclinic.model.metodoPago;
+import org.springframework.samples.petclinic.model.tipoPedido;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,8 +43,8 @@ public class PedidoServiceTest {
 		pedido.setComentario("Muy bueno con arro blanco");
 		pedido.setFecha(LocalDateTime.of(2020, 11, 30, 20, 30));
 		pedido.setValoracion(4);
-		pedido.setMetodopago(Metodopago.efectivo);
-		pedido.setEstadopedido(Estadopedido.enReparto);
+		pedido.setMetodopago(metodoPago.efectivo);
+		pedido.setEstadopedido(estadoPedido.enReparto);
 		pedido.setTipopedido(tipoPedido.enLocal);
                             
                 
