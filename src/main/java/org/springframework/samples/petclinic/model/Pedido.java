@@ -10,6 +10,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -59,6 +60,10 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Column(name="tipopedido")
 	@Enumerated(value = EnumType.STRING)
 	private tipoPedido tipopedido;
+	
+//	@ManyToOne
+//	@JoinColumn(name = "reparto_id")
+//	private Reparto reparto;
 	
 	@Override
 	public int compareTo(Pedido o) {

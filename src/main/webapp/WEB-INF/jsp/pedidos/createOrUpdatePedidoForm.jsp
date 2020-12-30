@@ -4,28 +4,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="pedido">
+<currogas:layout pageName="pedido">
     <h2>
         <c:if test="${pedidos['new']}">Nuevo</c:if> Pedido
     </h2>
     <form:form modelAttribute="pedidos" class="form-horizontal" id="add-pedidos-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="comentario" name="comentario"/>
-            <petclinic:inputField label="valoracion" name="valoracion"/>
-            <petclinic:inputField label="metodopago" name="metodopago"/>
-            <petclinic:inputField label="estadopedido" name="estadopedido"/>
-            <petclinic:inputField label="tipopedido" name="tipopedido"/>
+            <currogas:inputField label="comentario" name="comentario"/>
+            <currogas:inputField label="valoracion" name="valoracion"/>
+            <currogas:inputField label="metodopago" name="metodopago"/>
+            <currogas:inputField label="estadopedido" name="estadopedido"/>
+            <currogas:inputField label="tipopedido" name="tipopedido"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${pedidos['new']}">
-                        <button class="btn btn-default" type="submit">Añadir pedidos</button>
+                        <button class="btn btn-default" type="submit">Aï¿½adir pedidos</button>
                     </c:when>
                 </c:choose>
             </div>
         </div>
     </form:form>
-</petclinic:layout>
+</currogas:layout>
