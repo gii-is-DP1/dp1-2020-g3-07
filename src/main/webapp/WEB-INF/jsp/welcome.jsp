@@ -2,10 +2,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 
-<petclinic:layout pageName="home">
+<currogas:layout pageName="home">
     <h2><fmt:message key="welcome"/></h2>
     <div class="row">
     <h2> Project ${title}</h2>
@@ -23,4 +23,4 @@
             <img src="https://www.us.es/sites/default/files/logoPNG_3.png"/>
         </div>
     </div>
-</petclinic:layout>
+</currogas:layout>

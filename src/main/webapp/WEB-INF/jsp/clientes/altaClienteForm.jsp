@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="clientes">
+<currogas:layout pageName="clientes">
 	<jsp:attribute name="customScript">
         <script>
             $(function () {
@@ -20,13 +20,13 @@
     </h2>
      <form:form modelAttribute="cliente" class="form-horizontal" id="add-cliente-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="Nombre" name="nombre"/>
-            <petclinic:inputField label="Apellidos" name="apellidos"/>
-            <petclinic:inputField label="Fecha de nacimiento" name="fechanacimiento"/>
-            <petclinic:inputField label="Dirección" name="direccion"/>
-            <petclinic:inputField label="Teléfono" name="telefono"/>
-            <petclinic:inputField label="Email" name="user.username"/>
-            <petclinic:inputField label="Contraseña" name="user.password"/>
+            <currogas:inputField label="Nombre" name="nombre"/>
+            <currogas:inputField label="Apellidos" name="apellidos"/>
+            <currogas:inputField label="Fecha de nacimiento" name="fechanacimiento"/>
+            <currogas:inputField label="Direcciï¿½n" name="direccion"/>
+            <currogas:inputField label="Telï¿½fono" name="telefono"/>
+            <currogas:inputField label="Email" name="user.username"/>
+            <currogas:inputField label="Contraseï¿½a" name="user.password"/>
             
         </div>
         <div class="form-group">
@@ -43,4 +43,4 @@
         </div>
     </form:form>
     </jsp:body>
-</petclinic:layout>
+</currogas:layout>

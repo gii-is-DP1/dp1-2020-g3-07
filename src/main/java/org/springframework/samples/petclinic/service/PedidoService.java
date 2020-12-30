@@ -24,6 +24,7 @@ public class PedidoService {
 	public Iterable<Pedido> findAll(){
 		return pedidoRepo.findAll();
 	}
+
 	
 	@Transactional(readOnly = true)
 	public Optional<Pedido> findPedidoById(int id) throws DataAccessException {

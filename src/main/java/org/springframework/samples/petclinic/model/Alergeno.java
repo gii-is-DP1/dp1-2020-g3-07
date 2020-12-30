@@ -1,7 +1,37 @@
 package org.springframework.samples.petclinic.model;
 
-public enum Alergeno {
-	Gluten, Crustaceos, Huevos, Pescado, Cacahuetes, Soja, Lacteos, Oregano, 
-	FrutosSecos, Apio, Mostaza, GranosDeSesamo, DioxidoDeAzufre, Moluscos,
-	Altramuces;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "alergenos")
+
+public class Alergeno extends NamedEntity{
+	@Column(name="alergenotype")
+	@Enumerated(value=EnumType.STRING)
+	private AlergenoEnum alergenotype;
+	
+	@ManyToMany(mappedBy="alergenos")
+	private Set<Producto> productos;
+	
+	
 }

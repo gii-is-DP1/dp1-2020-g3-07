@@ -28,34 +28,45 @@
 					<span>Home</span>
 				</petclinic:menuItem>
 				
-				<petclinic:menuItem active="${name eq 'Clientes'}" url="/clientes"
+				<petclinic:menuItem active="${name eq 'clientes'}" url="/clientes"
 					title="clientes">
 					<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
 					<span>Clientes</span>
 				</petclinic:menuItem>
 				
-				<petclinic:menuItem active="${name eq 'Empleados'}" url="/empleados"
+				<petclinic:menuItem active="${name eq 'empleados'}" url="/empleados"
 					title="empleados">
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<span>Empleados</span>
 				</petclinic:menuItem>
 				
-				<petclinic:menuItem active="${name eq 'Pedidos'}" url="/pedidos"
+				<petclinic:menuItem active="${name eq 'pedidos'}" url="/pedidos"
 					title="pedidos">
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 					<span>Pedidos</span>
 				</petclinic:menuItem>
 				
-				<petclinic:menuItem active="${name eq 'Productos'}" url="/productos"
+				<petclinic:menuItem active="${name eq 'productos'}" url="/productos"
 					title="productos">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Productos</span>
 				</petclinic:menuItem>
 				
-				<petclinic:menuItem active="${name eq 'Vehiculos'}" url="/vehiculos"
+				<petclinic:menuItem active="${name eq 'vehiculos'}" url="/vehiculos"
 					title="vehiculos">
 					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
 					<span>Vehiculos</span>
+				</petclinic:menuItem>
+				<petclinic:menuItem active="${name eq 'repartidores'}" url="/repartidores"
+					title="repartidores">
+					<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+					<span>Repartos</span>
+				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'owners'}" url="/owners"
+					title="owners">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span>Owners</span>
 				</petclinic:menuItem>
 
 <!--				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
