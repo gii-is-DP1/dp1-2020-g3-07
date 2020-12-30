@@ -5,9 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="repartosRepartidor">
+<currogas:layout pageName="repartosRepartidor">
     <h2>Repartos ${repartidor.nombre}</h2>
 
     <table id="repartoTable" class="table table-striped">
@@ -34,4 +34,4 @@
         </c:forEach>
         </tbody>
     </table>
-</petclinic:layout>
+</currogas:layout>

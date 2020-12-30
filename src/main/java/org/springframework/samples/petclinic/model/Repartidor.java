@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -27,6 +28,7 @@ public class Repartidor extends Empleado{
 	String contrasena;
 	
 	@OneToMany
+	//(cascade = CascadeType.ALL, mappedBy = "repartidor")
 	private Set<Reparto> repartos;
 	
 }

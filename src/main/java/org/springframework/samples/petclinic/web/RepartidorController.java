@@ -6,8 +6,12 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Pedido;
+import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.model.Repartidor;
 import org.springframework.samples.petclinic.model.Reparto;
+import org.springframework.samples.petclinic.service.PedidoService;
+import org.springframework.samples.petclinic.service.ProductoService;
 import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +29,21 @@ public class RepartidorController {
 	private static final String VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM = "empleados/createOrUpdateRepartidorForm";
 	
 	private RepartidorService repaService;
+	private PedidoService pedidoService;
 	
 	@Autowired
-	public RepartidorController(RepartidorService rs) {
+	public RepartidorController(RepartidorService rs, PedidoService ps) {
 		this.repaService = rs;
+		this.pedidoService = ps;
+	}
+	
+	
+	@GetMapping()
+	public String listadoPedidos(ModelMap modelMap) {
+		String vista = "repartidores/asignacionReparto";
+		Iterable<Pedido> pedidos = pedidoService.findAll();
+		modelMap.addAttribute("pedidos", pedidos);
+		return vista;
 	}
 	
 	@GetMapping(value="/delete/{repartidorID}")
@@ -42,6 +57,8 @@ public class RepartidorController {
 		}
 		return "redirect:/empleados";
 	}
+	
+	
 	
 	@GetMapping(value = "/new")
 	public String initCreationForm(Map<String, Object> model) {
@@ -87,17 +104,17 @@ public class RepartidorController {
 		}
 	}
 	
-	@GetMapping(value = "/{repartidorID}/repartos")
-	public String mostrarRepartos(Model model, @PathVariable("repartidorID") int repartidorID) {
-		Optional<Repartidor> r = repaService.findRepartidorById(repartidorID);
-		if(!r.isPresent()) {
-			return "redirect: /empleados";
-		}else {
-			model.addAttribute("repartidor", r.get());
-			Iterable<Reparto> repartos = r.get().getRepartos();
-			model.addAttribute("repartos", repartos);
-			return "repartidores/repartosRepartidor";
-		}
-	}
+//	@GetMapping(value = "/{repartidorID}/repartos")
+//	public String mostrarRepartos(Model model, @PathVariable("repartidorID") int repartidorID) {
+//		Optional<Repartidor> r = repaService.findRepartidorById(repartidorID);
+//		if(!r.isPresent()) {
+//			return "redirect: /empleados";
+//		}else {
+//			model.addAttribute("repartidor", r.get());
+//			Iterable<Reparto> repartos = r.get().getRepartos();
+//			model.addAttribute("repartos", repartos);
+//			return "repartidores/repartosRepartidor";
+//		}
+//	}
 	
 }

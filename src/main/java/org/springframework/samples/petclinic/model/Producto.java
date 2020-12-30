@@ -31,6 +31,6 @@ public class Producto extends NamedEntity{
     private String descripcion;
     
     @ManyToMany
-    private Set<Alergenos> alergenos;
+    private Set<Alergeno> alergenos;
 
 }

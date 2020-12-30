@@ -5,9 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="productos">
+<currogas:layout pageName="productos">
     <h2>Productos</h2>
 
     <table id="productoTable" class="table table-striped">
@@ -15,7 +15,8 @@
         <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Tamano</th>
+            <th>Tamaño</th>
+            <th>Alérgenos</th>
             <th>Acciones</th>      
         </tr>
         </thead>
@@ -30,6 +31,9 @@
                 </td>
                 <td>
                     <c:out value="${productos.tamanopizza}"/>
+                </td>
+                <td>
+                    <c:out value="${productos.alergenos}"/>
                 </td>
                 <td>
                     <spring:url value="productos/delete/{productoID}" var="productoUrl">
@@ -48,4 +52,4 @@
     </table>
     
     <a class="btn btn-default" href='<spring:url value="/productos/new" htmlEscape="true"/>'>Añadir producto</a>
-</petclinic:layout>
+</currogas:layout>
