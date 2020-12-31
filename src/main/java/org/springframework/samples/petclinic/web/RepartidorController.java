@@ -17,10 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/repartidores")
@@ -28,36 +31,46 @@ public class RepartidorController {
 
 	private static final String VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM = "empleados/createOrUpdateRepartidorForm";
 	
-	private RepartidorService repaService;
+	private RepartidorService repartidorService;
 	private PedidoService pedidoService;
 	
 	@Autowired
 	public RepartidorController(RepartidorService rs, PedidoService ps) {
-		this.repaService = rs;
+		this.repartidorService = rs;
 		this.pedidoService = ps;
 	}
 	
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
 	
 	@GetMapping()
-	public String listadoPedidos(ModelMap modelMap) {
-		String vista = "repartidores/asignacionReparto";
-		Iterable<Pedido> pedidos = pedidoService.findAll();
-		modelMap.addAttribute("pedidos", pedidos);
+	public String listadoRepartidores(ModelMap modelMap) {
+		String vista = "repartidores/listadoRepartidores";
+		Iterable<Repartidor> repartidores = repartidorService.findAll();
+		modelMap.addAttribute("repartidores", repartidores);
 		return vista;
+	}
+	
+	@GetMapping("/{repartidorId}")
+	public ModelAndView showRepartidor(@PathVariable("repartidorId") int repartidorId) {
+		ModelAndView mav = new ModelAndView("repartidores/repartidorRepartos");
+		mav.addObject(this.repartidorService.findRepartidorById(repartidorId));
+		return mav;
 	}
 	
 	@GetMapping(value="/delete/{repartidorID}")
 	public String borrarRepartidor(@PathVariable("repartidorID") int repartidorID, ModelMap modelMap) {
-		Optional<Repartidor> d = repaService.findRepartidorById(repartidorID);
+		Optional<Repartidor> d = repartidorService.findRepartidorById(repartidorID);
 		if(d.isPresent()) {
-			repaService.deleteRepartidor(d.get());
+			repartidorService.deleteRepartidor(d.get());
 			modelMap.addAttribute("message", "Repartidor borrado correctamente");
 		} else {
 			modelMap.addAttribute("message", "Repartidor no encontrado");
 		}
 		return "redirect:/empleados";
 	}
-	
 	
 	
 	@GetMapping(value = "/new")
@@ -74,14 +87,14 @@ public class RepartidorController {
 		}
 		else {
 			//creating owner, user and authorities
-			this.repaService.saveRepartidor(dep);
+			this.repartidorService.saveRepartidor(dep);
 			return "redirect:/empleados";
 		}
 	}
 	
 	@GetMapping(value = "/save/{repartidorID}")
 	public String initUpdateForm(@PathVariable("repartidorID") int repartidorID, Model model) {
-		Optional<Repartidor> d = this.repaService.findRepartidorById(repartidorID);
+		Optional<Repartidor> d = this.repartidorService.findRepartidorById(repartidorID);
 		if(d.isPresent()) {
 			model.addAttribute("repartidor", d.get());
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
@@ -99,7 +112,7 @@ public class RepartidorController {
 		}
 		else {
 			d.setId(repartidorID);
-			this.repaService.saveRepartidor(d);
+			this.repartidorService.saveRepartidor(d);
 			return "redirect:/empleados";
 		}
 	}

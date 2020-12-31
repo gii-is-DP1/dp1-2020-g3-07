@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,5 +31,21 @@ public class Repartidor extends Empleado{
 	@OneToMany
 	//(cascade = CascadeType.ALL, mappedBy = "repartidor")
 	private Set<Reparto> repartos;
+	
+	protected Set<Reparto> getRepartosInternal() {
+		if (this.repartos == null) {
+			this.repartos = new HashSet<>();
+		}
+		return this.repartos;
+	}
+	
+	protected void setRepartosInternal(Set<Reparto> repartos) {
+		this.repartos = repartos;
+	}
+	
+	public void addReparto(Reparto reparto) {
+		getRepartosInternal().add(reparto);
+		reparto.setRepartidor(this);
+	}
 	
 }
