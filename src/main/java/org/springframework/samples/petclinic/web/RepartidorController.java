@@ -53,11 +53,26 @@ public class RepartidorController {
 		return vista;
 	}
 	
+	// hecho por gonzalo
+//	@GetMapping("/{repartidorId}")
+//	public ModelAndView showRepartidor(@PathVariable("repartidorId") int repartidorId) {
+//		ModelAndView mav = new ModelAndView("repartidores/repartidorRepartos");
+//		mav.addObject(this.repartidorService.findRepartidorById(repartidorId));
+//		return mav;
+//	}
+	
+	// corregido? por dani
 	@GetMapping("/{repartidorId}")
-	public ModelAndView showRepartidor(@PathVariable("repartidorId") int repartidorId) {
-		ModelAndView mav = new ModelAndView("repartidores/repartidorRepartos");
-		mav.addObject(this.repartidorService.findRepartidorById(repartidorId));
-		return mav;
+	public String showRepartidor(@PathVariable("repartidorId") int repartidorId, ModelMap model) {
+		Optional<Repartidor> repartidor = this.repartidorService.findRepartidorById(repartidorId);
+		if(repartidor.isPresent()) {
+			model.addAttribute("repartidor", repartidor.get());
+			return "repartidores/repartidorRepartos";
+		}else {
+//			model.addAttribute("message", "Repartidor no encontrado!");
+			return "redirect:/repartidores";
+		}
+		
 	}
 	
 	@GetMapping(value="/delete/{repartidorID}")

@@ -1,10 +1,12 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Pedido;
+import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +42,11 @@ public class PedidoService {
 	@Transactional
 	public void deletePedido(Pedido pedido) throws DataAccessException {
 		pedidoRepo.delete(pedido);	
+	}
+	
+	@Transactional(readOnly = true)
+	public Set<Pedido> findByEstadopedido(estadoPedido estadopedido){
+		return this.pedidoRepo.findByEstadopedido(estadopedido);
 	}
 
 }
