@@ -51,6 +51,6 @@
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/clientes/new" htmlEscape="true"/>'>Registrar nuevo cliente</a>
+    <%-- <a class="btn btn-default" href='<spring:url value="/clientes/new" htmlEscape="true"/>'>Registrar nuevo cliente</a> --%>
     
 </currogas:layout>

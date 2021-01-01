@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Repartidor;
@@ -33,12 +34,15 @@ import javax.validation.Valid;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.samples.petclinic.service.RepartoService;
@@ -56,12 +60,20 @@ public class RepartoController {
 //	private static final String VIEWS_REPARTOS_CREATE_OR_UPDATE_FORM = "repartos/createOrUpdateRepartoForm";
 
 	private final RepartoService repartoService;
-        private final RepartidorService repartidorService;
+    private final RepartidorService repartidorService;
+    private final PedidoService pedidoService;
 
 	@Autowired
-	public RepartoController(RepartoService repartoService, RepartidorService repartidorService) {
+	public RepartoController(RepartoService repartoService, RepartidorService repartidorService,
+			PedidoService pedidoService) {
 		this.repartoService = repartoService;
-                this.repartidorService = repartidorService;
+        this.repartidorService = repartidorService;
+        this.pedidoService = pedidoService;
+	}
+	
+	@ModelAttribute("repartidor")
+	public Repartidor findRepartidor(@PathVariable("repartidorId") int repartidorId) {
+		return this.repartidorService.findRepartidorById(repartidorId).get();
 	}
 
 //	@ModelAttribute("types")
@@ -102,7 +114,13 @@ public class RepartoController {
 //		reparto.setRepartidor(repartidorId);
 		repartidor.addReparto(reparto);
 		model.put("reparto", reparto);
-		return "redirect:/repartidores/repartidorRepartos";
+		
+		estadoPedido ep = estadoPedido.pendiente;
+		Set<Pedido> pedidosSinAsignar = pedidoService.findByEstadopedido(ep);
+		
+		model.addAttribute("pedidosSinAsignar", pedidosSinAsignar);
+		
+		return "pedidos/listadoPedidosRepartidor";
 	}
 //
 //	@PostMapping(value = "/pets/new")
