@@ -83,6 +83,8 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<LineaPedido> lineaPedidos;
 	
+	
+	
 }
 	
 	

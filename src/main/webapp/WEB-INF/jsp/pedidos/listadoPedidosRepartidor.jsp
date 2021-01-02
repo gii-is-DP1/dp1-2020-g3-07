@@ -68,7 +68,7 @@
     
     
     
-    <form:form class="form-horizontal">
+    <%-- <form:form class="form-horizontal">
     
     <table>
     
@@ -85,7 +85,36 @@
     
     </table>
     
-    </form:form>
+    </form:form> --%>
+    
+    
+    
+    
+    
+    
+    <form:form class="form-horizontal">
+	    <table class="table table-striped">
+	        <tr>
+	            <th>ID</th>
+	            <th>FechaHora</th>
+	        </tr>
+	        <c:forEach items="${pedidosList}" var="pedido">
+	            <tr>
+	                <td><form:checkbox path="pedidosAsignados" value="${pedido}" label="${pedido.id}" /></td>
+	                <td><c:out value="${pedido.fecha}" /></td>
+	            </tr>
+	        </c:forEach>
+	        
+	        <tr>
+		       <td colspan = "2">
+		          <input type = "submit" value = "Submit"/>
+		       </td>
+		    </tr>
+	        
+	    </table>
+	</form:form>
+    
+    
     
     
     
