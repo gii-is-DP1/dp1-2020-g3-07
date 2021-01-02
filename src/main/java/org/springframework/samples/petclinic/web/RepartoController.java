@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -218,5 +219,21 @@ public class RepartoController {
 //			return "redirect:/owners/{ownerId}";
 //		}
 //	}
+	
+	
+	
+	
+	@GetMapping("repartos/{repartoId}")
+	public String showRepartos(@PathVariable("repartoId") int repartoId, ModelMap model, Repartidor repartidor) {
+		
+		Optional<Reparto> r = repartoService.findById(repartoId);
+		if(r.isPresent()) {
+			model.addAttribute("reparto", r.get());
+			return "repartos/infoReparto";
+		}else {
+			return "redirect:/repartidores";
+		}
+		
+	}
 
 }

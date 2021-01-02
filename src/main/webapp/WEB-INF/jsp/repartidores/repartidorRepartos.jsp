@@ -37,12 +37,20 @@
 	    <tr>
 	    	<th>Fecha</th>
 	    	<th>Hora Inicio</th>
+	    	<th></th>
 	    </tr>
     
     	<c:forEach var="reparto" items="${repartos}">
     		<tr>
     		<td>${reparto.fecha}</td>
     		<td>${reparto.horaInicio}</td>
+    		<td>
+    		<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}" var="addUrl">
+		        <spring:param name="repartoId" value="${reparto.id}"/>
+		        <spring:param name="repartidorId" value="${reparto.repartidor.id}"/>
+		    </spring:url>
+		    <a href="${fn:escapeXml(addUrl)}" class="btn btn-outline-secondary">Ver detalles</a>
+    		</td>
     		</tr>
     	</c:forEach>
     
