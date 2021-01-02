@@ -33,7 +33,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -107,21 +111,59 @@ public class RepartoController {
 //	}
 //
 	@GetMapping(value = "/repartos/new")
-	public String initCreationForm(Repartidor repartidor, ModelMap model) {
-		Reparto reparto = new Reparto();
-		LocalDate localDate = LocalDate.now();
-		reparto.setFecha(localDate);
-//		reparto.setRepartidor(repartidorId);
-		repartidor.addReparto(reparto);
-		model.put("reparto", reparto);
+	public String initCreationForm(ModelMap model) {
+//		Reparto reparto = new Reparto();
+//		LocalDate localDate = LocalDate.now();
+//		reparto.setFecha(localDate);
+////		reparto.setRepartidor(repartidorId);
+//		repartidor.addReparto(reparto);
+//		model.put("reparto", reparto);
 		
-		estadoPedido ep = estadoPedido.pendiente;
-		Set<Pedido> pedidosSinAsignar = pedidoService.findByEstadopedido(ep);
+//		estadoPedido ep = estadoPedido.pendiente;
+//		Set<Pedido> pedidosSinAsignar = pedidoService.findByEstadopedido(ep);
+//		
+//		model.addAttribute("pedidosSinAsignar", pedidosSinAsignar);
 		
-		model.addAttribute("pedidosSinAsignar", pedidosSinAsignar);
+		
+		ConjuntoPedidos cp = new ConjuntoPedidos();
+		model.addAttribute("command", cp);
+		
 		
 		return "pedidos/listadoPedidosRepartidor";
 	}
+	
+	@PostMapping(value = "/repartos/new")
+	public String initCreationForm(@ModelAttribute("SpringWeb")ConjuntoPedidos cp, ModelMap model, Repartidor repartidor) {
+		
+		Reparto reparto = new Reparto();
+		LocalDate localDate = LocalDate.now();
+		reparto.setFecha(localDate);
+		LocalTime lt = LocalTime.now();
+		reparto.setHoraInicio(lt);
+		
+		Set<Pedido> pedidos = new HashSet<Pedido>(cp.getPedidosAsignados());
+		estadoPedido ep = estadoPedido.enReparto;
+		pedidos.stream().forEach(p->p.setEstadopedido(ep));
+		reparto.setPedidos(pedidos);
+//		repartidor.addReparto(reparto);
+		reparto.setRepartidor(repartidor);
+		
+		repartoService.save(reparto);
+		
+//		model.addAttribute("pedidos", pedidos.size());
+		
+		return "redirect:/repartidores";
+//		return "repartidores/listadoRepartidores";
+	}
+	
+	@ModelAttribute("pedidosList")
+	public List<Pedido> getPedidosList(){
+		estadoPedido ep = estadoPedido.pendiente;
+		Set<Pedido> pedidosSinAsignar = pedidoService.findByEstadopedido(ep);
+		return new ArrayList<Pedido>(pedidosSinAsignar);
+	}
+	
+	
 //
 //	@PostMapping(value = "/pets/new")
 //	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {		

@@ -6,7 +6,7 @@
 
 <currogas:layout pageName="repartidores">
 
-    <h2>Información del Repartidor</h2>
+    <h2>Informacion del Repartidor</h2>
 
 
     <table class="table table-striped">
@@ -27,11 +27,32 @@
             <td><c:out value="${owner.telephone}"/></td>
         </tr> -->
     </table>
+    
+    
+    
+    <h2>Repartos del repartidor</h2>
+    
+    <table class="table table-striped">
+    
+	    <tr>
+	    	<th>Fecha</th>
+	    	<th>Hora Inicio</th>
+	    </tr>
+    
+    	<c:forEach var="reparto" items="${repartos}">
+    		<tr>
+    		<td>${reparto.fecha}</td>
+    		<td>${reparto.horaInicio}</td>
+    		</tr>
+    	</c:forEach>
+    
+    </table>
+    
 
     <spring:url value="{repartidorId}/repartos/new" var="addUrl">
         <spring:param name="repartidorId" value="${repartidor.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Añadir nuevo Reparto</a>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">A�adir nuevo Reparto</a>
 
     <!-- <br/>
     <br/>

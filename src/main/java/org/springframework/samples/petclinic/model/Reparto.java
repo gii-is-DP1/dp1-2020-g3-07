@@ -28,12 +28,12 @@ import lombok.Setter;
 public class Reparto extends BaseEntity{
 
 	@Column(name = "fecha")
-    @NotEmpty
+//    @NotEmpty
     @DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate fecha;
 
 	@Column(name = "horaInicio")
-    @NotEmpty
+//    @NotEmpty
     @DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime horaInicio;
 

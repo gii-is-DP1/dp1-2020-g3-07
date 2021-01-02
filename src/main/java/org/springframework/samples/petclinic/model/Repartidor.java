@@ -28,7 +28,7 @@ public class Repartidor extends Empleado{
     @NotEmpty
 	String contrasena;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "repartidor")
 	//(cascade = CascadeType.ALL, mappedBy = "repartidor")
 	private Set<Reparto> repartos;
 	

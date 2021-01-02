@@ -144,6 +144,9 @@ INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, us
 
 -- insertamos pedidos
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(2,'2016-05-11 15:59:48','bueno', 3, 'tarjeta', 'pendiente', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(3,'2010-07-05 15:59:48','excelente', 5, 'efectivo', 'enReparto', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2013-01-02 15:59:48','malo', 1, 'efectivo', 'pendiente', 'enLocal');
 
 -- insertamos productos
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Margarita', 10, 'pequena');
@@ -154,7 +157,7 @@ INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
 -- insertamos reparto
 INSERT INTO repartos(fecha, HORA_INICIO, HORA_FIN) VALUES ('1999-11-12', '12:11:11', '13:11:11');
 
--- relacion repartidores-reparto
-INSERT INTO REPARTIDORES_REPARTOS(REPARTIDOR_ID, REPARTOS_ID) VALUES ('1', '1');
+-- -- relacion repartidores-reparto
+-- --INSERT INTO REPARTIDORES_REPARTOS(REPARTIDOR_ID, REPARTOS_ID) VALUES ('1', '1');
 
 

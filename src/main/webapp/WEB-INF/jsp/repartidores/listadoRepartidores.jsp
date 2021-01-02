@@ -35,4 +35,7 @@
         </c:forEach>
         </tbody>
     </table>
+    
+    <%-- <p>${pedidos}</p> --%>
+    
 </currogas:layout>
