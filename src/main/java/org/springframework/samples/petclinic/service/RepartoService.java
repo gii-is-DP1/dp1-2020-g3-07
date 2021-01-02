@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Reparto;
@@ -22,6 +23,11 @@ public class RepartoService {
 	@Transactional(readOnly = true)
 	public List<Reparto> findByRepartidorId(Integer id){
 		return this.repRepos.findByRepartidorId(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public Optional<Reparto> findById(int id){
+		return this.repRepos.findById(id);
 	}
 
 }
