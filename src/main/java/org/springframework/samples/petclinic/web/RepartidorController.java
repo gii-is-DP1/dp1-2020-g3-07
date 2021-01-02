@@ -6,13 +6,10 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Pedido;
-import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.model.Repartidor;
-import org.springframework.samples.petclinic.model.Reparto;
 import org.springframework.samples.petclinic.service.PedidoService;
-import org.springframework.samples.petclinic.service.ProductoService;
 import org.springframework.samples.petclinic.service.RepartidorService;
+import org.springframework.samples.petclinic.service.RepartoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/repartidores")
@@ -33,11 +29,13 @@ public class RepartidorController {
 	
 	private RepartidorService repartidorService;
 	private PedidoService pedidoService;
+	private RepartoService repartoService;
 	
 	@Autowired
-	public RepartidorController(RepartidorService rs, PedidoService ps) {
+	public RepartidorController(RepartidorService rs, PedidoService ps, RepartoService rss) {
 		this.repartidorService = rs;
 		this.pedidoService = ps;
+		this.repartoService = rss;
 	}
 	
 	@InitBinder
@@ -67,6 +65,7 @@ public class RepartidorController {
 		Optional<Repartidor> repartidor = this.repartidorService.findRepartidorById(repartidorId);
 		if(repartidor.isPresent()) {
 			model.addAttribute("repartidor", repartidor.get());
+			model.addAttribute("repartos", repartoService.findByRepartidorId(repartidor.get().getId()));
 			return "repartidores/repartidorRepartos";
 		}else {
 //			model.addAttribute("message", "Repartidor no encontrado!");
