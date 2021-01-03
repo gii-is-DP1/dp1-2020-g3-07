@@ -14,10 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Producto;
+import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.model.Reparto;
 import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.service.LineaPedidoService;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.ProductoService;
+import org.springframework.samples.petclinic.service.RepartidorService;
+import org.springframework.samples.petclinic.service.RepartoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -35,15 +39,22 @@ public class PedidoController {
 		private static final String VIEWS_SELECCION_PRODUCTOS = "pedidos/seleccionarProductos";
 		private static final String VIEWS_RESUMEN_DEL_PEDIDO = "pedidos/resumenDelPedido";
 		private static final String VIEWS_FINALIZAR_PEDIDO = "pedidos/formularioFinalPedido";
+		
 		private PedidoService pedidoService;
 		private ProductoService productoService;
 		private LineaPedidoService lineaPedidoService;
+		private RepartoService repartoService;
+		private RepartidorService repartidorService;
+
 		@Autowired
-		public PedidoController(PedidoService pedidoService, ProductoService productoService, LineaPedidoService lineaPedidoService) {
+		public PedidoController(PedidoService pedidoService, ProductoService productoService, LineaPedidoService lineaPedidoService, RepartoService repartoService, RepartidorService repartidorService) {
 			this.pedidoService = pedidoService;
 			this.productoService = productoService;
 			this.lineaPedidoService = lineaPedidoService;
+			this.repartoService = repartoService;
+			this.repartidorService = repartidorService;
 		}
+		
 	
 		@GetMapping()
 		public String listadoPedidos(ModelMap modelMap) {
@@ -239,5 +250,6 @@ public class PedidoController {
 			}
 			return "redirect:/pedidos";
 		} 
+
 }
 

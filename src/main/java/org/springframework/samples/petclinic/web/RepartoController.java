@@ -81,56 +81,13 @@ public class RepartoController {
 		return this.repartidorService.findRepartidorById(repartidorId).get();
 	}
 
-//	@ModelAttribute("types")
-//	public Collection<PetType> populatePetTypes() {
-//		return this.petService.findPetTypes();
-//	}
-//
-//	@ModelAttribute("owner")
-//	public Owner findOwner(@PathVariable("ownerId") int ownerId) {
-//		return this.ownerService.findOwnerById(ownerId);
-//	}
-//        
-//        /*@ModelAttribute("pet")
-//	public Pet findPet(@PathVariable("petId") Integer petId) {
-//            Pet result=null;
-//		if(petId!=null)
-//                    result=this.clinicService.findPetById(petId);
-//                else
-//                    result=new Pet();
-//            return result;
-//	}*/
-//                
-//	@InitBinder("owner")
-//	public void initOwnerBinder(WebDataBinder dataBinder) {
-//		dataBinder.setDisallowedFields("id");
-//	}
-//
-//	@InitBinder("pet")
-//	public void initPetBinder(WebDataBinder dataBinder) {
-//		dataBinder.setValidator(new PetValidator());
-//	}
-//
 	@GetMapping(value = "/repartos/new")
 	public String initCreationForm(ModelMap model) {
-//		Reparto reparto = new Reparto();
-//		LocalDate localDate = LocalDate.now();
-//		reparto.setFecha(localDate);
-////		reparto.setRepartidor(repartidorId);
-//		repartidor.addReparto(reparto);
-//		model.put("reparto", reparto);
-		
-//		estadoPedido ep = estadoPedido.pendiente;
-//		Set<Pedido> pedidosSinAsignar = pedidoService.findByEstadopedido(ep);
-//		
-//		model.addAttribute("pedidosSinAsignar", pedidosSinAsignar);
-		
-		
 		ConjuntoPedidos cp = new ConjuntoPedidos();
 		model.addAttribute("command", cp);
 		
 		
-		return "pedidos/listadoPedidosRepartidor";
+		return "repartidores/listadoPedidosRepartidor";
 	}
 	
 	@PostMapping(value = "/repartos/new")
@@ -146,15 +103,13 @@ public class RepartoController {
 		estadoPedido ep = estadoPedido.enReparto;
 		pedidos.stream().forEach(p->p.setEstadopedido(ep));
 		reparto.setPedidos(pedidos);
-//		repartidor.addReparto(reparto);
 		reparto.setRepartidor(repartidor);
 		
 		repartoService.save(reparto);
 		
-//		model.addAttribute("pedidos", pedidos.size());
-		
 		return "redirect:/repartidores";
-//		return "repartidores/listadoRepartidores";
+//		return "redirect:/repartidores/" + repartidorId + "/repartos/new";
+
 	}
 	
 	@ModelAttribute("pedidosList")
@@ -165,68 +120,11 @@ public class RepartoController {
 	}
 	
 	
-//
-//	@PostMapping(value = "/pets/new")
-//	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {		
-//		if (result.hasErrors()) {
-//			model.put("pet", pet);
-//			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-//		}
-//		else {
-//                    try{
-//                    	owner.addPet(pet);
-//                    	this.petService.savePet(pet);
-//                    }catch(DuplicatedPetNameException ex){
-//                        result.rejectValue("name", "duplicate", "already exists");
-//                        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-//                    }
-//                    return "redirect:/owners/{ownerId}";
-//		}
-//	}
-//
-//	@GetMapping(value = "/pets/{petId}/edit")
-//	public String initUpdateForm(@PathVariable("petId") int petId, ModelMap model) {
-//		Pet pet = this.petService.findPetById(petId);
-//		model.put("pet", pet);
-//		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-//	}
-//
-//    /**
-//     *
-//     * @param pet
-//     * @param result
-//     * @param petId
-//     * @param model
-//     * @param owner
-//     * @param model
-//     * @return
-//     */
-//        @PostMapping(value = "/pets/{petId}/edit")
-//	public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner,@PathVariable("petId") int petId, ModelMap model) {
-//		if (result.hasErrors()) {
-//			model.put("pet", pet);
-//			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-//		}
-//		else {
-//                        Pet petToUpdate=this.petService.findPetById(petId);
-//			BeanUtils.copyProperties(pet, petToUpdate, "id","owner","visits");                                                                                  
-//                    try {                    
-//                        this.petService.savePet(petToUpdate);                    
-//                    } catch (DuplicatedPetNameException ex) {
-//                        result.rejectValue("name", "duplicate", "already exists");
-//                        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-//                    }
-//			return "redirect:/owners/{ownerId}";
-//		}
-//	}
-	
-	
-	
 	
 	@GetMapping("repartos/{repartoId}")
 	public String showRepartos(@PathVariable("repartoId") int repartoId, ModelMap model, Repartidor repartidor) {
 		
-		Optional<Reparto> r = repartoService.findById(repartoId);
+		Optional<Reparto> r = repartoService.findRepartoById(repartoId);
 		if(r.isPresent()) {
 			model.addAttribute("reparto", r.get());
 			return "repartos/infoReparto";
@@ -234,6 +132,16 @@ public class RepartoController {
 			return "redirect:/repartidores";
 		}
 		
+	}
+	
+	
+	@GetMapping(value = "repartos/{repartoId}/{pedidoId}/entregado")
+	public String cambioaEntregado(@PathVariable("repartidorId") int repartidorId, @PathVariable("repartoId") int repartoId, @PathVariable("pedidoId") int pedidoId, ModelMap modelMap) {
+		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
+		pedido.setEstadopedido(estadoPedido.Entregado);
+		pedidoService.savePedido(pedido);
+		modelMap.put("pedido", pedido);
+		return "redirect:/repartidores/" + repartidorId + "/repartos/" + repartoId;
 	}
 
 }

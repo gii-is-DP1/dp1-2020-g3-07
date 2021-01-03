@@ -26,7 +26,7 @@ public class RepartoService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<Reparto> findById(int id){
+	public Optional<Reparto> findRepartoById(int id){
 		return this.repRepos.findById(id);
 	}
 
