@@ -128,13 +128,13 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 --INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2000-01-01');
 
 -- insertamos dependientes
-INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Paco', '15151515R', 2000, '2000-01-01', 'dependiente1', 'clave');
+INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2000-01-01');
 
 -- insertamos repartidores
 INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 'clave');
 
 -- insertamos cocineros
-INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Cristian', '79051555L', 400, '1845-08-15', 'cocinero1', 'clave');
+INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento) VALUES ('Cristian', '79051555L', 400, '1845-08-15');
 
 -- insertamos clientes
 --INSERT INTO clientes(nombre, apellidos, telefono, direccion, email, contrasena, fechanacimiento) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod', '1999-09-21');
@@ -145,8 +145,10 @@ INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, us
 -- insertamos pedidos
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente', 'enLocal');
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(2,'2016-05-11 15:59:48','bueno', 3, 'tarjeta', 'pendiente', 'enLocal');
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(3,'2010-07-05 15:59:48','excelente', 5, 'efectivo', 'enReparto', 'enLocal');
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2013-01-02 15:59:48','malo', 1, 'efectivo', 'pendiente', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(3,'2010-07-05 15:59:48','excelente', 5, 'efectivo', 'enReparto', 'aDomicilio');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2013-01-02 15:59:48','malo', 1, 'efectivo', 'pendiente', 'aDomicilio');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(5,'2015-01-02 15:50:48','malo', 1, 'efectivo', 'pendiente', 'aDomicilio');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(6,'2014-01-02 15:59:48','malo', 1, 'efectivo', 'pendiente', 'enLocal');
 
 -- insertamos productos
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Margarita', 10, 'pequena');

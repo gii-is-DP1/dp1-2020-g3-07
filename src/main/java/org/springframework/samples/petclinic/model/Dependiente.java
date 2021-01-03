@@ -17,12 +17,4 @@ import lombok.Setter;
 @Table(name = "dependientes")
 public class Dependiente extends Empleado{
 
-	@Column(name = "usuario")
-    @NotEmpty
-	String usuario;
-	
-	@Column(name = "contrasena")
-    @NotEmpty
-	String contrasena;
-	
 }

@@ -15,6 +15,7 @@ import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.model.estadoPedido;
+import org.springframework.samples.petclinic.model.tipoPedido;
 import org.springframework.samples.petclinic.service.LineaPedidoService;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.ProductoService;
@@ -56,7 +57,25 @@ public class PedidoController {
 					it.remove();
 				}
 			}
+			Iterable<Pedido> pedidosaDom = pedidoService.findAll();
+			Iterator<Pedido> itaDom = pedidosaDom.iterator();
+			Iterable<Pedido> pedidosenLoc = pedidoService.findAll();
+			Iterator<Pedido> itenLoc = pedidosenLoc.iterator();
+			while(itaDom.hasNext()) {
+				Pedido elemento = itaDom.next();
+				if(elemento.getTipopedido() == tipoPedido.enLocal) {
+					itaDom.remove();
+				}
+			}
+			while(itenLoc.hasNext()) {
+				Pedido elemento = itenLoc.next();
+				if(elemento.getTipopedido() == tipoPedido.aDomicilio) {
+					itenLoc.remove();
+				}
+			}
 			modelMap.addAttribute("pedidos", pedidos);
+			modelMap.addAttribute("pedidosadom", pedidosaDom);
+			modelMap.addAttribute("pedidosenloc", pedidosenLoc);
 			return vista;
 		}
 		
