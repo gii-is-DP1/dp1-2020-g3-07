@@ -51,7 +51,7 @@ public class RepartidorController {
 		return vista;
 	}
 	
-	// hecho por gonzalo
+
 //	@GetMapping("/{repartidorId}")
 //	public ModelAndView showRepartidor(@PathVariable("repartidorId") int repartidorId) {
 //		ModelAndView mav = new ModelAndView("repartidores/repartidorRepartos");
@@ -59,7 +59,6 @@ public class RepartidorController {
 //		return mav;
 //	}
 	
-	// corregido? por dani
 	@GetMapping("/{repartidorId}")
 	public String showRepartidor(@PathVariable("repartidorId") int repartidorId, ModelMap model) {
 		Optional<Repartidor> repartidor = this.repartidorService.findRepartidorById(repartidorId);
