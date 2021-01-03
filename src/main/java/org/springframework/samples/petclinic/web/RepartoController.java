@@ -46,6 +46,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.model.estadoPedido;
+import org.springframework.samples.petclinic.model.tipoPedido;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.PetService;
@@ -93,29 +94,38 @@ public class RepartoController {
 	@PostMapping(value = "/repartos/new")
 	public String initCreationForm(@ModelAttribute("SpringWeb")ConjuntoPedidos cp, ModelMap model, Repartidor repartidor) {
 		
-		Reparto reparto = new Reparto();
-		LocalDate localDate = LocalDate.now();
-		reparto.setFecha(localDate);
-		LocalTime lt = LocalTime.now();
-		reparto.setHoraInicio(lt);
+		if(cp.getPedidosAsignados().size()>4 || cp.getPedidosAsignados().size()<1) {
+			model.addAttribute("command", cp);
+			model.addAttribute("message", "Elija entre 1 y 4 pedidos");
+			return "repartidores/listadoPedidosRepartidor";
+		}else {
 		
-		Set<Pedido> pedidos = new HashSet<Pedido>(cp.getPedidosAsignados());
-		estadoPedido ep = estadoPedido.enReparto;
-		pedidos.stream().forEach(p->p.setEstadopedido(ep));
-		reparto.setPedidos(pedidos);
-		reparto.setRepartidor(repartidor);
-		
-		repartoService.save(reparto);
-		
-		return "redirect:/repartidores";
-//		return "redirect:/repartidores/" + repartidorId + "/repartos/new";
+			Reparto reparto = new Reparto();
+			LocalDate localDate = LocalDate.now();
+			reparto.setFecha(localDate);
+			LocalTime lt = LocalTime.now();
+			reparto.setHoraInicio(lt);
+			
+			Set<Pedido> pedidos = new HashSet<Pedido>(cp.getPedidosAsignados());
+			estadoPedido ep = estadoPedido.enReparto;
+			pedidos.stream().forEach(p->p.setEstadopedido(ep));
+			reparto.setPedidos(pedidos);
+			reparto.setRepartidor(repartidor);
+			
+			repartoService.save(reparto);
+			
+	//		return "redirect:/repartidores";
+			return "redirect:/repartidores/" + repartidor.getId();
+			
+		}
 
 	}
 	
 	@ModelAttribute("pedidosList")
 	public List<Pedido> getPedidosList(){
 		estadoPedido ep = estadoPedido.pendiente;
-		Set<Pedido> pedidosSinAsignar = pedidoService.findByEstadopedido(ep);
+		tipoPedido tp = tipoPedido.aDomicilio;
+		Set<Pedido> pedidosSinAsignar = pedidoService.findByEstadopedidoAndTipopedido(ep, tp);
 		return new ArrayList<Pedido>(pedidosSinAsignar);
 	}
 	
@@ -140,7 +150,7 @@ public class RepartoController {
 		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
 		pedido.setEstadopedido(estadoPedido.Entregado);
 		pedidoService.savePedido(pedido);
-		modelMap.put("pedido", pedido);
+//		modelMap.put("pedido", pedido);
 		return "redirect:/repartidores/" + repartidorId + "/repartos/" + repartoId;
 	}
 
