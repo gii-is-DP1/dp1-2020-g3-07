@@ -2,10 +2,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
 
-<petclinic:layout pageName="empleados">
+<currogas:layout pageName="empleados">
     <jsp:attribute name="customScript">
         <script>
             $(function () {
@@ -17,10 +17,10 @@
         <h2>Empleados</h2>
         <form:form modelAttribute="empleados" class="form-horizontal">
             <div class="form-group has-feedback">
-                <petclinic:inputField label="nombre" name="nombre"/>
-                <petclinic:inputField label="dni" name="dni"/>
-                <petclinic:inputField label="sueldo" name="sueldo"/>
-                <petclinic:inputField label="fechanacimiento" name="fechanacimiento"/>
+                <currogas:inputField label="nombre" name="nombre"/>
+                <currogas:inputField label="dni" name="dni"/>
+                <currogas:inputField label="sueldo" name="sueldo"/>
+                <currogas:inputField label="fechanacimiento" name="fechanacimiento"/>
             </div>
 
             <div class="form-group">
@@ -34,4 +34,4 @@
         
     </jsp:body>
 
-</petclinic:layout>
+</currogas:layout>

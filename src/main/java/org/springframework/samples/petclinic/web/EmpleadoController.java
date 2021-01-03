@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Cocinero;
 import org.springframework.samples.petclinic.model.Dependiente;
-import org.springframework.samples.petclinic.model.Empleados;
 import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.model.Repartidor;
 import org.springframework.samples.petclinic.service.CocineroService;

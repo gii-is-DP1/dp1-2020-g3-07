@@ -4,23 +4,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="producto">
+<currogas:layout pageName="producto">
     <h2>
         <c:if test="${productos['new']}">Nuevo</c:if> Producto
     </h2>
     <form:form modelAttribute="productos" class="form-horizontal" id="add-productos-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="name" name="name"/>
-            <petclinic:inputField label="precio" name="precio"/>
-            <petclinic:inputField label="tamanopizza" name="tamanopizza"/>
+            <currogas:inputField label="name" name="name"/>
+            <currogas:inputField label="precio" name="precio"/>
+            <currogas:inputField label="tamanopizza" name="tamanopizza"/>
+            <currogas:selectField label="alergenos" name="alergenos" names = "${alergenotype}" size="5"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${productos['new']}">
-                        <button class="btn btn-default" type="submit">Añadir productos</button>
+                        <button class="btn btn-default" type="submit">AÃ±adir productos</button>
                     </c:when>
                     <c:otherwise>
                         <button class="btn btn-default" type="submit">Actualizar producto</button>
@@ -29,4 +30,4 @@
             </div>
         </div>
     </form:form>
-</petclinic:layout>
+</currogas:layout>

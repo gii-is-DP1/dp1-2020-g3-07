@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 public class AlergenosServiceTest {
 	@Autowired
-	private AlergenosService AlergenosService;
+	private AlergenoService AlergenosService;
 	
 	@Test
 	public void testCountWithInititalData() {
