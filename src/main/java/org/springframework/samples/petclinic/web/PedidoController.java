@@ -49,31 +49,38 @@ public class PedidoController {
 		@GetMapping()
 		public String listadoPedidos(ModelMap modelMap) {
 			String vista = "pedidos/listadoPedidos";
-			Iterable<Pedido> pedidos = pedidoService.findAll();
-			Iterator<Pedido> it = pedidos.iterator();
-			while(it.hasNext()) {
-				Pedido elemento = it.next();
-				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
-					it.remove();
-				}
-			}
+//			Iterable<Pedido> pedidos = pedidoService.findAll();
+//			Iterator<Pedido> it = pedidos.iterator();
+//			while(it.hasNext()) {
+//				Pedido elemento = it.next();
+//				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
+//					it.remove();
+//				}
+//			}
 			Iterable<Pedido> pedidosaDom = pedidoService.findAll();
 			Iterator<Pedido> itaDom = pedidosaDom.iterator();
 			Iterable<Pedido> pedidosenLoc = pedidoService.findAll();
 			Iterator<Pedido> itenLoc = pedidosenLoc.iterator();
 			while(itaDom.hasNext()) {
 				Pedido elemento = itaDom.next();
-				if(elemento.getTipopedido() == tipoPedido.enLocal) {
+				
+				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
+					itaDom.remove();
+				}
+				else if(elemento.getTipopedido() == tipoPedido.enLocal) {
 					itaDom.remove();
 				}
 			}
 			while(itenLoc.hasNext()) {
 				Pedido elemento = itenLoc.next();
-				if(elemento.getTipopedido() == tipoPedido.aDomicilio) {
+				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
+					itenLoc.remove();
+				}
+				else if(elemento.getTipopedido() == tipoPedido.aDomicilio) {
 					itenLoc.remove();
 				}
 			}
-			modelMap.addAttribute("pedidos", pedidos);
+//			modelMap.addAttribute("pedidos", pedidos);
 			modelMap.addAttribute("pedidosadom", pedidosaDom);
 			modelMap.addAttribute("pedidosenloc", pedidosenLoc);
 			return vista;
