@@ -61,7 +61,7 @@
     
     
     
-        <h2>Pedidos En Local</h2>
+         <h2>Pedidos En Local</h2>
     <table id="pedidosTable" class="table table-striped">
         <thead>
         <tr>
@@ -108,7 +108,7 @@
             </tr>
         </c:forEach>
         </tbody>
-    </table>    
+    </table>     
     
     <a class="btn btn-default" href='<spring:url value="/pedidos/new" htmlEscape="true"/>'>Anadir pedido</a>
 </currogas:layout>
