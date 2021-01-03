@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
@@ -9,6 +11,7 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.repository.PedidoRepository;
@@ -24,6 +27,16 @@ public class PedidoService {
 	@Transactional
 	public int pedidoCount(){
 		return (int)pedidoRepo.count();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Integer> resumenLineasPedido(int id) throws DataAccessException {
+		List<Integer> result = new ArrayList<>();
+		Iterator<LineaPedido> it = pedidoRepo.resumenLineasPedido(id).getLineaPedidos().iterator();
+		while(it.hasNext()) {
+			result.add(it.next().getId());
+		}	
+		return result;
 	}
 	
 	@Transactional
