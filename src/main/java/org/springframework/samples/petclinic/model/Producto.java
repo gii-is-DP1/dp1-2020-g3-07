@@ -11,8 +11,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "productos")
 public class Producto extends NamedEntity{
@@ -28,6 +31,6 @@ public class Producto extends NamedEntity{
     private String descripcion;
     
     @ManyToMany
-    private Set<Alergenos> alergenos;
+    private Set<Alergeno> alergenos;
 
 }

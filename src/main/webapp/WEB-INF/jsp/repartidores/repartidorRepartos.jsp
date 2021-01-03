@@ -4,41 +4,65 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<currogas:layout pageName="owners">
+<currogas:layout pageName="repartidores">
 
-    <h2>Owner Information</h2>
+    <h2>Informacion del Repartidor</h2>
 
 
     <table class="table table-striped">
         <tr>
-            <th>Name</th>
-            <td><b><c:out value="${owner.firstName} ${owner.lastName}"/></b></td>
+            <th>Nombre</th>
+            <td><b><c:out value="${repartidor.nombre}"/></b></td>
         </tr>
         <tr>
-            <th>Address</th>
-            <td><c:out value="${owner.address}"/></td>
+            <th>DNI</th>
+            <td><c:out value="${repartidor.dni}"/></td>
         </tr>
         <tr>
-            <th>City</th>
-            <td><c:out value="${owner.city}"/></td>
+            <th>Fecha de nacimiento</th>
+            <td><c:out value="${repartidor.fechanacimiento}"/></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <th>Telephone</th>
             <td><c:out value="${owner.telephone}"/></td>
-        </tr>
+        </tr> -->
     </table>
+    
+    
+    
+    <h2>Repartos del repartidor</h2>
+    
+    <table class="table table-striped">
+    
+	    <tr>
+	    	<th>Fecha</th>
+	    	<th>Hora Inicio</th>
+	    	<th></th>
+	    </tr>
+    
+    	<c:forEach var="reparto" items="${repartos}">
+    		<tr>
+    		<td>${reparto.fecha}</td>
+    		<td>${reparto.horaInicio}</td>
+    		<td>
+    		<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}" var="addUrl">
+		        <spring:param name="repartoId" value="${reparto.id}"/>
+		        <spring:param name="repartidorId" value="${reparto.repartidor.id}"/>
+		    </spring:url>
+		    <a href="${fn:escapeXml(addUrl)}" class="btn btn-outline-secondary">Ver detalles</a>
+    		</td>
+    		</tr>
+    	</c:forEach>
+    
+    </table>
+    
 
-    <spring:url value="{ownerId}/edit" var="editUrl">
-        <spring:param name="ownerId" value="${owner.id}"/>
+    <spring:url value="{repartidorId}/repartos/new" var="addUrl">
+        <spring:param name="repartidorId" value="${repartidor.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Owner</a>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Añadir nuevo Reparto</a>
 
-    <spring:url value="{ownerId}/pets/new" var="addUrl">
-        <spring:param name="ownerId" value="${owner.id}"/>
-    </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Pet</a>
-
-    <br/>
+    <!-- <br/>
     <br/>
     <br/>
     <h2>Pets and Visits</h2>
@@ -92,6 +116,6 @@
             </tr>
 
         </c:forEach>
-    </table>
+    </table> -->
 
 </currogas:layout>

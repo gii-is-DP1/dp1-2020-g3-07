@@ -1,9 +1,11 @@
--- One admin user, named admin1 with passwor 4dm1n and authority admin
-INSERT INTO users(username,password,enabled) VALUES ('admin1','4dm1n',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
+-- One admin user, named curro with passwor curro and authority admin
+INSERT INTO users(username,password,enabled) VALUES ('curro','curro',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (1,'curro','admin');
+
 -- One owner user, named owner1 with passwor 0wn3r
 INSERT INTO users(username,password,enabled) VALUES ('owner1','0wn3r',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
+
 -- One vet user, named vet1 with passwor v3t
 INSERT INTO users(username,password,enabled) VALUES ('vet1','v3t',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
@@ -123,22 +125,28 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 
 
 -- insertamos empleados
---INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2013-01-01');
+--INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2000-01-01');
 
 -- insertamos dependientes
-INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Paco', '15151515R', 2000, '2013-01-01', 'dependiente1', 'clave');
+INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Paco', '15151515R', 2000, '2000-01-01', 'dependiente1', 'clave');
 
 -- insertamos repartidores
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Jorge', '77133335P', 10000, '2022-11-21', 'repartidor1', 'clave');
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 'clave');
 
 -- insertamos cocineros
 INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Cristian', '79051555L', 400, '1845-08-15', 'cocinero1', 'clave');
 
 -- insertamos clientes
-INSERT INTO clientes(name, telefono, direccion, usuario, contrasena) VALUES ('Juan Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod');
+--INSERT INTO clientes(nombre, apellidos, telefono, direccion, email, contrasena, fechanacimiento) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod', '1999-09-21');
+INSERT INTO users(username,password,enabled) VALUES ('juan@gmail.com','juan',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'juan@gmail.com','cliente');
+INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', '1999-09-21', 'juan@gmail.com');
 
 -- insertamos pedidos
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(2,'2016-05-11 15:59:48','bueno', 3, 'tarjeta', 'pendiente', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(3,'2010-07-05 15:59:48','excelente', 5, 'efectivo', 'enReparto', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2013-01-02 15:59:48','malo', 1, 'efectivo', 'pendiente', 'enLocal');
 
 -- insertamos productos
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Margarita', 10, 'pequena');
@@ -150,7 +158,7 @@ INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
 -- insertamos reparto
 INSERT INTO repartos(fecha, HORA_INICIO, HORA_FIN) VALUES ('1999-11-12', '12:11:11', '13:11:11');
 
--- relacion repartidores-reparto
-INSERT INTO REPARTIDORES_REPARTOS(REPARTIDOR_ID, REPARTOS_ID) VALUES ('1', '1');
+-- -- relacion repartidores-reparto
+-- --INSERT INTO REPARTIDORES_REPARTOS(REPARTIDOR_ID, REPARTOS_ID) VALUES ('1', '1');
 
 

@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,8 +18,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "pedidos")
 public class Pedido extends BaseEntity implements Comparable<Pedido>{
@@ -53,6 +58,10 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Enumerated(value = EnumType.STRING)
 	private tipoPedido tipopedido;
 	
+//	@ManyToOne
+//	@JoinColumn(name = "reparto_id")
+//	private Reparto reparto;
+	
 	@Override
 	public int compareTo(Pedido o) {
 		if ( fecha.isBefore(o.getFecha())) {
@@ -70,6 +79,8 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<LineaPedido> lineaPedidos;
+	
+	
 	
 }
 	

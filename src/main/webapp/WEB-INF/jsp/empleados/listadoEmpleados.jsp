@@ -5,9 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="empleados">
+<currogas:layout pageName="empleados">
     <%-- <h2>Empleados</h2>
 
     <table id="empleadosTable" class="table table-striped">
@@ -103,7 +103,7 @@
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/dependientes/new" htmlEscape="true"/>'>Añadir dependiente</a>
+    <a class="btn btn-default" href='<spring:url value="/dependientes/new" htmlEscape="true"/>'>Aï¿½adir dependiente</a>
     
     
     
@@ -159,7 +159,7 @@
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/repartidores/new" htmlEscape="true"/>'>Añadir repartidor</a>
+    <a class="btn btn-default" href='<spring:url value="/repartidores/new" htmlEscape="true"/>'>Aï¿½adir repartidor</a>
     
     
     
@@ -215,10 +215,10 @@
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/cocineros/new" htmlEscape="true"/>'>Añadir cocinero</a>
+    <a class="btn btn-default" href='<spring:url value="/cocineros/new" htmlEscape="true"/>'>Aï¿½adir cocinero</a>
     
     
     
     
     
-</petclinic:layout>
+</currogas:layout>

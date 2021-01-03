@@ -2,7 +2,7 @@ package org.springframework.samples.petclinic.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Empleados;
+import org.springframework.samples.petclinic.model.Empleado;
 import org.springframework.samples.petclinic.repository.EmpleadoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ public class EmpleadoService {
 	}
 	
 	@Transactional
-	public Iterable<Empleados> findAll(){
+	public Iterable<Empleado> findAll(){
 		return empleadoRepo.findAll();
 	}
 	
