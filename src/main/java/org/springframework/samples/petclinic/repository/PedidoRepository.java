@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.estadoPedido;
+import org.springframework.samples.petclinic.model.tipoPedido;
 
 public interface PedidoRepository extends CrudRepository<Pedido, Integer> {
 
@@ -15,5 +16,7 @@ public interface PedidoRepository extends CrudRepository<Pedido, Integer> {
 	Pedido resumenLineasPedido(int id);
   
 	Set<Pedido> findByEstadopedido(estadoPedido estadopedido);
+	
+	Set<Pedido> findByEstadopedidoAndTipopedido(estadoPedido estadopedido, tipoPedido tipopedido);
 
 }

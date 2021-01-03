@@ -14,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.estadoPedido;
+import org.springframework.samples.petclinic.model.tipoPedido;
 import org.springframework.samples.petclinic.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +65,11 @@ public class PedidoService {
 	@Transactional(readOnly = true)
 	public Set<Pedido> findByEstadopedido(estadoPedido estadopedido){
 		return this.pedidoRepo.findByEstadopedido(estadopedido);
+	}
+	
+	@Transactional(readOnly = true)
+	public Set<Pedido> findByEstadopedidoAndTipopedido(estadoPedido estadopedido, tipoPedido tipopedido){
+		return this.pedidoRepo.findByEstadopedidoAndTipopedido(estadopedido, tipopedido);
 	}
 	
 	@Transactional
