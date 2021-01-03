@@ -9,7 +9,6 @@
 
 <petclinic:layout pageName="pedidos">
     <h2>Pedidos</h2>
-
     <table id="pedidosTable" class="table table-striped">
         <thead>
         <tr>
@@ -20,9 +19,7 @@
             <th>Metodo de pago</th>
             <th>Estado de pedido</th>
             <th>Tipo de pedido</th>
-            <th>Acciones</th>
-            
-         
+            <th>Acciones</th>    
         </tr>
         </thead>
         <tbody>
@@ -50,19 +47,14 @@
                     <c:out value="${pedidos.tipopedido}"/>
                 </td>
                 <td>
-                    <spring:url value="pedidos/delete/{pedidoID}" var="pedidoUrl">
-       				 <spring:param name="pedidoID" value="${pedidos.id}"/>
+                	<spring:url value="pedidos/delete/{pedidoID}" var="pedidoUrl">
+       				<spring:param name="pedidoID" value="${pedidos.id}"/>
     				</spring:url>
     				<a href="${fn:escapeXml(pedidoUrl)}" class="btn btn-default">Eliminar pedido</a>
-                </td>
-          
-
-
-                
+                </td>           
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    
     <a class="btn btn-default" href='<spring:url value="/pedidos/new" htmlEscape="true"/>'>Añadir pedido</a>
 </petclinic:layout>

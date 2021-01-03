@@ -5,15 +5,12 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,18 +37,18 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Column(name = "valoracion")
 	private Integer valoracion;
 	
-	@NotNull
+	//@NotNull
 	@Column(name="metodopago")
     @Enumerated(value = EnumType.STRING)
     private metodoPago metodopago;
 
-	@NotNull
+	//@NotNull
 	@Column(name="estadopedido")
     @Enumerated(value = EnumType.STRING)
     private estadoPedido estadopedido;
 
 		
-	@NotNull
+	//@NotNull
 	@Column(name="tipopedido")
 	@Enumerated(value = EnumType.STRING)
 	private tipoPedido tipopedido;
