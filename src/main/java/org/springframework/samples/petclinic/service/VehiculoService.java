@@ -1,9 +1,11 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.samples.petclinic.repository.VehiculoRepository;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,11 @@ public class VehiculoService {
 	@Transactional(readOnly = true)
 	public Optional<Vehiculo> findVehiculoById(int id) throws DataAccessException {
 		return VehiculoRepo.findById(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public Collection<Vehiculo> findVehiculo() throws DataAccessException {
+		return VehiculoRepo.findVehiculo();
 	}
 
 	

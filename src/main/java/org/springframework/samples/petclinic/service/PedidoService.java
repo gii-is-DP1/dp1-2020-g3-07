@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
+import org.springframework.samples.petclinic.model.Reparto;
 import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.model.tipoPedido;
 import org.springframework.samples.petclinic.repository.PedidoRepository;
@@ -71,6 +72,7 @@ public class PedidoService {
 	public Set<Pedido> findByEstadopedidoAndTipopedido(estadoPedido estadopedido, tipoPedido tipopedido){
 		return this.pedidoRepo.findByEstadopedidoAndTipopedido(estadopedido, tipopedido);
 	}
+
 	
 	@Transactional
 	public Collection<Pedido> findPedidos(){

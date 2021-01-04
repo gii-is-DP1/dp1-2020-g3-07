@@ -73,6 +73,7 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	}
 	
 	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
 	// quitado optional false

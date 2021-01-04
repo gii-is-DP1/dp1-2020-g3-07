@@ -22,10 +22,6 @@
 				<td><c:if test="${reparto.horaFin!=null}"><c:out value="${reparto.horaFin}"></c:out></c:if></td>
 
 			</tr>
-			<!-- <p>Fecha: <c:out value="${reparto.fecha}"></c:out></p>
-			<p>Hora de inicio: <c:out value="${reparto.horaInicio}"></c:out></p>
-			<c:if test="${reparto.horaFin!=null}"><p>Hora de fin: <c:out value="${reparto.horaFin}"></c:out></p></c:if>
-			<p>Nombre del repartidor: <c:out value="${reparto.repartidor.nombre}"></c:out></p> -->
 		</table>
 
 	<h2>Pedidos asociados</h2>
@@ -36,23 +32,37 @@
 				<th>Nombre del cliente</th>
 				<th>Fecha del pedido</th>
 				<th>Estado del pedido</th>
+				<th>Contenido del pedido</th>
 				<th>Acciones</th>
 			</tr>
 			<c:forEach items="${reparto.pedidos}" var="pedido">
 				<tr>
 					<td>
-						<!-- Hacer que sea <a></a> y que redireccione a informacion sobre la direccion y demás del pedido -->
-						<c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
+						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/cliente/{clienteId}" var="clienteUrl">
+							<spring:param name="clienteId" value="${pedido.cliente.id}"/>
+							<spring:param name="repartoId" value="${reparto.id}"/>
+							<spring:param name="repartidorId" value="${repartidor.id}"/>
+						</spring:url>
+						<a href="${fn:escapeXml(clienteUrl)}" class="btn btn-outline-secondary">
+							<c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
+						</a>
 					</td>
 					<td><c:out value="${pedido.fecha}"></c:out></td>
 					<td><c:out value="${pedido.estadopedido}"></c:out></td>
+					<td>
+						<c:forEach items="${pedido.lineaPedidos}" var="lineapedido">
+							<c:out value="${lineapedido.producto}"></c:out>
+						</c:forEach>
+					</td>
 					<td>
 						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/{pedidoId}/entregado" var="entregadoUrl">
 							<spring:param name="pedidoId" value="${pedido.id}"/>
 							<spring:param name="repartoId" value="${reparto.id}"/>
 							<spring:param name="repartidorId" value="${repartidor.id}"/>
 						</spring:url>
-						<a href="${fn:escapeXml(entregadoUrl)}" class="btn btn-outline-secondary">Marcar como entregado</a>
+						<c:if test = "${pedido.estadopedido != 'Entregado'}">
+							<a href="${fn:escapeXml(entregadoUrl)}" class="btn btn-outline-secondary">Marcar como entregado</a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
