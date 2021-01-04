@@ -14,10 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Producto;
+import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.model.Reparto;
 import org.springframework.samples.petclinic.model.estadoPedido;
+import org.springframework.samples.petclinic.model.tipoPedido;
 import org.springframework.samples.petclinic.service.LineaPedidoService;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.ProductoService;
+import org.springframework.samples.petclinic.service.RepartidorService;
+import org.springframework.samples.petclinic.service.RepartoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -35,28 +40,60 @@ public class PedidoController {
 		private static final String VIEWS_SELECCION_PRODUCTOS = "pedidos/seleccionarProductos";
 		private static final String VIEWS_RESUMEN_DEL_PEDIDO = "pedidos/resumenDelPedido";
 		private static final String VIEWS_FINALIZAR_PEDIDO = "pedidos/formularioFinalPedido";
+		
 		private PedidoService pedidoService;
 		private ProductoService productoService;
 		private LineaPedidoService lineaPedidoService;
+		private RepartoService repartoService;
+		private RepartidorService repartidorService;
+
 		@Autowired
-		public PedidoController(PedidoService pedidoService, ProductoService productoService, LineaPedidoService lineaPedidoService) {
+		public PedidoController(PedidoService pedidoService, ProductoService productoService, LineaPedidoService lineaPedidoService, RepartoService repartoService, RepartidorService repartidorService) {
 			this.pedidoService = pedidoService;
 			this.productoService = productoService;
 			this.lineaPedidoService = lineaPedidoService;
+			this.repartoService = repartoService;
+			this.repartidorService = repartidorService;
 		}
+		
 	
 		@GetMapping()
 		public String listadoPedidos(ModelMap modelMap) {
 			String vista = "pedidos/listadoPedidos";
-			Iterable<Pedido> pedidos = pedidoService.findAll();
-			Iterator<Pedido> it = pedidos.iterator();
-			while(it.hasNext()) {
-				Pedido elemento = it.next();
+//			Iterable<Pedido> pedidos = pedidoService.findAll();
+//			Iterator<Pedido> it = pedidos.iterator();
+//			while(it.hasNext()) {
+//				Pedido elemento = it.next();
+//				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
+//					it.remove();
+//				}
+//			}
+			Iterable<Pedido> pedidosaDom = pedidoService.findAll();
+			Iterator<Pedido> itaDom = pedidosaDom.iterator();
+			Iterable<Pedido> pedidosenLoc = pedidoService.findAll();
+			Iterator<Pedido> itenLoc = pedidosenLoc.iterator();
+			while(itaDom.hasNext()) {
+				Pedido elemento = itaDom.next();
+				
 				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
-					it.remove();
+					itaDom.remove();
+				}
+				else if(elemento.getTipopedido() == tipoPedido.enLocal) {
+					itaDom.remove();
 				}
 			}
-			modelMap.addAttribute("pedidos", pedidos);
+			while(itenLoc.hasNext()) {
+				Pedido elemento = itenLoc.next();
+				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
+					itenLoc.remove();
+				}
+				else if(elemento.getTipopedido() == tipoPedido.aDomicilio) {
+					itenLoc.remove();
+				}
+			}
+//			modelMap.addAttribute("pedidos", pedidos);
+			modelMap.addAttribute("pedidosadom", pedidosaDom);
+			modelMap.addAttribute("pedidosenloc", pedidosenLoc);
 			return vista;
 		}
 		
@@ -239,5 +276,6 @@ public class PedidoController {
 			}
 			return "redirect:/pedidos";
 		} 
+
 }
 

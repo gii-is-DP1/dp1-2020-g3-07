@@ -6,53 +6,56 @@
 
 <currogas:layout pageName="reparto">
 
-<h2>Informacion del Reparto</h2>
+	<h2>Informacion del Reparto</h2>
 
+		<table class="table table-striped">
+			<tr>
+				<th>Nombre repartidor</th>
+				<th>Fecha</th>
+				<th>Hora de inicio</th>
+				<th><c:if test="${reparto.horaFin!=null}">Hora de fin</c:if></th>
+			</tr>
+			<tr>
+				<td><c:out value="${reparto.repartidor.nombre}"></c:out></td>
+				<td><c:out value="${reparto.fecha}"></c:out></td>
+				<td><c:out value="${reparto.horaInicio}"></c:out></td>
+				<td><c:if test="${reparto.horaFin!=null}"><c:out value="${reparto.horaFin}"></c:out></c:if></td>
 
-	<%-- <table>
-	
-	
-		<tr>
-			<th>Fecha</th>
-		</tr>
-		
-		<tr>
-			<th>Hora de inicio</th>
-		</tr>
-		
-		<tr>
-			<c:if test="${reparto.horaFin!=null}"><th>Hora de fin</th></c:if>
-		</tr>
-		
-		<tr>
-			<th>Repartidor</th>
-		</tr>
-		
-		<tr>
-			<th>Vehiculos</th>
-		</tr>
-	
-	</table> --%>
-	
-	
-	<p>Fecha: <c:out value="${reparto.fecha}"></c:out></p>
-	<p>Hora de inicio: <c:out value="${reparto.horaInicio}"></c:out></p>
-	<c:if test="${reparto.horaFin!=null}"><p>Hora de fin: <c:out value="${reparto.horaFin}"></c:out></p></c:if>
-	<p>Nombre del repartidor: <c:out value="${reparto.repartidor.nombre}"></c:out></p>
-	<p>Pedidos asociados:</p>
-	<c:forEach var="pedido" items="${reparto.pedidos}">
-		<ul title="">
-			<li>Nombre del cliente: <c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out></li>
-			<li>Estado del pedido: <c:out value="${pedido.estadopedido}"></c:out>
-			<spring:url value="/pedidos/{pedidoId}/entregado" var="addUrl">
-		        <spring:param name="pedidoId" value="${pedido.id}"/>
-		    </spring:url>
-		    <a href="${fn:escapeXml(addUrl)}" class="btn btn-outline-secondary">Marcar como entregado</a>
-			</li>
-		</ul>
-		<br>
-	</c:forEach>
+			</tr>
+			<!-- <p>Fecha: <c:out value="${reparto.fecha}"></c:out></p>
+			<p>Hora de inicio: <c:out value="${reparto.horaInicio}"></c:out></p>
+			<c:if test="${reparto.horaFin!=null}"><p>Hora de fin: <c:out value="${reparto.horaFin}"></c:out></p></c:if>
+			<p>Nombre del repartidor: <c:out value="${reparto.repartidor.nombre}"></c:out></p> -->
+		</table>
 
+	<h2>Pedidos asociados</h2>
 
-
+	<form:form class="form-horizontal">
+		<table class="table table-striped">
+			<tr>
+				<th>Nombre del cliente</th>
+				<th>Fecha del pedido</th>
+				<th>Estado del pedido</th>
+				<th>Acciones</th>
+			</tr>
+			<c:forEach items="${reparto.pedidos}" var="pedido">
+				<tr>
+					<td>
+						<!-- Hacer que sea <a></a> y que redireccione a informacion sobre la direccion y demás del pedido -->
+						<c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
+					</td>
+					<td><c:out value="${pedido.fecha}"></c:out></td>
+					<td><c:out value="${pedido.estadopedido}"></c:out></td>
+					<td>
+						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/{pedidoId}/entregado" var="entregadoUrl">
+							<spring:param name="pedidoId" value="${pedido.id}"/>
+							<spring:param name="repartoId" value="${reparto.id}"/>
+							<spring:param name="repartidorId" value="${repartidor.id}"/>
+						</spring:url>
+						<a href="${fn:escapeXml(entregadoUrl)}" class="btn btn-outline-secondary">Marcar como entregado</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</form:form>
 </currogas:layout>

@@ -17,12 +17,5 @@ import lombok.Setter;
 @Table(name = "cocineros")
 public class Cocinero extends Empleado  {
 
-	@Column(name = "usuario")
-    @NotEmpty
-	String usuario;
-	
-	@Column(name = "contrasena")
-    @NotEmpty
-	String contrasena;
 	
 }

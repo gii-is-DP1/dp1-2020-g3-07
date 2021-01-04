@@ -44,9 +44,6 @@ public class EmpleadoServiceTest {
         cocinero.setDni("49678645A");
         cocinero.setSueldo("2000");
         cocinero.setFechanacimiento(LocalDate.of(2001, 02, 12));
-        cocinero.setUsuario("Isma");
-        cocinero.setContrasena("123456");
-
         this.cocineroService.saveCocinero(cocinero);
         assertThat(cocinero.getNombre()).isEqualTo("Ismael"); 
 
@@ -59,8 +56,6 @@ public class EmpleadoServiceTest {
         dependiente.setDni("63748261A");
         dependiente.setSueldo("1500");
         dependiente.setFechanacimiento(LocalDate.of(2000, 10, 12));
-        dependiente.setUsuario("Isma");
-        dependiente.setContrasena("123456");
 
         this.dependienteService.saveDependiente(dependiente);
         assertThat(dependiente.getNombre()).isEqualTo("Pedro");    
