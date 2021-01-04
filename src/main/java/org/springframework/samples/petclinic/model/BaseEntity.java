@@ -32,9 +32,9 @@ public class BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Integer id;
+	protected static Integer id;
 
-	public Integer getId() {
+	public static Integer getId() {
 		return id;
 	}
 
