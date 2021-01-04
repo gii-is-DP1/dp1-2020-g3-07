@@ -16,12 +16,15 @@
 package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Cliente;
+import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Repartidor;
 import org.springframework.samples.petclinic.model.Reparto;
+import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -47,11 +50,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.model.tipoPedido;
+import org.springframework.samples.petclinic.service.ClienteService;
+import org.springframework.samples.petclinic.service.LineaPedidoService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.samples.petclinic.service.RepartoService;
+import org.springframework.samples.petclinic.service.VehiculoService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 
 /**
@@ -68,19 +74,37 @@ public class RepartoController {
 	private final RepartoService repartoService;
     private final RepartidorService repartidorService;
     private final PedidoService pedidoService;
-
+    private final VehiculoService vehiculoService;
+    private final LineaPedidoService lineaPedidoService;
+    private final ClienteService clienteService;
+    
 	@Autowired
 	public RepartoController(RepartoService repartoService, RepartidorService repartidorService,
-			PedidoService pedidoService) {
+			PedidoService pedidoService, VehiculoService vehiculoService, LineaPedidoService lineaPedidoService,
+				ClienteService clienteService) {
 		this.repartoService = repartoService;
         this.repartidorService = repartidorService;
         this.pedidoService = pedidoService;
+        this.vehiculoService = vehiculoService;
+        this.lineaPedidoService = lineaPedidoService;
+        this.clienteService = clienteService;
+	}
+	
+	@ModelAttribute("vehiculos")
+	public Collection<Vehiculo> populateVehiculos() {
+		return this.vehiculoService.findVehiculo();
 	}
 	
 	@ModelAttribute("repartidor")
 	public Repartidor findRepartidor(@PathVariable("repartidorId") int repartidorId) {
 		return this.repartidorService.findRepartidorById(repartidorId).get();
 	}
+	
+	@InitBinder("vehiculo")
+	public void initOwnerBinder(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
+
 
 	@GetMapping(value = "/repartos/new")
 	public String initCreationForm(ModelMap model) {
@@ -130,7 +154,6 @@ public class RepartoController {
 	}
 	
 	
-	
 	@GetMapping("repartos/{repartoId}")
 	public String showRepartos(@PathVariable("repartoId") int repartoId, ModelMap model, Repartidor repartidor) {
 		
@@ -152,6 +175,22 @@ public class RepartoController {
 		pedidoService.savePedido(pedido);
 //		modelMap.put("pedido", pedido);
 		return "redirect:/repartidores/" + repartidorId + "/repartos/" + repartoId;
+	}
+	
+	@GetMapping(value = "repartos/{repartoId}/cliente/{clienteId}")
+	public String showInfoCliente(@PathVariable("clienteId") int clienteId, @PathVariable("repartoId") int repartoId, ModelMap modelMap) {
+		Cliente cliente = clienteService.findClienteById(clienteId).get();
+		modelMap.addAttribute("cliente", cliente);
+		Reparto reparto = repartoService.findRepartoById(repartoId).get();
+		modelMap.addAttribute("reparto", reparto);
+		return "clientes/infoCliente";
+	}
+	
+	@GetMapping(value = "repartos/{repartoId}/volver")
+	public String backToReparto(@PathVariable("repartoId") int repartoId, @PathVariable("repartidorId") int repartidorId, ModelMap model) {
+
+		return "redirect:/repartidores/" + repartidorId + "/repartos/" + repartoId;
+
 	}
 
 }

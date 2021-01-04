@@ -11,11 +11,11 @@
 <currogas:layout pageName="pedidosAsignarRepartidor">
     <h2>Pedidos a asignar</h2>
 
-    <form:form class="form-horizontal">
+    <form:form  class="form-horizontal">
 	    <table class="table table-striped">
 	        <tr>
 	            <th>ID</th>
-	            <th>FechaHora</th>
+	            <th>Fecha y Hora</th>
 	        </tr>
 	        <c:forEach items="${pedidosList}" var="pedido">
 	            <tr>
@@ -23,13 +23,12 @@
 	                <td><c:out value="${pedido.fecha}" /></td>
 	            </tr>
 	        </c:forEach>
-	        
-	        <tr>
-		       <td colspan = "2">
-		          <input type = "submit" value = "Confirmar Reparto"/>
-		       </td>
-		    </tr>
-	        
-	    </table>
+		</table>
+		<div class="control-group">
+			<currogas:selectField name="vehiculo" label="Vehiculo " names="${vehiculos}" size="5"/>
+		</div>
+		<div>
+			<input type = "submit" value = "Confirmar Reparto"/>
+		</div>
 	</form:form>  
 </currogas:layout>

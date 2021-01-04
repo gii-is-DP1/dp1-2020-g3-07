@@ -44,11 +44,6 @@ public class RepartidorService {
 	}
 	
 	@Transactional
-	public void saveReparto(Reparto reparto) throws DataAccessException {
-		repartoRepository.save(reparto);
-	}
-	
-	@Transactional
 	public void saveRepartidor(Repartidor d) throws DataAccessException{
 		repartidorRepository.save(d);
 	}
