@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -26,7 +27,10 @@ public class Vehiculo extends BaseEntity{
 	@Enumerated(value = EnumType.STRING)
 	private TipoVehiculo tipovehiculo;
 	
-	@ManyToMany(mappedBy="vehiculos")			// CascadeType.ALL, 
-	private Set<Reparto> repartos;
+//	@ManyToMany(mappedBy="vehiculos")			// CascadeType.ALL, 
+//	private Set<Reparto> repartos;
+	
+	@OneToOne(optional = true)
+	private Repartidor repartidor;
 
 }

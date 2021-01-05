@@ -16,7 +16,7 @@ public class ConjuntoPedidos {
 
 	private List<Pedido> pedidosAsignados;
 	
-	private List<Vehiculo> vehiculo;
+//	private List<Vehiculo> vehiculo;
 	
 //	private Collection<Pedido> pedidosAsignados;
 	

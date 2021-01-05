@@ -90,10 +90,10 @@ public class RepartoController {
         this.clienteService = clienteService;
 	}
 	
-	@ModelAttribute("vehiculos")
-	public Collection<Vehiculo> populateVehiculos() {
-		return this.vehiculoService.findVehiculo();
-	}
+//	@ModelAttribute("vehiculos")
+//	public Collection<Vehiculo> populateVehiculos() {
+//		return this.vehiculoService.findVehiculo();
+//	}
 	
 	@ModelAttribute("repartidor")
 	public Repartidor findRepartidor(@PathVariable("repartidorId") int repartidorId) {

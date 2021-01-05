@@ -51,7 +51,7 @@ public class Reparto extends BaseEntity{
 //	inverseJoinColumns = @JoinColumn(name = "pedido_id"))
 	private Set<Pedido> pedidos;
 
-	@ManyToMany
-	private Set<Vehiculo> vehiculos;
+//	@ManyToMany
+//	private Set<Vehiculo> vehiculos;
 	
 }
