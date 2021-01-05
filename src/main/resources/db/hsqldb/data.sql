@@ -130,8 +130,16 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 -- insertamos dependientes
 INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2000-01-01');
 
+--insertamos vehiculo
+INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
+INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('7288ASM', 'Moto');
+INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('9008XXC', 'Coche');
+INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('7395LRG', 'Moto');
+INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('3560GFH', 'Moto');
+
 -- insertamos repartidores
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 'clave');
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 'clave', 3);
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 'repartidor2', 'clave', 2);
 
 -- insertamos cocineros
 INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento) VALUES ('Cristian', '79051555L', 400, '1845-08-15');
@@ -152,13 +160,10 @@ INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, t
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(6,'2014-01-02 15:59:48','malo', 1, 'efectivo', 'pendiente', 'enLocal');
 
 
-
 -- insertamos productos
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Margarita', 10, 'pequena');
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza Peperoni', 12, 'pequena');
 INSERT INTO productos(name, precio, tamanopizza) VALUES ('Pizza atun', 11, 'pequena');
---insertamos vehiculo
-INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
 
 -- insertamos reparto
 INSERT INTO repartos(fecha, HORA_INICIO, HORA_FIN) VALUES ('1999-11-12', '12:11:11', '13:11:11');

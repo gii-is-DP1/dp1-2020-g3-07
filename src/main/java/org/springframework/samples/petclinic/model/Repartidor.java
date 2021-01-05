@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -31,6 +32,9 @@ public class Repartidor extends Empleado{
 	@OneToMany(mappedBy = "repartidor")
 	//(cascade = CascadeType.ALL, mappedBy = "repartidor")
 	private Set<Reparto> repartos;
+	
+	@OneToOne(optional = false)
+	private Vehiculo vehiculo;
 	
 	protected Set<Reparto> getRepartosInternal() {
 		if (this.repartos == null) {

@@ -24,9 +24,9 @@
 	            </tr>
 	        </c:forEach>
 		</table>
-		<div class="control-group">
+		<%-- <div class="control-group">
 			<currogas:selectField name="vehiculo" label="Vehiculo " names="${vehiculos}" size="5"/>
-		</div>
+		</div> --%>
 		<div>
 			<input type = "submit" value = "Confirmar Reparto"/>
 		</div>
