@@ -50,9 +50,12 @@
 					<td><c:out value="${pedido.fecha}"></c:out></td>
 					<td><c:out value="${pedido.estadopedido}"></c:out></td>
 					<td>
-						<c:forEach items="${pedido.lineaPedidos}" var="lineapedido">
-							<c:out value="${lineapedido.producto}"></c:out>
-						</c:forEach>
+						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/{pedidoId}/detallesPedido" var="detallesUrl">
+							<spring:param name="pedidoId" value="${pedido.id}"/>
+							<spring:param name="repartoId" value="${reparto.id}"/>
+							<spring:param name="repartidorId" value="${repartidor.id}"/>
+						</spring:url>
+						<a href="${fn:escapeXml(detallesUrl)}" class="btn btn-outline-secondary">Detalles del pedido</a>
 					</td>
 					<td>
 						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/{pedidoId}/entregado" var="entregadoUrl">

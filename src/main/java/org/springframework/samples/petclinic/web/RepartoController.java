@@ -46,6 +46,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Visit;
@@ -100,6 +102,7 @@ public class RepartoController {
 	public Repartidor findRepartidor(@PathVariable("repartidorId") int repartidorId) {
 		return this.repartidorService.findRepartidorById(repartidorId).get();
 	}
+	
 	
 	@InitBinder("vehiculo")
 	public void initOwnerBinder(WebDataBinder dataBinder) {
@@ -176,9 +179,27 @@ public class RepartoController {
 		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
 		pedido.setEstadopedido(estadoPedido.Entregado);
 		pedidoService.savePedido(pedido);
-//		modelMap.put("pedido", pedido);
 		return "redirect:/repartidores/" + repartidorId + "/repartos/" + repartoId;
 	}
+	
+	@GetMapping(value = "repartos/{repartoId}/{pedidoId}/detallesPedido")
+	public String showDetallesPedido(@PathVariable("repartidorId") int repartidorId, @PathVariable("repartoId") int repartoId, @PathVariable("pedidoId") int pedidoId, ModelMap modelMap) {
+		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
+		modelMap.addAttribute("pedido", pedido);
+		Reparto reparto = repartoService.findRepartoById(repartoId).get();
+		modelMap.addAttribute("reparto", reparto);
+		Set<LineaPedido> Setlineapedido = pedido.getLineaPedidos();
+		List<LineaPedido> res = new ArrayList<LineaPedido>();
+		List<Integer> ids = new ArrayList<Integer>();
+		ids = Setlineapedido.stream().map(lp -> lp.getId()).collect(Collectors.toList());
+		for(int i=0; i<ids.size(); i++) {
+			LineaPedido lineapedido = lineaPedidoService.findLineaPedidoById(ids.get(i)).get();
+			res.add(lineapedido);
+		}
+		modelMap.addAttribute("lineapedido", res);
+		return "repartos/infoPedidoReparto";
+	}
+
 	
 	@GetMapping(value = "repartos/{repartoId}/cliente/{clienteId}")
 	public String showInfoCliente(@PathVariable("clienteId") int clienteId, @PathVariable("repartoId") int repartoId, ModelMap modelMap) {
