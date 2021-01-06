@@ -15,6 +15,7 @@
         <tr>
             <th>Matricula</th>
             <th>Tipo de vehiculo</th>
+            <th>Repartidor asociado</th>
             <th>Acciones</th> 
          
         </tr>
@@ -29,12 +30,17 @@
                     <c:out value="${vehiculo.tipovehiculo}"/>
                 </td>
                 <td>
-                    <spring:url value="vehiculos/delete/{vehiculoID}" var="vehiculoUrl">
-       				 <spring:param name="vehiculoID" value="${vehiculo.id}"/>
-    				</spring:url>
-    				<a href="${fn:escapeXml(vehiculoUrl)}" class="btn btn-default" >Eliminar vehiculo</a>
+                    <c:out value="${vehiculo.repartidor.nombre}"/>
+                </td>
+                <td>
+                	<c:if test="${vehiculo.repartidor.nombre==null }">
+	                    <spring:url value="vehiculos/delete/{vehiculoID}" var="vehiculoUrl">
+	       				 <spring:param name="vehiculoID" value="${vehiculo.id}"/>
+	    				</spring:url>
+	    				<a href="${fn:escapeXml(vehiculoUrl)}" class="btn btn-default" >Eliminar vehiculo</a>
+    				</c:if>
     				
-    				<spring:url value = "/vehiculos/save/{vehiculoID}" var = "vehiculoUrl1">
+    				<spring:url value = "/vehiculos/edit/{vehiculoID}" var = "vehiculoUrl1">
                     	<spring:param name = "vehiculoID" value ="${vehiculo.id}"/>
                     </spring:url>
                     <a href = "${fn:escapeXml(vehiculoUrl1)}" class="btn btn-default">Editar</a>

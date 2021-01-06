@@ -55,14 +55,14 @@ public class VehiculoFormatter implements Formatter<Vehiculo> {
 
 	@Override
 	public String print(Vehiculo vehiculo, Locale locale) {
-		return vehiculo.getMatricula();
+		return vehiculo.getMatricula() + "  -  " + vehiculo.getTipovehiculo();
 	}
 
 	@Override
 	public Vehiculo parse(String text, Locale locale) throws ParseException {
 		Collection<Vehiculo> findVehiculo = this.veService.findVehiculo();
 		for (Vehiculo vehiculo : findVehiculo) {
-			if (vehiculo.getMatricula().equals(text)) {
+			if (text.equals(vehiculo.getMatricula() + "  -  " + vehiculo.getTipovehiculo())) {
 				return vehiculo;
 			}
 		}

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/vehiculos")
@@ -61,15 +62,16 @@ public class VehiculoController {
 	public String borrarVehiculo(@PathVariable("vehiculoID") int vehiculoID, ModelMap modelMap) {
 		Optional<Vehiculo> vehiculo = vehiculoService.findVehiculoById(vehiculoID);
 		if(vehiculo.isPresent()) {
+			if(vehiculo.get().getRepartidor()!=null) return "redirect:/vehiculos";
 			vehiculoService.deleteVehiculo(vehiculo.get());
 			modelMap.addAttribute("message", "Vehiculo borrado correctamente");
 		} else {
 			modelMap.addAttribute("message", "Vehiculo no encontrado");
 		}
-		return "redirect:/productos";
+		return "redirect:/vehiculos";
 	}
 	
-	@GetMapping(value = "/save/{vehiculoID}")
+	@GetMapping(value = "/edit/{vehiculoID}")
 	public String initUpdateForm(@PathVariable("vehiculoID") int vehiculoID, Model model) {
 		Optional<Vehiculo> vehiculo = this.vehiculoService.findVehiculoById(vehiculoID);
 		if(vehiculo.isPresent()) {
@@ -81,7 +83,7 @@ public class VehiculoController {
 		}
 	}
 
-	@PostMapping(value = "/save/{vehiculoID}")
+	@PostMapping(value = "/edit/{vehiculoID}")
 	public String processUpdateForm(@Valid Vehiculo vehiculo, BindingResult result,
 			@PathVariable("vehiculoID") int vehiculoID) {
 		if (result.hasErrors()) {

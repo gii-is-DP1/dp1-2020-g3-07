@@ -59,8 +59,8 @@
     <table id="dependientesTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Nombre</th>
-            <th style="width: 200px;">DNI</th>
+            <th>Nombre</th>
+            <th>DNI</th>
             <th>Sueldo</th>
             <th>Fecha de nacimiento</th>
             <th>Accion</th>
@@ -83,7 +83,7 @@
                     <c:out value="${dependiente.fechanacimiento}"/>
                 </td>
                 <td>
-                    <spring:url value = "/dependientes/save/{dependienteId}" var = "dependienteUrl1">
+                    <spring:url value = "/dependientes/edit/{dependienteId}" var = "dependienteUrl1">
                     	<spring:param name = "dependienteId" value ="${dependiente.id}"/>
                     </spring:url>
                     <a href = "${fn:escapeXml(dependienteUrl1)}">Editar</a>
@@ -115,10 +115,11 @@
     <table id="repartidoresTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Nombre</th>
-            <th style="width: 200px;">DNI</th>
+            <th>Nombre</th>
+            <th>DNI</th>
             <th>Sueldo</th>
             <th>Fecha de nacimiento</th>
+            <th>Matricula de su vehiculo</th>
             <th>Accion</th>
          
         </tr>
@@ -139,7 +140,10 @@
                     <c:out value="${repartidor.fechanacimiento}"/>
                 </td>
                 <td>
-                    <spring:url value = "/repartidores/save/{repartidorId}" var = "repartidorUrl1">
+                    <c:out value="${repartidor.vehiculo.matricula}"/>
+                </td>
+                <td>
+                    <spring:url value = "/repartidores/edit/{repartidorId}" var = "repartidorUrl1">
                     	<spring:param name = "repartidorId" value ="${repartidor.id}"/>
                     </spring:url>
                     <a href = "${fn:escapeXml(repartidorUrl1)}">Editar</a>
@@ -171,8 +175,8 @@
     <table id="cocinerosTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Nombre</th>
-            <th style="width: 200px;">DNI</th>
+            <th>Nombre</th>
+            <th>DNI</th>
             <th>Sueldo</th>
             <th>Fecha de nacimiento</th>
             <th>Accion</th>
@@ -195,7 +199,7 @@
                     <c:out value="${cocinero.fechanacimiento}"/>
                 </td>
                 <td>
-                    <spring:url value = "/cocineros/save/{cocineroId}" var = "cocineroUrl1">
+                    <spring:url value = "/cocineros/edit/{cocineroId}" var = "cocineroUrl1">
                     	<spring:param name = "cocineroId" value ="${cocinero.id}"/>
                     </spring:url>
                     <a href = "${fn:escapeXml(cocineroUrl1)}">Editar</a>

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,7 +31,7 @@ public class Empleado extends BaseEntity{
     @NotEmpty
     private String sueldo;
     @Column(name = "fechanacimiento")
-    @NotEmpty
+    @NotNull
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechanacimiento;
     
