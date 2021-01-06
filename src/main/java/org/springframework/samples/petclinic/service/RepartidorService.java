@@ -1,6 +1,9 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -51,6 +54,13 @@ public class RepartidorService {
 	@Transactional
 	public void deleteRepartidor(Repartidor d) throws DataAccessException{
 		repartidorRepository.delete(d);
+	}
+	
+	@Transactional(readOnly = true)
+	public Collection<Repartidor> findRepartidores(){
+		Iterable<Repartidor> repartidores = repartidorRepository.findAll();
+		Collection<Repartidor> res = StreamSupport.stream(repartidores.spliterator(), false).collect(Collectors.toList());
+		return res;
 	}
 	
 }

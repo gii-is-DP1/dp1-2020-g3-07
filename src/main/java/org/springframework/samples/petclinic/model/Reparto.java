@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,12 +29,12 @@ import lombok.Setter;
 public class Reparto extends BaseEntity{
 
 	@Column(name = "fecha")
-//    @NotEmpty
+    @NotNull
     @DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate fecha;
 
 	@Column(name = "horaInicio")
-//    @NotEmpty
+	@NotNull
     @DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime horaInicio;
 

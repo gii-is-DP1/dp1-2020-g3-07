@@ -1,15 +1,21 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.samples.petclinic.service.RepartoService;
+import org.springframework.samples.petclinic.service.VehiculoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,6 +23,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,18 +37,41 @@ public class RepartidorController {
 	private RepartidorService repartidorService;
 	private PedidoService pedidoService;
 	private RepartoService repartoService;
+	private VehiculoService vehiculoService;
 	
 	@Autowired
-	public RepartidorController(RepartidorService rs, PedidoService ps, RepartoService rss) {
+	public RepartidorController(RepartidorService rs, PedidoService ps, RepartoService rss, VehiculoService vs) {
 		this.repartidorService = rs;
 		this.pedidoService = ps;
 		this.repartoService = rss;
+		this.vehiculoService = vs;
 	}
 	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
+	
+//	@ModelAttribute("vehiculos")
+//	public Collection<Vehiculo> getVehiculos(){
+////		List<Vehiculo> vs = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
+////		List<Vehiculo> res = new ArrayList<Vehiculo>();
+////		for(Vehiculo v : vs) {
+////			if(v.getRepartidor().getDni().isEmpty()) {
+////				res.add(v);
+////			}
+////		}
+////		return vs;
+//		
+//		List<Repartidor> repartidores = new ArrayList<Repartidor>(this.repartidorService.findRepartidores());
+//		List<Vehiculo> vehiculosOcupados = repartidores.stream().map(r->r.getVehiculo()).collect(Collectors.toList());
+//		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
+//		vehiculos.removeAll(vehiculosOcupados);
+//		
+////		return this.vehiculoService.findVehiculo();
+//		return vehiculos;
+//	}
+	
 	
 	@GetMapping()
 	public String listadoRepartidores(ModelMap modelMap) {
@@ -77,7 +107,11 @@ public class RepartidorController {
 	public String borrarRepartidor(@PathVariable("repartidorID") int repartidorID, ModelMap modelMap) {
 		Optional<Repartidor> d = repartidorService.findRepartidorById(repartidorID);
 		if(d.isPresent()) {
-			repartidorService.deleteRepartidor(d.get());
+			Repartidor r = d.get();
+			Vehiculo v = r.getVehiculo();
+			v.setRepartidor(null);
+			vehiculoService.saveVehiculo(v);
+			repartidorService.deleteRepartidor(r);
 			modelMap.addAttribute("message", "Repartidor borrado correctamente");
 		} else {
 			modelMap.addAttribute("message", "Repartidor no encontrado");
@@ -88,14 +122,34 @@ public class RepartidorController {
 	
 	@GetMapping(value = "/new")
 	public String initCreationForm(Map<String, Object> model) {
+		
+		
+		List<Repartidor> repartidores = new ArrayList<Repartidor>(this.repartidorService.findRepartidores());
+		List<Vehiculo> vehiculosOcupados = repartidores.stream().map(r->r.getVehiculo()).collect(Collectors.toList());
+		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
+		vehiculos.removeAll(vehiculosOcupados);
+		
+		model.put("vehiculos", vehiculos);
+		
+		
 		Repartidor dep = new Repartidor();
 		model.put("repartidor", dep);
 		return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/new")
-	public String processCreationForm(@Valid Repartidor dep, BindingResult result) {
+	public String processCreationForm(@Valid Repartidor dep, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
+			
+			
+			List<Repartidor> repartidores = new ArrayList<Repartidor>(this.repartidorService.findRepartidores());
+			List<Vehiculo> vehiculosOcupados = repartidores.stream().map(r->r.getVehiculo()).collect(Collectors.toList());
+			List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
+			vehiculos.removeAll(vehiculosOcupados);
+			
+			model.addAttribute("vehiculos", vehiculos);
+			
+			
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 		}
 		else {
@@ -105,10 +159,20 @@ public class RepartidorController {
 		}
 	}
 	
-	@GetMapping(value = "/save/{repartidorID}")
+	@GetMapping(value = "/edit/{repartidorID}")
 	public String initUpdateForm(@PathVariable("repartidorID") int repartidorID, Model model) {
 		Optional<Repartidor> d = this.repartidorService.findRepartidorById(repartidorID);
 		if(d.isPresent()) {
+			
+			
+			List<Repartidor> repartidores = new ArrayList<Repartidor>(this.repartidorService.findRepartidores());
+			List<Vehiculo> vehiculosOcupados = repartidores.stream().map(r->r.getVehiculo()).collect(Collectors.toList());
+			List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
+			vehiculos.removeAll(vehiculosOcupados);
+			vehiculos.add(d.get().getVehiculo());
+			
+			model.addAttribute("vehiculos", vehiculos);
+			
 			model.addAttribute("repartidor", d.get());
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 		} else {
@@ -117,10 +181,21 @@ public class RepartidorController {
 		}
 	}
 
-	@PostMapping(value = "/save/{repartidorID}")
+	@PostMapping(value = "/edit/{repartidorID}")
 	public String processUpdateForm(@Valid Repartidor d, BindingResult result,
-			@PathVariable("repartidorID") int repartidorID) {
+			@PathVariable("repartidorID") int repartidorID, ModelMap model) {
 		if (result.hasErrors()) {
+			
+			
+			List<Repartidor> repartidores = new ArrayList<Repartidor>(this.repartidorService.findRepartidores());
+			List<Vehiculo> vehiculosOcupados = repartidores.stream().map(r->r.getVehiculo()).collect(Collectors.toList());
+			List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
+			vehiculos.removeAll(vehiculosOcupados);
+			vehiculos.add(d.getVehiculo());
+			
+			model.addAttribute("vehiculos", vehiculos);
+			
+			
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 		}
 		else {

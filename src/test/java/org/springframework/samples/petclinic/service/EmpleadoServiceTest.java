@@ -15,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Cocinero;
 import org.springframework.samples.petclinic.model.Dependiente;
 import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.model.User;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -69,8 +70,13 @@ public class EmpleadoServiceTest {
 		repartidor.setDni("83591261A");
 		repartidor.setSueldo("1300");
 		repartidor.setFechanacimiento(LocalDate.of(1998, 10, 22));
-		repartidor.setUsuario("Isma");
-		repartidor.setContrasena("123456");
+//		repartidor.setUsuario("Isma");
+//		repartidor.setContrasena("123456");
+		User user = new User();
+		user.setUsername("Isma");
+		user.setPassword("123456");
+		user.setEnabled(false);
+		repartidor.setUser(user);
 
         this.repartidorService.saveRepartidor(repartidor);
         assertThat(repartidor.getNombre()).isEqualTo("Pedro");

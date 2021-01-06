@@ -61,7 +61,7 @@ public class DependienteController {
 		}
 	}
 	
-	@GetMapping(value = "/save/{dependienteId}")
+	@GetMapping(value = "/edit/{dependienteId}")
 	public String initUpdateForm(@PathVariable("dependienteId") int dependienteId, Model model) {
 		Optional<Dependiente> d = this.depenService.findDependienteById(dependienteId);
 		if(d.isPresent()) {
@@ -73,7 +73,7 @@ public class DependienteController {
 		}
 	}
 
-	@PostMapping(value = "/save/{dependienteId}")
+	@PostMapping(value = "/edit/{dependienteId}")
 	public String processUpdateForm(@Valid Dependiente d, BindingResult result,
 			@PathVariable("dependienteId") int dependienteId) {
 		if (result.hasErrors()) {

@@ -138,8 +138,14 @@ INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('7395LRG', 'Moto');
 INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('3560GFH', 'Moto');
 
 -- insertamos repartidores
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 'clave', 3);
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 'repartidor2', 'clave', 2);
+--INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 'clave', 3);
+--INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 'repartidor2', 'clave', 2);
+INSERT INTO users(username,password,enabled) VALUES ('repartidor1','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'repartidor1','repartidor');
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, username, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 3);
+INSERT INTO users(username,password,enabled) VALUES ('repartidor2','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (11,'repartidor2','repartidor');
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, username, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 'repartidor2', 2);
 
 -- insertamos cocineros
 INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento) VALUES ('Cristian', '79051555L', 400, '1845-08-15');
@@ -147,7 +153,7 @@ INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento) VALUES ('Cristian', 
 -- insertamos clientes
 --INSERT INTO clientes(nombre, apellidos, telefono, direccion, email, contrasena, fechanacimiento) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod', '1999-09-21');
 INSERT INTO users(username,password,enabled) VALUES ('juan@gmail.com','juan',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (10,'juan@gmail.com','cliente');
+INSERT INTO authorities(id,username,authority) VALUES (12,'juan@gmail.com','cliente');
 INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', '1999-09-21', 'juan@gmail.com');
 
 -- insertamos pedidos

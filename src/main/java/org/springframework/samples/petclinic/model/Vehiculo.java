@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,7 +31,7 @@ public class Vehiculo extends BaseEntity{
 //	@ManyToMany(mappedBy="vehiculos")			// CascadeType.ALL, 
 //	private Set<Reparto> repartos;
 	
-	@OneToOne(optional = true)
+	@OneToOne(optional = true, cascade = CascadeType.ALL, mappedBy = "vehiculo")
 	private Repartidor repartidor;
 
 }

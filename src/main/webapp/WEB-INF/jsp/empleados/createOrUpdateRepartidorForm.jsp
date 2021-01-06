@@ -7,17 +7,29 @@
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
 <currogas:layout pageName="repartidores">
+	<jsp:attribute name="customScript">
+        <script>
+            $(function () {
+                $("#fechanacimiento").datepicker({dateFormat: 'yy/mm/dd'});
+            });
+        </script>
+    </jsp:attribute>
+    <jsp:body>
     <h2>
         <c:if test="${repartidor['new']}">Nuevo</c:if> Repartidor
     </h2>
     <form:form modelAttribute="repartidor" class="form-horizontal" id="add-repartidor-form">
         <div class="form-group has-feedback">
+        	<input type="hidden" name="id" value="${repartidor.id}"/>
             <currogas:inputField label="nombre" name="nombre"/>
             <currogas:inputField label="dni" name="dni"/>
             <currogas:inputField label="sueldo" name="sueldo"/>
             <currogas:inputField label="fechanacimiento" name="fechanacimiento"/>
-            <currogas:inputField label="usuario" name="usuario"/>
-            <currogas:inputField label="contrasena" name="contrasena"/>
+            <currogas:inputField label="usuario" name="user.username"/>
+            <currogas:inputField label="contrasena" name="user.password"/>
+            <div class="control-group">
+                <currogas:selectField name="vehiculo" label="Vehiculo asignado " names="${vehiculos}" size="5"/>
+            </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -32,4 +44,5 @@
             </div>
         </div>
     </form:form>
+    </jsp:body>
 </currogas:layout>

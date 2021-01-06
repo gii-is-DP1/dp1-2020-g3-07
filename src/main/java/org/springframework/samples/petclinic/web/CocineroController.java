@@ -62,7 +62,7 @@ public class CocineroController {
 		}
 	}
 	
-	@GetMapping(value = "/save/{cocineroID}")
+	@GetMapping(value = "/edit/{cocineroID}")
 	public String initUpdateForm(@PathVariable("cocineroID") int cocineroID, Model model) {
 		Optional<Cocinero> d = this.cociService.findCocineroById(cocineroID);
 		if(d.isPresent()) {
@@ -74,7 +74,7 @@ public class CocineroController {
 		}
 	}
 
-	@PostMapping(value = "/save/{cocineroID}")
+	@PostMapping(value = "/edit/{cocineroID}")
 	public String processUpdateForm(@Valid Cocinero d, BindingResult result,
 			@PathVariable("cocineroID") int cocineroID) {
 		if (result.hasErrors()) {
