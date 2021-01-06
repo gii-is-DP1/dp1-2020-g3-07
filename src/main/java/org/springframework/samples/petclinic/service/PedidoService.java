@@ -51,6 +51,11 @@ public class PedidoService {
 	public Optional<Pedido> findPedidoById(int id) throws DataAccessException {
 		return pedidoRepo.findById(id);
 	}
+	
+	@Transactional(readOnly = true)
+	public Set<Pedido> findByRepartoId(Integer id){
+		return this.pedidoRepo.findByRepartoId(id);
+	}
 
 	
 	@Transactional

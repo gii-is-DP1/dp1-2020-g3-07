@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.repository;
 
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -21,6 +22,6 @@ public interface PedidoRepository extends CrudRepository<Pedido, Integer> {
 	
 	Set<Pedido> findByEstadopedidoAndTipopedido(estadoPedido estadopedido, tipoPedido tipopedido);
 
-	
+	Set<Pedido> findByRepartoId(Integer repartoId);
 
 }

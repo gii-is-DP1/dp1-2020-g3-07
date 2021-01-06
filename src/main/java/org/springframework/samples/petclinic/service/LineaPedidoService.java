@@ -1,10 +1,12 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.LineaPedido;
+import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.repository.LineaPedidoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +28,10 @@ public class LineaPedidoService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<LineaPedido> findPedidoById(int id) throws DataAccessException {
+	public Optional<LineaPedido> findLineaPedidoById(int id) throws DataAccessException {
 		return lineaPedidoRepo.findById(id);
 	}
+	
 	
 	@Transactional
 	public void saveLineaPedido(LineaPedido lineaPedido) throws DataAccessException {

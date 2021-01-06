@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,6 +36,9 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@DateTimeFormat(pattern = "yyyy-MM-dd :HH:mm:ss")
 	private LocalDateTime fecha;
 	
+	@Column(name = "horaEstimada")					// es opcional ponerla
+    @DateTimeFormat(pattern = "HH:mm:ss")
+	private LocalTime horaEstimada;
 	
 	@Column(name = "comentario")
 	private String comentario;
@@ -58,9 +62,9 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Enumerated(value = EnumType.STRING)
 	private tipoPedido tipopedido;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "reparto_id")
-//	private Reparto reparto;
+	@ManyToOne
+	@JoinColumn(name = "reparto_id")
+	private Reparto reparto;
 	
 	@Override
 	public int compareTo(Pedido o) {

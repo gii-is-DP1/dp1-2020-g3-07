@@ -180,7 +180,7 @@ public class PedidoController {
 			//List<Producto> listaProductos = new ArrayList<>();
 			int i = 0;
 			while(i<listaIDLineaPedido.size()) {
-				listaLineaPedidos.add(lineaPedidoService.findPedidoById(listaIDLineaPedido.get(i)).get());
+				listaLineaPedidos.add(lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get());
 				//listaProductos.add(lineaPedidoService.findPedidoById(listaIDLineaPedido.get(i)).get().getProducto());
 				i++;
 			}	
@@ -202,7 +202,7 @@ public class PedidoController {
 		@GetMapping(value="/new/resumendelpedido/delete/{pedidoID}/{lineapedidoID}")
 		public String borrarLineaPedido(@PathVariable("lineapedidoID") int lineapedidoID, @PathVariable("pedidoID") int pedidoID, ModelMap modelMap) {
 			Pedido pedido = pedidoService.findPedidoById(pedidoID).get();
-			Optional<LineaPedido> lineapedido = lineaPedidoService.findPedidoById(lineapedidoID);
+			Optional<LineaPedido> lineapedido = lineaPedidoService.findLineaPedidoById(lineapedidoID);
 			if(lineapedido.isPresent()) {
 				Iterator<LineaPedido> it = pedido.getLineaPedidos().iterator();
 				while(it.hasNext()) {
@@ -226,7 +226,7 @@ public class PedidoController {
 		@GetMapping(value="/new/resumendelpedido/edit/{pedidoID}/{lineapedidoID}/{productoID}")
 		public String editarLineaPedido(@PathVariable("lineapedidoID") int lineapedidoID, @PathVariable("pedidoID") int pedidoID, 
 				@PathVariable("productoID") int productoID, Map<String, Object> model) {
-			LineaPedido lineaPedido = lineaPedidoService.findPedidoById(lineapedidoID).get();
+			LineaPedido lineaPedido = lineaPedidoService.findLineaPedidoById(lineapedidoID).get();
 			Producto producto = lineaPedido.getProducto();		
 			model.put("productos", producto);
 			model.put("lineapedidos", lineaPedido);
