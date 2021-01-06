@@ -14,13 +14,16 @@
 				<th>Cantidad de cada producto</th>
 			</tr>
 			<tr>
-				<c:forEach items="${lineapedido}" var="lineapedido">
-					<td><c:out value="${lineapedido.producto.name}"></c:out></td>
-					<td><c:out value="${lineapedido.cantidad}"></c:out></td>
-				</c:forEach>
+				
 			</tr>
 		</table>
 		<form:form>
+		<div>
+			<c:forEach items="${lineapedido}" var="lineapedido">
+				<c:out value="${lineapedido.producto.name}"></c:out>
+				<c:out value="${lineapedido.cantidad}"></c:out>
+			</c:forEach>
+		</div>
 			<div>
 				<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/volver" var="volverUrl">
 							<spring:param name="repartoId" value="${reparto.id}"/>

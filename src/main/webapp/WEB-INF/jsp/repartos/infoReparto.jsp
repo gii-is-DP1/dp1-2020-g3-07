@@ -13,14 +13,11 @@
 				<th>Nombre repartidor</th>
 				<th>Fecha</th>
 				<th>Hora de inicio</th>
-				<th><c:if test="${reparto.horaFin!=null}">Hora de fin</c:if></th>
 			</tr>
 			<tr>
 				<td><c:out value="${reparto.repartidor.nombre}"></c:out></td>
 				<td><c:out value="${reparto.fecha}"></c:out></td>
 				<td><c:out value="${reparto.horaInicio}"></c:out></td>
-				<td><c:if test="${reparto.horaFin!=null}"><c:out value="${reparto.horaFin}"></c:out></c:if></td>
-
 			</tr>
 		</table>
 
