@@ -22,14 +22,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "repartidores")
 public class Repartidor extends Empleado{
-
-//	@Column(name = "usuario")
-//    @NotEmpty
-//	String usuario;
-	
-//	@Column(name = "contrasena")
-//    @NotEmpty
-//	String contrasena;
 	
 	@OneToMany(mappedBy = "repartidor")
 	//(cascade = CascadeType.ALL, mappedBy = "repartidor")

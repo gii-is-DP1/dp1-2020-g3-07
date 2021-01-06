@@ -16,8 +16,6 @@
             <currogas:inputField label="dni" name="dni"/>
             <currogas:inputField label="sueldo" name="sueldo"/>
             <currogas:inputField label="fechanacimiento" name="fechanacimiento"/>
-            <currogas:inputField label="usuario" name="usuario"/>
-            <currogas:inputField label="contrasena" name="contrasena"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

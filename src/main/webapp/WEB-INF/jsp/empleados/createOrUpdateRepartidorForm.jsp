@@ -25,8 +25,6 @@
             <currogas:inputField label="dni" name="dni"/>
             <currogas:inputField label="sueldo" name="sueldo"/>
             <currogas:inputField label="fechanacimiento" name="fechanacimiento"/>
-            <currogas:inputField label="usuario" name="user.username"/>
-            <currogas:inputField label="contrasena" name="user.password"/>
             <div class="control-group">
                 <currogas:selectField name="vehiculo" label="Vehiculo asignado " names="${vehiculos}" size="5"/>
             </div>

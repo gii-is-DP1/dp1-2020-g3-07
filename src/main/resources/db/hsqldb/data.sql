@@ -129,6 +129,8 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 
 -- insertamos dependientes
 INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2000-01-01');
+INSERT INTO users(username,password,enabled) VALUES ('dependiente','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'dependiente','dependiente');
 
 --insertamos vehiculo
 INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
@@ -138,27 +140,24 @@ INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('7395LRG', 'Moto');
 INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('3560GFH', 'Moto');
 
 -- insertamos repartidores
---INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 'clave', 3);
---INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, usuario, contrasena, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 'repartidor2', 'clave', 2);
-INSERT INTO users(username,password,enabled) VALUES ('repartidor1','clave',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (10,'repartidor1','repartidor');
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, username, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 'repartidor1', 3);
-INSERT INTO users(username,password,enabled) VALUES ('repartidor2','clave',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (11,'repartidor2','repartidor');
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, username, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 'repartidor2', 2);
+INSERT INTO users(username,password,enabled) VALUES ('repartidor','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (11,'repartidor','repartidor');
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 3);
+INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 2);
 
 -- insertamos cocineros
 INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento) VALUES ('Cristian', '79051555L', 400, '1845-08-15');
 
 -- insertamos clientes
---INSERT INTO clientes(nombre, apellidos, telefono, direccion, email, contrasena, fechanacimiento) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', 'juanrod', 'juanrod', '1999-09-21');
 INSERT INTO users(username,password,enabled) VALUES ('juan@gmail.com','juan',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (12,'juan@gmail.com','cliente');
 INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', '1999-09-21', 'juan@gmail.com');
+INSERT INTO users(username,password,enabled) VALUES ('pedro@gmail.com','pedro',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (13,'pedro@gmail.com','cliente');
+INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Pedro', 'Clemente Ortiz', '999685554', 'Calle Fuencarral', '2000-07-11', 'pedro@gmail.com');
 
 -- insertamos pedidos
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente', 'enLocal');
-
 INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido, cliente_id) VALUES(2,'2016-05-11 15:59:48', 'tarjeta', 'pendiente', 'aDomicilio', 1);
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(3,'2010-07-05 15:59:48','excelente', 5, 'efectivo', 'enReparto', 'aDomicilio', 1);
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2013-01-02 15:59:48','malo', 1, 'efectivo', 'pendiente', 'aDomicilio');
