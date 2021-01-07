@@ -25,6 +25,7 @@
             <currogas:inputField label="dni" name="dni"/>
             <currogas:inputField label="sueldo" name="sueldo"/>
             <currogas:inputField label="fechanacimiento" name="fechanacimiento"/>
+            <%-- <form:input type="date" path="fechanacimiento"/> --%>
             <div class="control-group">
                 <currogas:selectField name="vehiculo" label="Vehiculo asignado " names="${vehiculos}" size="5"/>
             </div>

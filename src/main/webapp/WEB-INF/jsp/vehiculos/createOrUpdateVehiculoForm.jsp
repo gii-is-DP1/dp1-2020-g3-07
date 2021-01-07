@@ -8,9 +8,9 @@
 
 <currogas:layout pageName="vehiculo">
     <h2>
-        <c:if test="${vehiculos['new']}">Nuevo</c:if> Vehiculo
+        <c:if test="${vehiculo['new']}">Nuevo</c:if> Vehiculo
     </h2>
-    <form:form modelAttribute="vehiculos" class="form-horizontal" id="add-vehiculos-form">
+    <form:form modelAttribute="vehiculo" class="form-horizontal" id="add-vehiculos-form">
         <div class="form-group has-feedback">
             <currogas:inputField label="matricula" name="matricula"/>
             <currogas:inputField label="tipovehiculo" name="tipovehiculo"/>
@@ -18,7 +18,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
-                    <c:when test="${vehiculos['new']}">
+                    <c:when test="${vehiculo['new']}">
                         <button class="btn btn-default" type="submit">Añadir vehiculos</button>
                     </c:when>
                     <c:otherwise>
