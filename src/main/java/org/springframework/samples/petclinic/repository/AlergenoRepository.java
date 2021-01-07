@@ -9,10 +9,7 @@ import org.springframework.samples.petclinic.model.Alergeno;
 
 public interface AlergenoRepository extends CrudRepository<Alergeno, Integer>{
 	
-	@Query("SELECT alergenotype FROM Alergeno alergenotype ORDER BY alergenotype.name")
-	static List<Alergeno> findAlergenoTypes() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@Query("SELECT alergenotype FROM Alergeno alergenotype")
+	public List<Alergeno> findAlergenoTypes();
 
 }

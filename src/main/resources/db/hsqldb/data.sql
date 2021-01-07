@@ -173,5 +173,24 @@ INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza de 
 -- insertamos reparto
 INSERT INTO repartos(fecha, HORA_INICIO) VALUES ('1999-11-12', '12:11:11');
 
+-- insertamos alergenos
+INSERT INTO alergenos(alergenotype) VALUES ('Gluten');
+INSERT INTO alergenos(alergenotype) VALUES ('Crustaceos');
+INSERT INTO alergenos(alergenotype) VALUES ('Huevos');
+INSERT INTO alergenos(alergenotype) VALUES ('Pescado');
+INSERT INTO alergenos(alergenotype) VALUES ('Cacahuetes');
+INSERT INTO alergenos(alergenotype) VALUES ('Soja');
+INSERT INTO alergenos(alergenotype) VALUES ('Lacteos');
+INSERT INTO alergenos(alergenotype) VALUES ('Oregano');
+INSERT INTO alergenos(alergenotype) VALUES ('FrutosSecos');
+INSERT INTO alergenos(alergenotype) VALUES ('Apio');
+INSERT INTO alergenos(alergenotype) VALUES ('Mostaza');
+INSERT INTO alergenos(alergenotype) VALUES ('GranosDeSesamo');
+INSERT INTO alergenos(alergenotype) VALUES ('DioxidoDeAzufre');
+INSERT INTO alergenos(alergenotype) VALUES ('Moluscos');
+INSERT INTO alergenos(alergenotype) VALUES ('Altramuces');
+
+
+
 -- -- relacion repartidores-reparto
 -- --INSERT INTO REPARTIDORES_REPARTOS(REPARTIDOR_ID, REPARTOS_ID) VALUES ('1', '1');

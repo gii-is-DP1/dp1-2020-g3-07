@@ -8,16 +8,46 @@
 
 <currogas:layout pageName="producto">
     <h2>
-        <c:if test="${productos['new']}">Nuevo</c:if> Producto
+        <c:if test="${producto['new']}">Nuevo</c:if> Producto
     </h2>
-    <form:form modelAttribute="productos" class="form-horizontal" id="add-productos-form">
+    <form:form modelAttribute="producto" class="form-horizontal" id="add-productos-form">
         <div class="form-group has-feedback">
             <currogas:inputField label="name" name="name"/>
             <currogas:inputField label="precio" name="precio"/>
             <currogas:inputField label="descripcion" name="descripcion"/>
-            <currogas:inputField label="alergenos" name="alergenos"/>
+            <%-- <c:forEach items="${alergenos}" var="alergenos">
+                <tr>
+                    <td><form:checkbox path="alergenotype" value="${alergenos}" label="${alergenos.id}" /></td>
+         
+                </tr>
+            </c:forEach> --%>
             <%-- <currogas:selectField label="alergenos" name="alergenos" names = "${alergenotype}" size="5"/> --%>
         </div>
+
+	 
+        	<form:checkboxes items="${alergenos}" path="alergenos" name = "alergenos"  itemLabel="alergenotype"/>
+        	
+
+        	
+        	<%--         <c:forEach items="${alergenos}" var="alergenos">
+	            <tr>
+	                <td><form:checkboxes path="alergenosAsignados" value="${alergenos}" label="${alergenos}" /></td>
+	            </tr>
+	    </c:forEach> --%>
+     <%--    value="${alergenos}" label="${alergenos.alergenotype}"  --%>
+        
+       <%--  <table class="table table-striped">
+	        <tr>
+	            <th>Nombre</th>
+	        </tr>
+	        <c:forEach items="${alergenos}" var="alergenos">
+	            <tr>
+	                <td><form:checkboxes path="alergenosAsignados" value="${alergenos}" label="${alergenos.alergenotype}" /></td>
+	            </tr>
+	        </c:forEach>
+		</table> --%>
+        
+    
 <!--        <div class="form-group">
   <label for="sel1">Select list:</label>
   <select class="form-control" id="sel1">
@@ -31,7 +61,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
-                    <c:when test="${productos['new']}">
+                    <c:when test="${producto['new']}">
                         <button class="btn btn-default" type="submit">Anadir productos</button>
                     </c:when>
                     <c:otherwise>
