@@ -47,7 +47,7 @@
 					<td><c:out value="${pedido.fecha}"></c:out></td>
 					<td><c:out value="${pedido.estadopedido}"></c:out></td>
 					<td>
-						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/{pedidoId}/detallesPedido" var="detallesUrl">
+						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/detallesPedido/{pedidoId}" var="detallesUrl">
 							<spring:param name="pedidoId" value="${pedido.id}"/>
 							<spring:param name="repartoId" value="${reparto.id}"/>
 							<spring:param name="repartidorId" value="${repartidor.id}"/>

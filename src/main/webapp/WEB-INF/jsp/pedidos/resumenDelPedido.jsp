@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="lineapedido">
+<currogas:layout pageName="lineapedido">
 	<h2>Resumen del pedido</h2>	
 	<c:forEach items="${lineapedido}" var="lineapedido">
 		<h2><c:out value="${lineapedido.producto.name}"/>, Cantidad: <c:out value="${lineapedido.cantidad}"/>, Precio por unidad: <c:out value="${lineapedido.producto.precio}"/>$</h2>
@@ -27,4 +27,4 @@
 	<form:form modelAttribute="listaLineaPedidos" class="form-horizontal" id="add-lineaPedidos-form">
 		<br><button class="btn btn-default" type="submit">Continuar con el pedido</button>
  	</form:form>
-</petclinic:layout>
+</currogas:layout>
