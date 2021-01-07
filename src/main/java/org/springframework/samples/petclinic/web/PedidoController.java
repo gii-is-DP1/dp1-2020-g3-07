@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -259,6 +260,7 @@ public class PedidoController {
 			} else {
 				pedido.setId(pedidoID);
 				pedido.setFecha(LocalDateTime.now());
+				pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));;
 				pedido.setEstadopedido(estadoPedido.pendiente);
 				this.pedidoService.savePedido(pedido);
 				return "redirect:/pedidos";
