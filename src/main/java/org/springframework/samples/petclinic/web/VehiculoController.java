@@ -41,7 +41,7 @@ public class VehiculoController {
 	@GetMapping(value = "/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Vehiculo vehiculo = new Vehiculo();
-		model.put("vehiculos", vehiculo);
+		model.put("vehiculo", vehiculo);
 		return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -75,7 +75,7 @@ public class VehiculoController {
 	public String initUpdateForm(@PathVariable("vehiculoID") int vehiculoID, Model model) {
 		Optional<Vehiculo> vehiculo = this.vehiculoService.findVehiculoById(vehiculoID);
 		if(vehiculo.isPresent()) {
-			model.addAttribute("vehiculos", vehiculo.get());
+			model.addAttribute("vehiculo", vehiculo.get());
 			return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 		} else {
 			model.addAttribute("message", "Vehiculo no encontrado");

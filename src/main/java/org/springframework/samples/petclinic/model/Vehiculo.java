@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import lombok.Data;
 import lombok.Getter;
@@ -22,9 +25,12 @@ import lombok.Setter;
 public class Vehiculo extends BaseEntity{
 	
 	@Column(name = "matricula")
+	@NotEmpty
+	@Pattern(regexp = "^[0-9]{4}[A-Z]{3}", message = "el formato de matricula no es correcto")
 	private String matricula;
 	
 	@Column(name = "tipovehiculo")
+	@NotNull(message = "no puede estar vacío")
 	@Enumerated(value = EnumType.STRING)
 	private TipoVehiculo tipovehiculo;
 	
