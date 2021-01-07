@@ -10,7 +10,6 @@
     <h2>Finaliza tu pedido</h2>
     <form:form modelAttribute="pedidos" class="form-horizontal" id="add-pedidos-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="comentario" name="comentario"/>
             <petclinic:inputField label="metodopago" name="metodopago"/>
             <petclinic:inputField label="tipopedido" name="tipopedido"/>
             <p><strong>Hora de llegada: </strong><select label="horaEstimada" name ="horaEstimada">

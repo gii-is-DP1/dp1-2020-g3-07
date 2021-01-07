@@ -182,21 +182,33 @@ public class RepartoController {
 		return "redirect:/repartidores/" + repartidorId + "/repartos/" + repartoId;
 	}
 	
-	@GetMapping(value = "repartos/{repartoId}/{pedidoId}/detallesPedido")
+	@GetMapping(value = "repartos/{repartoId}/detallesPedido/{pedidoId}")
 	public String showDetallesPedido(@PathVariable("repartidorId") int repartidorId, @PathVariable("repartoId") int repartoId, @PathVariable("pedidoId") int pedidoId, ModelMap modelMap) {
-		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
-		modelMap.addAttribute("pedido", pedido);
+//		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
+//		modelMap.addAttribute("pedido", pedido);
+//		Reparto reparto = repartoService.findRepartoById(repartoId).get();
+//		modelMap.addAttribute("reparto", reparto);
+//		Set<LineaPedido> Setlineapedido = pedido.getLineaPedidos();
+//		List<LineaPedido> res = new ArrayList<LineaPedido>();
+//		List<Integer> ids = new ArrayList<Integer>();
+//		ids = Setlineapedido.stream().map(lp -> lp.getId()).collect(Collectors.toList());
+//		for(int i=0; i<ids.size(); i++) {
+//			LineaPedido lineapedido = lineaPedidoService.findLineaPedidoById(ids.get(i)).get();
+//			res.add(lineapedido);
+//		}
+		List<Integer> listaIDLineaPedido = pedidoService.resumenLineasPedido(pedidoId);
+		List<LineaPedido> listaLineaPedidos = new ArrayList<>();
+		//List<Producto> listaProductos = new ArrayList<>();
+		int i = 0;
+		while(i<listaIDLineaPedido.size()) {
+			listaLineaPedidos.add(lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get());
+			//listaProductos.add(lineaPedidoService.findPedidoById(listaIDLineaPedido.get(i)).get().getProducto());
+			i++;
+		}	
 		Reparto reparto = repartoService.findRepartoById(repartoId).get();
 		modelMap.addAttribute("reparto", reparto);
-		Set<LineaPedido> Setlineapedido = pedido.getLineaPedidos();
-		List<LineaPedido> res = new ArrayList<LineaPedido>();
-		List<Integer> ids = new ArrayList<Integer>();
-		ids = Setlineapedido.stream().map(lp -> lp.getId()).collect(Collectors.toList());
-		for(int i=0; i<ids.size(); i++) {
-			LineaPedido lineapedido = lineaPedidoService.findLineaPedidoById(ids.get(i)).get();
-			res.add(lineapedido);
-		}
-		modelMap.addAttribute("lineapedido", res);
+		modelMap.put("pedido", pedidoService.findPedidoById(pedidoId).get());
+		modelMap.put("lineapedido", listaLineaPedidos);
 		return "repartos/infoPedidoReparto";
 	}
 
