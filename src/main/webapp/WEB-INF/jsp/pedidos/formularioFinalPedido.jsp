@@ -13,6 +13,12 @@
             <petclinic:inputField label="comentario" name="comentario"/>
             <petclinic:inputField label="metodopago" name="metodopago"/>
             <petclinic:inputField label="tipopedido" name="tipopedido"/>
+            <p><strong>Hora de llegada: </strong><select label="horaEstimada" name ="horaEstimada">
+                <option value="03:00:00">Lo antes posible</option>
+                <option value="03:00:01">En 1 hora</option>
+                <option value="03:00:02">En 1 hora y media</option>
+                <option value="03:00:03">En 2 horas</option>
+            </select></p>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

@@ -269,7 +269,16 @@ public class PedidoController {
 			} else{
 				pedido.setId(pedidoID);
 				pedido.setFecha(LocalDateTime.now());
-				pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));
+				//pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));
+				if(pedido.getHoraEstimada().equals(LocalTime.parse("03:00:00"))) {
+                    pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));
+                } else if(pedido.getHoraEstimada().equals(LocalTime.parse("03:00:01"))){
+                    pedido.setHoraEstimada(LocalTime.now().plusHours(1));
+                } else if(pedido.getHoraEstimada().equals(LocalTime.parse("03:00:02"))) {
+                    pedido.setHoraEstimada(LocalTime.now().plusHours(1).plusMinutes(30));
+                } else if(pedido.getHoraEstimada().equals(LocalTime.parse("03:00:03"))) {
+                    pedido.setHoraEstimada(LocalTime.now().plusHours(2));
+                } 
 				pedido.setEstadopedido(estadoPedido.pendiente);
 				this.pedidoService.savePedido(pedido);
 				return "redirect:/pedidos";
