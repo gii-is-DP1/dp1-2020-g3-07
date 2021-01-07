@@ -25,7 +25,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "alergenos")
 
-public class Alergeno extends NamedEntity{
+public class Alergeno extends BaseEntity{
 	@Column(name="alergenotype")
 	@Enumerated(value=EnumType.STRING)
 	private AlergenoEnum alergenotype;

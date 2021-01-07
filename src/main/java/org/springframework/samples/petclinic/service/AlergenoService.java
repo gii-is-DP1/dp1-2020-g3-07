@@ -27,7 +27,7 @@ public class AlergenoService {
 	
 	@Transactional(readOnly = true)
 	public Collection<Alergeno> findAlergenoTypes() throws DataAccessException {
-		return AlergenoRepository.findAlergenoTypes();
+		return AlergenoRepos.findAlergenoTypes();
 	}
 	
 }
