@@ -21,6 +21,7 @@ public class ClienteServiceTest {
 
 	@Autowired
 	private ClienteService clientServ;
+	private UserService userServ;
 	
 	@Test
 	public void testCountWithInitialData() {
@@ -67,5 +68,6 @@ public class ClienteServiceTest {
 	        cliente = this.clientServ.findClienteById(1);
 	        assertThat(cliente.get().getNombre()).isEqualTo(newName);
 	}
+ 
 }
 

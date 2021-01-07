@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository clientRepos;
-	
 	
 	@Transactional
 	public int clienteCount() {
@@ -35,6 +35,18 @@ public class ClienteService {
 	public Optional<Cliente> findClienteById(int id)throws DataAccessException {
 		return clientRepos.findById(id);
 	}
+	
+	public Cliente findClienteByUsername(String username)throws DataAccessException {
+		Cliente result = null;
+		Iterator<Cliente> it = clientRepos.findAll().iterator();
+		while(it.hasNext()) {
+			Cliente elemento = it.next();
+			if(elemento.getUser().getUsername().equals(username)) {
+				return elemento;
+			}
+		}
+		return result;
+	} 
 	
 	
 }

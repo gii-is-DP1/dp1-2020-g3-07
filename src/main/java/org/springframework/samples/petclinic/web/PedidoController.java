@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Producto;
@@ -19,16 +20,18 @@ import org.springframework.samples.petclinic.model.Repartidor;
 import org.springframework.samples.petclinic.model.Reparto;
 import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.model.tipoPedido;
+import org.springframework.samples.petclinic.service.ClienteService;
 import org.springframework.samples.petclinic.service.LineaPedidoService;
 import org.springframework.samples.petclinic.service.PedidoService;
 import org.springframework.samples.petclinic.service.ProductoService;
 import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.samples.petclinic.service.RepartoService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,14 +50,17 @@ public class PedidoController {
 		private LineaPedidoService lineaPedidoService;
 		private RepartoService repartoService;
 		private RepartidorService repartidorService;
+		private ClienteService clienteService;
 
 		@Autowired
-		public PedidoController(PedidoService pedidoService, ProductoService productoService, LineaPedidoService lineaPedidoService, RepartoService repartoService, RepartidorService repartidorService) {
+		public PedidoController(PedidoService pedidoService, ProductoService productoService, LineaPedidoService lineaPedidoService, RepartoService repartoService, 
+				ClienteService clienteService, RepartidorService repartidorService) {
 			this.pedidoService = pedidoService;
 			this.productoService = productoService;
 			this.lineaPedidoService = lineaPedidoService;
 			this.repartoService = repartoService;
 			this.repartidorService = repartidorService;
+			this.clienteService = clienteService;
 		}
 		
 	
@@ -72,7 +78,7 @@ public class PedidoController {
 			Iterable<Pedido> pedidosaDom = pedidoService.findAll();
 			Iterator<Pedido> itaDom = pedidosaDom.iterator();
 			Iterable<Pedido> pedidosenLoc = pedidoService.findAll();
-			Iterator<Pedido> itenLoc = pedidosenLoc.iterator();
+			Iterator<Pedido> itenLoc = pedidosenLoc.iterator();			
 			while(itaDom.hasNext()) {
 				Pedido elemento = itaDom.next();
 				
@@ -120,8 +126,11 @@ public class PedidoController {
 	
 //Crear pedido
 		@GetMapping(value = "/new")
-		public String botonCrearPedido(Map<String, Object> model) {
-			Pedido pedido = new Pedido();
+		public String botonCrearPedido(Map<String, Object> model, @AuthenticationPrincipal User user) {
+			Pedido pedido = new Pedido(); 
+		    Cliente cliente = this.clienteService.findClienteByUsername(user.getUsername());
+		    //Cliente cliente = this.clienteService.findClienteByUsername("juan@gmail.com");
+		    pedido.setCliente(cliente);
 			pedidoService.savePedido(pedido);
 			Integer idPedido = pedido.getId();
 			return "redirect:/pedidos/new/" + idPedido;
@@ -257,10 +266,10 @@ public class PedidoController {
 		public String procesarFinalizarPedido(@PathVariable("pedidoID") int pedidoID, Map<String, Object> model, @Valid Pedido pedido, BindingResult result) {
 			if (result.hasErrors()) {
 				return VIEWS_FINALIZAR_PEDIDO;
-			} else {
+			} else{
 				pedido.setId(pedidoID);
 				pedido.setFecha(LocalDateTime.now());
-				pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));;
+				pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));
 				pedido.setEstadopedido(estadoPedido.pendiente);
 				this.pedidoService.savePedido(pedido);
 				return "redirect:/pedidos";
