@@ -128,9 +128,16 @@ public class PedidoController {
 		@GetMapping(value = "/new")
 		public String botonCrearPedido(Map<String, Object> model, @AuthenticationPrincipal User user) {
 			Pedido pedido = new Pedido(); 
-		    Cliente cliente = this.clienteService.findClienteByUsername(user.getUsername());
+		    if(user.getUsername().equals("curro") || user.getUsername().equals("dependiente")) {
+		    	Cliente cliente = this.clienteService.findClienteById(3).get();
+		    	pedido.setCliente(cliente);		    	
+		    } else {
+		    	Cliente cliente = this.clienteService.findClienteByUsername(user.getUsername());
+		    	pedido.setCliente(cliente);
+		    }
+			
 		    //Cliente cliente = this.clienteService.findClienteByUsername("juan@gmail.com");
-		    pedido.setCliente(cliente);
+		    
 			pedidoService.savePedido(pedido);
 			Integer idPedido = pedido.getId();
 			return "redirect:/pedidos/new/" + idPedido;
