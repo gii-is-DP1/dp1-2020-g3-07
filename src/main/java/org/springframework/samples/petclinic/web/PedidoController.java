@@ -164,7 +164,6 @@ public class PedidoController {
 			model.put("lineapedidos", lineaPedido);
 			return VIEWS_SELECCION_CANTIDAD_PRODUCTO;
 		}
-		
 		@PostMapping(value="/new/{pedidoID}/{productoID}")
 		public String procesarCrearLineaPedido(@PathVariable("productoID") int productoID, @PathVariable("pedidoID") int pedidoID, @Valid LineaPedido lineaPedido, 
 				BindingResult result) {
@@ -260,10 +259,12 @@ public class PedidoController {
 		public String finalizarPedido(@PathVariable("pedidoID") int pedidoID, Map<String, Object> model) {
 			Pedido pedido = pedidoService.findPedidoById(pedidoID).get();
 			model.put("pedidos", pedido);
+
 			return VIEWS_FINALIZAR_PEDIDO;
 		}
 		@PostMapping(value = "/new/finalizarpedido/{pedidoID}")
-		public String procesarFinalizarPedido(@PathVariable("pedidoID") int pedidoID, Map<String, Object> model, @Valid Pedido pedido, BindingResult result) {
+		public String procesarFinalizarPedido(@PathVariable("pedidoID") int pedidoID, Map<String, Object> model, @Valid Pedido pedido, 
+				BindingResult result) {
 			if (result.hasErrors()) {
 				return VIEWS_FINALIZAR_PEDIDO;
 			} else{
@@ -280,7 +281,7 @@ public class PedidoController {
                     pedido.setHoraEstimada(LocalTime.now().plusHours(2));
                 } 
 				pedido.setEstadopedido(estadoPedido.pendiente);
-				this.pedidoService.savePedido(pedido);
+				pedidoService.savePedido(pedido);
 				return "redirect:/pedidos";
 			}
 		}
