@@ -155,6 +155,11 @@ INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, us
 INSERT INTO users(username,password,enabled) VALUES ('pedro@gmail.com','pedro',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (13,'pedro@gmail.com','cliente');
 INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Pedro', 'Clemente Ortiz', '999685554', 'Calle Fuencarral', '2000-07-11', 'pedro@gmail.com');
+INSERT INTO users(username,password,enabled) VALUES ('generico@gmail.com','generico',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (14,'generico@gmail.com','cliente');
+INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Generico', 'Generico', '666666666', 'Calle Generica', '2000-01-01', 'generico@gmail.com');
+
+
 
 -- insertamos pedidos
 INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2014-08-06 15:59:48','excelente', 5, 'efectivo', 'pendiente', 'enLocal');
