@@ -1,12 +1,17 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Alergeno;
 import org.springframework.samples.petclinic.model.Producto;
+import org.springframework.samples.petclinic.service.AlergenoService;
 import org.springframework.samples.petclinic.service.ProductoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,10 +28,12 @@ public class ProductoController {
 	
 	private static final String VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM = "productos/createOrUpdateProductoForm";
 	private final ProductoService productoService;
+	private final AlergenoService alergenoService;
 	
 	@Autowired
-	public ProductoController(ProductoService productoService) {
+	public ProductoController(ProductoService productoService, AlergenoService alergenoService) {
 		this.productoService = productoService;
+		this.alergenoService = alergenoService;
 	}
 	
 	@GetMapping()
@@ -40,9 +47,19 @@ public class ProductoController {
 	@GetMapping(value = "/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Producto producto = new Producto();
-		model.put("productos", producto);
+		ConjuntoAlergenos ca = new ConjuntoAlergenos();
+		
+		Iterator<Alergeno> ita = alergenoService.findAll().iterator();	
+		List<Alergeno> result = new ArrayList<>();
+		while (ita.hasNext()) {
+			result.add(ita.next());
+		}
+		model.put("command", ca);
+		model.put("producto", producto);
+		model.put("alergenos", result);
 		return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
 	}
+	
 
 	@PostMapping(value = "/new")
 	public String processCreationForm(@Valid Producto producto, BindingResult result) {

@@ -10,6 +10,8 @@
 
 <currogas:layout pageName="pedidosAsignarRepartidor">
     <h2>Pedidos a asignar</h2>
+    
+    <c:if test="${fn:length(pedidosList)!=0}">
 
     <form:form  class="form-horizontal">
 	    <table class="table table-striped">
@@ -28,7 +30,14 @@
 			<currogas:selectField name="vehiculo" label="Vehiculo " names="${vehiculos}" size="5"/>
 		</div> --%>
 		<div>
-			<input type = "submit" value = "Confirmar Reparto"/>
+			<input class="btn btn-default" type = "submit" value = "Confirmar Reparto"/>
 		</div>
-	</form:form>  
+	</form:form>
+	
+	</c:if>
+	
+	<c:if test="${fn:length(pedidosList)==0}">
+	<p>No hay pedidos a domicilio pendientes</p>
+	</c:if>
+	
 </currogas:layout>

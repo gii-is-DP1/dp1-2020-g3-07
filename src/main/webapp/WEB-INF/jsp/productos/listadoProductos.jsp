@@ -29,7 +29,11 @@
                     <c:out value="${productos.precio}"/>
                 </td>
                 <td>
-                    <c:out value="${productos.alergenos}"/>
+                
+                <c:forEach items="${productos.alergenos}" var="aler">
+                    <c:out value="${aler.alergenotype},"/>
+                </c:forEach>
+                    
                 </td>
                 <td>
                     <spring:url value="productos/delete/{productoID}" var="productoUrl">

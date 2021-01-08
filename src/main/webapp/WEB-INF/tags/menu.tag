@@ -67,6 +67,11 @@
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 					<span>Carta</span>
 				</petclinic:menuItem>
+				<petclinic:menuItem active="${name eq 'Mi Perfil'}" url="/clientes/perfil"
+					title="Mi Perfil">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Mi Perfil</span>
+				</petclinic:menuItem>
 				
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners"
 					title="owners">
