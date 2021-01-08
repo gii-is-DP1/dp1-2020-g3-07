@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -30,7 +31,8 @@ public class Producto extends NamedEntity{
     @Column(name = "descripcion")
     private String descripcion;
     
+    @Column(name = "alergenos")
     @ManyToMany
-    private Set<Alergeno> alergenos;
+    private List<Alergeno> alergenos;
 
 }
