@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${pedidosadom}" var="pedidosadom">
+        <c:forEach items="${pedidosADomicilio}" var="pedidosadom">
             <tr>
                 <td>
                     <c:out value="${pedidosadom.fecha}"/>
@@ -73,7 +73,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${pedidosenloc}" var="pedidosenloc">
+        <c:forEach items="${pedidosEnLocal}" var="pedidosenloc">
             <tr>
                 <td data-sortable = "true">
                     <c:out value="${pedidosenloc.fecha}"/>

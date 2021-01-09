@@ -77,6 +77,11 @@ public class PedidoService {
 	public Set<Pedido> findByEstadopedidoAndTipopedido(estadoPedido estadopedido, tipoPedido tipopedido){
 		return this.pedidoRepo.findByEstadopedidoAndTipopedido(estadopedido, tipopedido);
 	}
+	
+	@Transactional(readOnly = true)
+    public Set<Pedido> findBytTipopedido(tipoPedido tipopedido){
+        return this.pedidoRepo.findByTipopedido(tipopedido);
+    }
 
 	
 	@Transactional

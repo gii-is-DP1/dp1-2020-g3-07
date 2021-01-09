@@ -3,6 +3,8 @@ package org.springframework.samples.petclinic.web;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +35,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,43 +71,59 @@ public class PedidoController {
 		@GetMapping()
 		public String listadoPedidos(ModelMap modelMap) {
 			String vista = "pedidos/listadoPedidos";
-//			Iterable<Pedido> pedidos = pedidoService.findAll();
-//			Iterator<Pedido> it = pedidos.iterator();
-//			while(it.hasNext()) {
-//				Pedido elemento = it.next();
+//			Iterable<Pedido> pedidosaDom = pedidoService.findAll();
+//			Iterator<Pedido> itaDom = pedidosaDom.iterator();
+//			Iterable<Pedido> pedidosenLoc = pedidoService.findAll();
+//			Iterator<Pedido> itenLoc = pedidosenLoc.iterator();			
+//			while(itaDom.hasNext()) {
+//				Pedido elemento = itaDom.next();
+//				
 //				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
-//					it.remove();
+//					itaDom.remove();
+//				}
+//				else if(elemento.getTipopedido() == tipoPedido.enLocal) {
+//					itaDom.remove();
 //				}
 //			}
-			Iterable<Pedido> pedidosaDom = pedidoService.findAll();
-			Iterator<Pedido> itaDom = pedidosaDom.iterator();
-			Iterable<Pedido> pedidosenLoc = pedidoService.findAll();
-			Iterator<Pedido> itenLoc = pedidosenLoc.iterator();			
-			while(itaDom.hasNext()) {
-				Pedido elemento = itaDom.next();
-				
-				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
-					itaDom.remove();
-				}
-				else if(elemento.getTipopedido() == tipoPedido.enLocal) {
-					itaDom.remove();
-				}
-			}
-			while(itenLoc.hasNext()) {
-				Pedido elemento = itenLoc.next();
-				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
-					itenLoc.remove();
-				}
-				else if(elemento.getTipopedido() == tipoPedido.aDomicilio) {
-					itenLoc.remove();
-				}
-			}
-//			modelMap.addAttribute("pedidos", pedidos);
-			modelMap.addAttribute("pedidosadom", pedidosaDom);
-			modelMap.addAttribute("pedidosenloc", pedidosenLoc);
+//			while(itenLoc.hasNext()) {
+//				Pedido elemento = itenLoc.next();
+//				if(elemento.getEstadopedido() == null|| elemento.getMetodopago() == null || elemento.getTipopedido() == null) {
+//					itenLoc.remove();
+//				}
+//				else if(elemento.getTipopedido() == tipoPedido.aDomicilio) {
+//					itenLoc.remove();
+//				}
+//			}
+////			modelMap.addAttribute("pedidos", pedidos);
+//			modelMap.addAttribute("pedidosadom", pedidosaDom);
+//			modelMap.addAttribute("pedidosenloc", pedidosenLoc);
 			
 			return vista;
 		}
+		
+		@ModelAttribute("pedidosADomicilio")
+        public List<Pedido> getPedidosList(){
+            tipoPedido tp = tipoPedido.aDomicilio;
+            Set<Pedido> pedidosadom = pedidoService.findBytTipopedido(tp);
+            List<Pedido> res = new ArrayList<Pedido>(pedidosadom);
+            res.sort(Comparator.comparing(p->(p.getFecha())));
+            Collections.reverse(res);
+//            Collections.sort(res, Collections.reverseOrder(Comparator.comparing(p->(p.getFecha()))));
+            return res;
+            
+        }
+		
+		@ModelAttribute("pedidosEnLocal")
+        public List<Pedido> getPedidosLocalList(){
+            tipoPedido tp = tipoPedido.enLocal;
+            Set<Pedido> pedidosadom = pedidoService.findBytTipopedido(tp);
+            List<Pedido> res = new ArrayList<Pedido>(pedidosadom);
+            res.sort(Comparator.comparing(p->(p.getFecha())));
+            Collections.reverse(res);
+//            Collections.sort(res, Collections.reverseOrder(Comparator.comparing(p->(p.getFecha()))));
+            return res;
+            
+        }
 		
 		@GetMapping(value = "detalles/{pedidoId}")
 		public String showDetallesPedido(@PathVariable("pedidoId") int pedidoId, ModelMap modelMap) {
