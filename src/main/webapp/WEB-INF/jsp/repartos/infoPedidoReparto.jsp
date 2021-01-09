@@ -8,21 +8,20 @@
 
 	<h2>Información del Pedido</h2>
 
-		<table class="table table-striped">
+	<table class="table table-striped">
+		<thead>
 			<tr>
 				<th>Productos</th>
 				<th>Cantidad de cada producto</th>
 			</tr>
+		</thead>
+		<c:forEach items="${lineapedido}" var="lineapedido">
 			<tr>
-				
+				<td><c:out value="${lineapedido.producto.name}"/></td>
+				<td><c:out value="${lineapedido.cantidad}"/></td>
 			</tr>
-		</table>
-		<c:out value="${pedido.id}"/>
-		<div>
-			<c:forEach items="${lineapedido}" var="lineapedido">
-				<h2><c:out value="${lineapedido.producto.name}"/>, Cantidad: <c:out value="${lineapedido.cantidad}"/>, Precio por unidad: <c:out value="${lineapedido.producto.precio}"/>$</h2>
-			</c:forEach>
-		</div>
+		</c:forEach>
+	</table>
 
 		<form:form>
 		

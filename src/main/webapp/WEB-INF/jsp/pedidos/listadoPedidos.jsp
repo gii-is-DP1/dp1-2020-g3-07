@@ -13,22 +13,18 @@
     <table id="pedidosTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">id</th>
             <th>Fecha y hora</th>
-            <th>comentario</th>
-            <th>valoración</th>
-            <th>Metodo de pago</th>
+            <th>Comentario</th>
+            <th>Valoración</th>
+            <th>Método de pago</th>
             <th>Estado de pedido</th>
-            <th>Tipo de pedido</th>
+            <th>Contenido del pedido</th>
             <th>Acciones</th>     
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${pedidosadom}" var="pedidosadom">
             <tr>
-                <td>
-                    <c:out value="${pedidosadom.id}"/>
-                </td>
                 <td>
                     <c:out value="${pedidosadom.fecha}"/>
                 </td>
@@ -45,13 +41,16 @@
                     <c:out value="${pedidosadom.estadopedido}"/>
                 </td>
                 <td>
-                    <c:out value="${pedidosadom.tipopedido}"/>
-                </td>
-                 <td>
-                	<spring:url value="pedidos/delete/{pedidoID}" var="pedidoUrl">
+                	<spring:url value="pedidos/detalles/{pedidoID}" var="pedidodomUrl">
        				<spring:param name="pedidoID" value="${pedidosadom.id}"/>
     				</spring:url>
-    				<a href="${fn:escapeXml(pedidoUrl)}" class="btn btn-default">Eliminar pedido</a>
+    				<a href="${fn:escapeXml(pedidodomUrl)}" >Detalles pedido</a>
+                </td>       
+                 <td>
+                	<spring:url value="pedidos/delete/{pedidoID}" var="delpedidodomUrl">
+       				<spring:param name="pedidoID" value="${pedidosadom.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(delpedidodomUrl)}" >Eliminar pedido</a>
                 </td>            
             </tr>
         </c:forEach>
@@ -60,26 +59,22 @@
     
     
     
-         <h2>Pedidos En Local</h2>
+    <h2>Pedidos En Local</h2>
     <table id="pedidosTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">id</th>
             <th>Fecha y hora</th>
-            <th>comentario</th>
-            <th>valoracion</th>
-            <th>Metodo de pago</th>
+            <th>Comentario</th>
+            <th>Valoración</th>
+            <th>Método de pago</th>
             <th>Estado de pedido</th>
-            <th>Tipo de pedido</th>
-            <th>Acciones</th>     
+            <th>Contenido del pedido</th>
+            <th>Acciones</th>      
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${pedidosenloc}" var="pedidosenloc">
             <tr>
-                <td>
-                    <c:out value="${pedidosenloc.id}"/>
-                </td>
                 <td data-sortable = "true">
                     <c:out value="${pedidosenloc.fecha}"/>
                 </td>
@@ -96,13 +91,16 @@
                     <c:out value="${pedidosenloc.estadopedido}"/>
                 </td>
                 <td>
-                    <c:out value="${pedidosenloc.tipopedido}"/>
-                </td>
-                 <td>
-                	<spring:url value="pedidos/delete/{pedidoID}" var="pedidoUrl">
+                	<spring:url value="pedidos/detalles/{pedidoID}" var="pedidolocUrl">
        				<spring:param name="pedidoID" value="${pedidosenloc.id}"/>
     				</spring:url>
-    				<a href="${fn:escapeXml(pedidoUrl)}" class="btn btn-default">Eliminar pedido</a>
+    				<a href="${fn:escapeXml(pedidolocUrl)}" >Detalles pedido</a>
+                </td>
+                <td>
+                	<spring:url value="pedidos/delete/{pedidoID}" var="delpedidolocUrl">
+       				<spring:param name="pedidoID" value="${pedidosenloc.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(delpedidolocUrl)}" >Eliminar pedido</a>
                 </td>            
             </tr>
         </c:forEach>

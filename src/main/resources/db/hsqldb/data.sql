@@ -171,9 +171,9 @@ INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, t
 
 
 -- insertamos productos
-INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Margarita', 10, 'pequena', 'La pizza margarita es una típica pizza napolitana elaborada con tomate, mozzarella, albahaca fresca, sal y aceite. Se trata de la pizza napolitana más popular, junto con la marinera.');
-INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Peperoni', 12, 'pequena', 'La pizza pepperoni es una fmaosa pizza, elaborada con tomate, mozzarella, rodajas de salame, especias al gusto y un chorrito de aceite de oliva virgen extra');
-INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza de atun y bacon', 11, 'pequena', 'La pizza de atún y bacon está elaborada a partir de una base crujiente y dorada que contiene cintas de bacon y trozos de atún seleccionados. Todo ello combinado con el mejor queso mozzarella. ');
+INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza Margarita', 10, 'Elaborada con tomate, mozzarella, albahaca fresca, sal y aceite. Se trata de la pizza napolitana más popular.');
+INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza Peperoni', 12, 'Elaborada con tomate, mozzarella, rodajas de salame, especias al gusto y un chorrito de aceite de oliva virgen extra');
+INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza de atun y bacon', 11, 'Elaborada a partir de una base crujiente y dorada que contiene cintas de bacon y trozos de atún seleccionados. Todo ello combinado con el mejor queso mozzarella. ');
 
 -- insertamos reparto
 INSERT INTO repartos(fecha, HORA_INICIO) VALUES ('1999-11-12', '12:11:11');
