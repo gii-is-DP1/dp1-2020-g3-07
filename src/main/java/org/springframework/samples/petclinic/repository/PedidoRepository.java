@@ -23,5 +23,7 @@ public interface PedidoRepository extends CrudRepository<Pedido, Integer> {
 	Set<Pedido> findByEstadopedidoAndTipopedido(estadoPedido estadopedido, tipoPedido tipopedido);
 
 	Set<Pedido> findByRepartoId(Integer repartoId);
+	
+	Set<Pedido> findByTipopedido(tipoPedido tipopedido);
 
 }

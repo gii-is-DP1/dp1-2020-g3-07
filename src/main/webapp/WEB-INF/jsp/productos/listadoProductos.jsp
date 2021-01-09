@@ -13,7 +13,7 @@
         <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Alergenos</th>
+            <th>Alérgenos</th>
             <th>Acciones</th>      
         </tr>
         </thead>

@@ -162,26 +162,21 @@ INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, us
 
 
 -- insertamos pedidos
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2020-08-06 15:59:48','excelente', 5, 'efectivo', 'Entregado', 'enLocal');
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(6,'2020-01-02 15:59:48','bueno', 4, 'tarjeta', 'Entregado', 'enLocal');
-INSERT INTO pedidos(id,fecha, comentario, valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(2,'2020-05-11 15:59:48', 'regular', 3, 'efectivo', 'Entregado', 'enLocal', 1);
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2020-08-06 15:59:42','excelente', 5, 'efectivo', 'Entregado', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(5,'2020-01-02 15:57:48','buenísimo', 5, 'tarjeta', 'Entregado', 'enLocal');
+INSERT INTO pedidos(id,fecha, comentario, valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(2,'2020-05-11 15:41:11', 'regular', 3, 'efectivo', 'Entregado', 'enLocal', 1);
 
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(3,'2020-07-05 15:59:48','excelente', 5, 'efectivo', 'Entregado', 'aDomicilio', 1);
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2020-01-02 15:59:48','mejorable', 2, 'efectivo', 'Entregado', 'aDomicilio');
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(5,'2020-01-02 15:50:48','genial', 5, 'tarjeta', 'Entregado', 'aDomicilio');
-
-
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(3,'2020-07-05 15:59:48','muy bueno', 5, 'efectivo', 'Entregado', 'aDomicilio', 1);
+INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2020-01-02 17:12:30','bueno', 4, 'efectivo', 'Entregado', 'aDomicilio');
+INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(9,'2021-01-09 17:12:30','efectivo', 'pendiente', 'aDomicilio');
+INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(6,'2021-01-08 14:50:28','tarjeta', 'pendiente', 'aDomicilio');
+INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(7,'2021-01-07 17:06:42','tarjeta', 'pendiente', 'aDomicilio');
+INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(8,'2021-01-06 15:03:48','efectivo', 'enReparto', 'aDomicilio');
 
 -- insertamos productos
-
 INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Margarita', 10, 'pequena', 'La pizza margarita de nuestro local es atípica, contiene atún, anchoa, jamón york y aceitunas');
 INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Gallo Morón', 12, 'pequena', 'La pizza Gallo Morón es original de nuestra pizzería haciendo honor a un símbolo del pueblo, está elaborada con carne de pollo, queso, salami, jamón york y champiñones');
 INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Leonor', 11, 'pequena', 'La pizza Leonor, contiene piña y jamón york ');
-
-INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza Margarita', 10, 'Elaborada con tomate, mozzarella, albahaca fresca, sal y aceite. Se trata de la pizza napolitana más popular.');
-INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza Peperoni', 12, 'Elaborada con tomate, mozzarella, rodajas de salame, especias al gusto y un chorrito de aceite de oliva virgen extra');
-INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza de atun y bacon', 11, 'Elaborada a partir de una base crujiente y dorada que contiene cintas de bacon y trozos de atún seleccionados. Todo ello combinado con el mejor queso mozzarella. ');
-
 
 -- insertamos reparto
 INSERT INTO repartos(fecha, HORA_INICIO) VALUES ('1999-11-12', '12:11:11');
@@ -214,7 +209,6 @@ INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(2, 6);
 
 INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(3, 7);
 INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(3, 6);
-
 
 
 
