@@ -25,7 +25,7 @@
         </div>
 
 	 
-        	<form:checkboxes items="${alergenos}" path="alergenos" name = "alergenos"  itemLabel="alergenotype"/>
+        	<form:checkboxes items="${alergenos}" path="alergenos" name = "alergenos"  itemLabel="alergenotype"/> 
         	
 
         	
