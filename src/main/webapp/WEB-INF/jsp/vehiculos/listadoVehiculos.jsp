@@ -35,13 +35,13 @@
 	                    <spring:url value="vehiculos/delete/{vehiculoID}" var="vehiculoUrl">
 	       				 <spring:param name="vehiculoID" value="${vehiculo.id}"/>
 	    				</spring:url>
-	    				<a href="${fn:escapeXml(vehiculoUrl)}" class="btn btn-default" >Eliminar vehiculo</a>
+	    				<a href="${fn:escapeXml(vehiculoUrl)}" >Eliminar vehiculo</a>
     				</c:if>
     				
     				<spring:url value = "/vehiculos/edit/{vehiculoID}" var = "vehiculoUrl1">
                     	<spring:param name = "vehiculoID" value ="${vehiculo.id}"/>
                     </spring:url>
-                    <a href = "${fn:escapeXml(vehiculoUrl1)}" class="btn btn-default">Editar</a>
+                    <a href = "${fn:escapeXml(vehiculoUrl1)}">Editar</a>
                 </td>
             </tr>
         </c:forEach>
