@@ -178,7 +178,7 @@ public class PedidoController {
 		public String botonCrearPedido(Map<String, Object> model, @AuthenticationPrincipal User user) {
 			Pedido pedido = new Pedido(); 
 		    if(user.getUsername().equals("curro") || user.getUsername().equals("dependiente")) {
-		    	Cliente cliente = this.clienteService.findClienteById(3).get();
+		    	Cliente cliente = this.clienteService.findClienteById(1).get();
 		    	pedido.setCliente(cliente);		    	
 		    } else {
 		    	Cliente cliente = this.clienteService.findClienteByUsername(user.getUsername());

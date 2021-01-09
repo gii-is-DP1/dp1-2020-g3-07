@@ -38,7 +38,7 @@ public class Reparto extends BaseEntity{
     @DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime horaInicio;
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "repartidor_id")
 	private Repartidor repartidor;
 
