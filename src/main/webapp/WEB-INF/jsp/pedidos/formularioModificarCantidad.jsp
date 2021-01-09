@@ -5,8 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
-
-<petclinic:layout pageName="pedido">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<petclinic:layout pageName="pedidos">
     <h2>Finaliza tu pedido</h2>
     <form:form modelAttribute="lineapedidos" class="form-horizontal" id="add-pedidos-form">
         <div class="form-group has-feedback">

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <currogas:layout pageName="repartidores">
 
     <h2>Informacion del Repartidor</h2>
@@ -60,7 +60,7 @@
     <spring:url value="{repartidorId}/repartos/new" var="addUrl">
         <spring:param name="repartidorId" value="${repartidor.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Añadir nuevo Reparto</a>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Aï¿½adir nuevo Reparto</a>
 
     <!-- <br/>
     <br/>

@@ -5,8 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
-
-<petclinic:layout pageName="lineapedido">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<petclinic:layout pageName="pedidos">
     <h2>Nueva linea de Pedido</h2>
     <h2><c:out value="${productos.name}, ${productos.precio}"/>$</h2>
 	<form:form modelAttribute="lineapedidos" class="form-horizontal" id="add-lineaPedidos-form">
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-				<button class="btn btn-default" type="submit">Añadir linea pedidos</button>
+				<button class="btn btn-default" type="submit">Aï¿½adir linea pedidos</button>
             </div>
         </div>
     </form:form>

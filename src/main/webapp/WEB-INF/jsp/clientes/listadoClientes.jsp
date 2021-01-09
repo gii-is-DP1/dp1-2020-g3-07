@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -24,28 +23,28 @@
         </thead>
         <tbody>
         <c:forEach items="${clientes}" var="clientes">
-            <tr>
-                 <td>
-                    <c:out value="${clientes.nombre}"/>
-                </td>
-                <td>
-                    <c:out value="${clientes.apellidos}"/>
-                </td>
-                <td>
-                    <c:out value="${clientes.telefono}"/>
-                </td>
-                <td>
-                    <c:out value="${clientes.direccion}"/>
-                </td>
-                <td>
-                    <c:out value="${clientes.user.username}"/>
-                </td>
-                <td>
-                    <c:out value="${clientes.fechanacimiento}"/>
-                </td>
-                
-                
-            </tr>
+            <c:if test="${clientes.nombre != 'Generico'}">
+                <tr>
+                    <td>
+                        <c:out value="${clientes.nombre}"/>
+                    </td>
+                    <td>
+                        <c:out value="${clientes.apellidos}"/>
+                    </td>
+                    <td>
+                        <c:out value="${clientes.telefono}"/>
+                    </td>
+                    <td>
+                        <c:out value="${clientes.direccion}"/>
+                    </td>
+                    <td>
+                        <c:out value="${clientes.user.username}"/>
+                    </td>
+                    <td>
+                        <c:out value="${clientes.fechanacimiento}"/>
+                    </td>
+                </tr>
+            </c:if>
         </c:forEach>
         
         </tbody>

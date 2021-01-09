@@ -5,8 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
-
-<currogas:layout pageName="lineapedido">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<currogas:layout pageName="pedidos">
 	<h2>Resumen del pedido</h2>	
 	<c:forEach items="${lineapedido}" var="lineapedido">
 		<h2><c:out value="${lineapedido.producto.name}"/>, Cantidad: <c:out value="${lineapedido.cantidad}"/>, Precio por unidad: <c:out value="${lineapedido.producto.precio}"/>$</h2>
