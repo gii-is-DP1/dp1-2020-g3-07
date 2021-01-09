@@ -72,7 +72,7 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 		return 0;
 	}
 	
-	@ManyToOne(optional = false)
+	@ManyToOne			//(optional = false)
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
@@ -81,7 +81,9 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<LineaPedido> lineaPedidos;
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "reparto_id")
+	private Reparto reparto;
 	
 }
 	
