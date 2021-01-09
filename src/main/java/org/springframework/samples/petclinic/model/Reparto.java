@@ -38,11 +38,11 @@ public class Reparto extends BaseEntity{
     @DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime horaInicio;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne			//(optional = false)
 	@JoinColumn(name = "repartidor_id")
 	private Repartidor repartidor;
 
-	@OneToMany
+	@OneToMany			//(mappedBy = "reparto")
 //	(fetch = FetchType.EAGER)
 //	@JoinTable(name = "encargo_pedidos", joinColumns = @JoinColumn(name = "reparto_id"),
 //	inverseJoinColumns = @JoinColumn(name = "pedido_id"))

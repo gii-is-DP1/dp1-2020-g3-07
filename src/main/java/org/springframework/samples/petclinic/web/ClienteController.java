@@ -98,6 +98,8 @@ public class ClienteController {
 		else {
 			p.setId(pedidoId);
 			pedidoService.savePedido(p);
+//			Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
+//			BeanUtils.copyProperties(p, pedido, "comentario", "valoracion");
 			return "redirect:/clientes/perfil";
 		}
 	}
