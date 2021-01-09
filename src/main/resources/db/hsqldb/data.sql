@@ -174,9 +174,10 @@ INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(7,'20
 INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(8,'2021-01-06 15:03:48','efectivo', 'enReparto', 'aDomicilio');
 
 -- insertamos productos
-INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza Margarita', 10, 'La pizza margarita de nuestro local es atípica, contiene atún, anchoa, jamón york y aceitunas');
-INSERT INTO productos(name, precio, descripcion) VALUES ('Gallo Morón', 12, 'La pizza Gallo Morón es original de nuestra pizzería haciendo honor a un símbolo del pueblo, está elaborada con carne de pollo, queso, salami, jamón york y champiñones');
-INSERT INTO productos(name, precio, descripcion) VALUES ('Pizza Leonor', 11, 'La pizza Leonor, contiene piña y jamón york ');
+INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Margarita', 10, 'pequena', 'La pizza margarita de nuestro local es atípica, contiene atún, anchoa, jamón york y aceitunas');
+INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Gallo Morón', 12, 'pequena', 'La pizza Gallo Morón es original de nuestra pizzería haciendo honor a un símbolo del pueblo, está elaborada con carne de pollo, queso, salami, jamón york y champiñones');
+INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Leonor', 11, 'pequena', 'La pizza Leonor, contiene piña y jamón york ');
+
 -- insertamos reparto
 INSERT INTO repartos(fecha, HORA_INICIO) VALUES ('1999-11-12', '12:11:11');
 
@@ -208,6 +209,7 @@ INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(2, 6);
 
 INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(3, 7);
 INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(3, 6);
+
 
 
 

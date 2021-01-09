@@ -47,14 +47,12 @@ public class ProductoController {
 	@GetMapping(value = "/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Producto producto = new Producto();
-		ConjuntoAlergenos ca = new ConjuntoAlergenos();
 		
 		Iterator<Alergeno> ita = alergenoService.findAll().iterator();	
 		List<Alergeno> result = new ArrayList<>();
 		while (ita.hasNext()) {
 			result.add(ita.next());
 		}
-		model.put("command", ca);
 		model.put("producto", producto);
 		model.put("alergenos", result);
 		return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
@@ -90,6 +88,7 @@ public class ProductoController {
 	public String initUpdateForm(@PathVariable("productoID") int productoID, Model model) {
 		Optional<Producto> producto = this.productoService.findProductoById(productoID);
 		if(producto.isPresent()) {
+
             model.addAttribute("producto", producto.get());
             Iterator<Alergeno> ita = alergenoService.findAll().iterator();    
             List<Alergeno> result = new ArrayList<>();
@@ -102,6 +101,7 @@ public class ProductoController {
             model.addAttribute("message", "Producto no encontrado");
             return "redirect:/productos";
         }
+
 	}
 
 	@PostMapping(value = "/save/{productoID}")

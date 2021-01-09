@@ -16,7 +16,9 @@
             <currogas:inputField label="precio" name="precio"/>
             <currogas:inputField label="descripcion" name="descripcion"/>
         </div>
+
         <form:checkboxes items="${alergenos}" path="alergenos" name = "alergenos"  itemLabel="alergenotype"/>
+
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
