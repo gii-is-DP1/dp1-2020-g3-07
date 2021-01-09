@@ -29,34 +29,38 @@
 			<spring:url value = "/clientes/edit/{clienteId}" var = "clienteEditUrl">
 				<spring:param name="clienteId" value="${cliente.id}"/>
             </spring:url>
-            <a href = "${fn:escapeXml(clienteEditUrl)}">Modificar mis datos</a>
+            <a href = "${fn:escapeXml(clienteEditUrl)}" class="btn btn-default">Modificar mis datos</a>
 		</div>
 
 		<h2>Mis Pedidos</h2>
 		<table class="table table-striped">
 			<tr>
-				<th>ID</th>
 				<th>Fecha de realización</th>
 				<th>Hora estimada</th>
 				<th>Método de pago</th>
 				<th>Estado</th>
 				<th>Tipo de pedido</th>
+				<th>Valoración</th>
+				<th>Comentario</th>
 				<th>Acciones</th>
 			</tr>
 			<c:forEach items="${pedidos}" var="pedido">
 				<c:if test="${pedido.estadopedido != null || pedido.tipopedido != null}">
 					<tr>
-						<td><c:out value="${pedido.id}"/></td>
 						<td><c:out value="${pedido.fecha}"/></td>
 						<td><c:out value="${pedido.horaEstimada}"></c:out></td>
 						<td><c:out value="${pedido.metodopago}"></c:out></td>
 						<td><c:out value="${pedido.estadopedido}"></c:out></td>
 						<td><c:out value="${pedido.tipopedido}"></c:out></td>
+						<td><c:out value="${pedido.valoracion}"></c:out></td>
+						<td><c:out value="${pedido.comentario}"></c:out></td>
 						<td>
 							<spring:url value = "/clientes/valorar/{pedidoId}" var = "valoracionUrl">
 								<spring:param name = "pedidoId" value ="${pedido.id}"/>
 							</spring:url>
-							<a href = "${fn:escapeXml(valoracionUrl)}">Realizar valoración</a>
+							<c:if test="${empty pedido.valoracion || empty pedido.comentario}">
+								<a href = "${fn:escapeXml(valoracionUrl)}">Realizar valoración</a>
+							</c:if>
 						</td>
 					</tr>
 				</c:if>

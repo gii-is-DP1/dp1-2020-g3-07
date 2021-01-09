@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -101,7 +102,36 @@ public class PedidoController {
 //			modelMap.addAttribute("pedidos", pedidos);
 			modelMap.addAttribute("pedidosadom", pedidosaDom);
 			modelMap.addAttribute("pedidosenloc", pedidosenLoc);
+			
 			return vista;
+		}
+		
+		@GetMapping(value = "detalles/{pedidoId}")
+		public String showDetallesPedido(@PathVariable("pedidoId") int pedidoId, ModelMap modelMap) {
+			Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
+			modelMap.addAttribute("pedido", pedido);
+			Set<LineaPedido> Setlineapedido = pedido.getLineaPedidos();
+			List<LineaPedido> res = new ArrayList<LineaPedido>();
+			List<Integer> ids = new ArrayList<Integer>();
+			ids = Setlineapedido.stream().map(lp -> lp.getId()).collect(Collectors.toList());
+			for(int i=0; i<ids.size(); i++) {
+				LineaPedido lineapedido = lineaPedidoService.findLineaPedidoById(ids.get(i)).get();
+				res.add(lineapedido);
+			}
+//			List<Integer> listaIDLineaPedido = pedidoService.resumenLineasPedido(pedidoId);
+//			List<LineaPedido> listaLineaPedidos = new ArrayList<>();
+//			//List<Producto> listaProductos = new ArrayList<>();
+//			int i = 0;
+//			while(i<listaIDLineaPedido.size()) {
+//				listaLineaPedidos.add(lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get());
+//				//listaProductos.add(lineaPedidoService.findPedidoById(listaIDLineaPedido.get(i)).get().getProducto());
+//				i++;
+//			}	
+//			Reparto reparto = repartoService.findRepartoById(repartoId).get();
+//			modelMap.addAttribute("reparto", reparto);
+//			modelMap.addAttribute("pedido", pedido);
+			modelMap.addAttribute("lineapedido", res);
+			return "pedidos/detallesPedido";
 		}
 		
 /*		@GetMapping(value = "/new")
