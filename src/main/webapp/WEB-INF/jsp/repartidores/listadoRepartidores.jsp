@@ -11,8 +11,8 @@
     <table id="repartidoresTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Nombre</th>
-            <th style="width: 200px;">DNI</th>
+            <th>Nombre</th>
+            <th>DNI</th>
             <th>Fecha de nacimiento</th>
         </tr>
         </thead>

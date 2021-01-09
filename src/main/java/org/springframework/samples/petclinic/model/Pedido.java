@@ -27,10 +27,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "pedidos")
 public class Pedido extends BaseEntity implements Comparable<Pedido>{
-
-//	@Column(name = "idPedido")
-//	@NotEmpty
-//	private String idPedido;
 	
 	@Column(name = "fecha")
 	@DateTimeFormat(pattern = "yyyy-MM-dd :HH:mm:ss")
@@ -66,10 +62,6 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Enumerated(value = EnumType.STRING)
 	private tipoPedido tipopedido;
 	
-	@ManyToOne
-	@JoinColumn(name = "reparto_id")
-	private Reparto reparto;
-	
 	@Override
 	public int compareTo(Pedido o) {
 		if ( fecha.isBefore(o.getFecha())) {
@@ -80,7 +72,7 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 		return 0;
 	}
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	

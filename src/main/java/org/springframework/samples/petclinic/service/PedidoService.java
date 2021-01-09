@@ -52,12 +52,6 @@ public class PedidoService {
 		return pedidoRepo.findById(id);
 	}
 	
-	@Transactional(readOnly = true)
-	public Set<Pedido> findByRepartoId(Integer id){
-		return this.pedidoRepo.findByRepartoId(id);
-	}
-
-	
 	@Transactional
 	public void savePedido(Pedido pedido) throws DataAccessException {
 		pedidoRepo.save(pedido);	

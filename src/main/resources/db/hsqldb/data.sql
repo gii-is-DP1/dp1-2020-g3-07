@@ -121,16 +121,11 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (19, 'mascotaRobert
 
 
 
+
+
 --A CONTINUACION EMPIEZA LO MODIFICADO POR EL GRUPO PARA EL PROYECTO
 
 
--- insertamos empleados
---INSERT INTO empleados(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2000-01-01');
-
--- insertamos dependientes
-INSERT INTO dependientes(nombre, dni, sueldo, fechanacimiento) VALUES ('Paco', '15151515R', 2000, '2000-01-01');
-INSERT INTO users(username,password,enabled) VALUES ('dependiente','clave',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (10,'dependiente','dependiente');
 
 --insertamos vehiculo
 INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('4772HZC', 'Coche');
@@ -139,47 +134,46 @@ INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('9008XXC', 'Coche');
 INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('7395LRG', 'Moto');
 INSERT INTO vehiculos(matricula, tipovehiculo) VALUES ('3560GFH', 'Moto');
 
+
+
+-- insertamos dependientes
+INSERT INTO users(username,password,enabled) VALUES ('dependiente','clave',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'dependiente','dependiente');
+INSERT INTO dependientes(nombre, username, cuentabancaria, dni, sueldo, fechanacimiento) VALUES ('Paco Lastre', 'dependiente', '4599830100494019', '15151515R', 2000, '1992-08-01');
+
+
+
 -- insertamos repartidores
 INSERT INTO users(username,password,enabled) VALUES ('repartidor','clave',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (11,'repartidor','repartidor');
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, vehiculo_id) VALUES ('Jorge', '77133335P', 10000, '2000-11-21', 3);
-INSERT INTO repartidores(nombre, dni, sueldo, fechanacimiento, vehiculo_id) VALUES ('Antonio', '37551947T', 10020, '1998-03-14', 2);
+INSERT INTO repartidores(nombre, username, cuentabancaria, dni, sueldo, fechanacimiento, vehiculo_id) VALUES ('Jorge Méndez', 'repartidor', '4548812049400004', '77133335P', 2300, '1995-11-21', 3);
+INSERT INTO repartidores(nombre, username, cuentabancaria, dni, sueldo, fechanacimiento, vehiculo_id) VALUES ('Rafael Castaño', 'repartidor', '4548032003933011', '37551947T', 2220, '1998-03-14', 2);
+
+
 
 -- insertamos cocineros
-INSERT INTO cocineros(nombre, dni, sueldo, fechanacimiento) VALUES ('Cristian', '79051555L', 400, '1845-08-15');
+INSERT INTO cocineros(nombre, cuentabancaria, dni, sueldo, fechanacimiento) VALUES ('Cristian Andorra', '4599830100592012', '79051555L', 2400, '1985-08-15');
+
+
 
 -- insertamos clientes
-INSERT INTO users(username,password,enabled) VALUES ('juan@gmail.com','juan',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (12,'juan@gmail.com','cliente');
-INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Juan', 'Pérez Rodriguez', '123456789', 'avda el pantano', '1999-09-21', 'juan@gmail.com');
-INSERT INTO users(username,password,enabled) VALUES ('pedro@gmail.com','pedro',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (13,'pedro@gmail.com','cliente');
-INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Pedro', 'Clemente Ortiz', '999685554', 'Calle Fuencarral', '2000-07-11', 'pedro@gmail.com');
 INSERT INTO users(username,password,enabled) VALUES ('generico@gmail.com','generico',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (14,'generico@gmail.com','cliente');
+INSERT INTO authorities(id,username,authority) VALUES (12,'generico@gmail.com','cliente');
 INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Generico', 'Generico', '666666666', 'Calle Generica', '2000-01-01', 'generico@gmail.com');
 
+INSERT INTO users(username,password,enabled) VALUES ('juan@gmail.com','juan',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (13,'juan@gmail.com','cliente');
+INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Juan', 'Pérez Rodriguez', '629877612', 'Avenida El Pantano, 18', '1999-09-21', 'juan@gmail.com');
+
+INSERT INTO users(username,password,enabled) VALUES ('pedro@gmail.com','pedro',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (14,'pedro@gmail.com','cliente');
+INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Pedro', 'Clemente Ortiz', '643556901', 'Calle Fuencarral, 2', '2000-07-11', 'pedro@gmail.com');
+
+INSERT INTO users(username,password,enabled) VALUES ('antonio@gmail.com','antonio',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (15,'antonio@gmail.com','cliente');
+INSERT INTO clientes(nombre, apellidos, telefono, direccion, fechanacimiento, username) VALUES ('Antonio', 'Candau López', '625410972', 'Avenida El Pantano, 47', '1979-11-18', 'antonio@gmail.com');
 
 
--- insertamos pedidos
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(1,'2020-08-06 15:59:42','excelente', 5, 'efectivo', 'Entregado', 'enLocal');
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(5,'2020-01-02 15:57:48','buenísimo', 5, 'tarjeta', 'Entregado', 'enLocal');
-INSERT INTO pedidos(id,fecha, comentario, valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(2,'2020-05-11 15:41:11', 'regular', 3, 'efectivo', 'Entregado', 'enLocal', 1);
-
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(3,'2020-07-05 15:59:48','muy bueno', 5, 'efectivo', 'Entregado', 'aDomicilio', 1);
-INSERT INTO pedidos(id,fecha, comentario,valoracion, metodopago, estadopedido, tipopedido) VALUES(4,'2020-01-02 17:12:30','bueno', 4, 'efectivo', 'Entregado', 'aDomicilio');
-INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(9,'2021-01-09 17:12:30','efectivo', 'pendiente', 'aDomicilio');
-INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(6,'2021-01-08 14:50:28','tarjeta', 'pendiente', 'aDomicilio');
-INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(7,'2021-01-07 17:06:42','tarjeta', 'pendiente', 'aDomicilio');
-INSERT INTO pedidos(id,fecha, metodopago, estadopedido, tipopedido) VALUES(8,'2021-01-06 15:03:48','efectivo', 'enReparto', 'aDomicilio');
-
--- insertamos productos
-INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Margarita', 10, 'pequena', 'La pizza margarita de nuestro local es atípica, contiene atún, anchoa, jamón york y aceitunas');
-INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Gallo Morón', 12, 'pequena', 'La pizza Gallo Morón es original de nuestra pizzería haciendo honor a un símbolo del pueblo, está elaborada con carne de pollo, queso, salami, jamón york y champiñones');
-INSERT INTO productos(name, precio, tamanopizza, descripcion) VALUES ('Pizza Leonor', 11, 'pequena', 'La pizza Leonor, contiene piña y jamón york ');
-
--- insertamos reparto
-INSERT INTO repartos(fecha, HORA_INICIO) VALUES ('1999-11-12', '12:11:11');
 
 -- insertamos alergenos
 INSERT INTO alergenos(alergenotype) VALUES ('Gluten');
@@ -198,6 +192,15 @@ INSERT INTO alergenos(alergenotype) VALUES ('DioxidoDeAzufre');
 INSERT INTO alergenos(alergenotype) VALUES ('Moluscos');
 INSERT INTO alergenos(alergenotype) VALUES ('Altramuces');
 
+
+
+-- insertamos productos
+INSERT INTO productos(id, name, precio, tamanopizza, descripcion) VALUES (1, 'Pizza Margarita', 10, 'pequena', 'La pizza margarita de nuestro local es atípica, contiene atún, anchoa, jamón york y aceitunas');
+INSERT INTO productos(id, name, precio, tamanopizza, descripcion) VALUES (2, 'Gallo Morón', 12, 'pequena', 'La pizza Gallo Morón es original de nuestra pizzería haciendo honor a un símbolo del pueblo, está elaborada con carne de pollo, queso, salami, jamón york y champiñones');
+INSERT INTO productos(id, name, precio, tamanopizza, descripcion) VALUES (3, 'Pizza Leonor', 11, 'pequena', 'La pizza Leonor, contiene piña y jamón york ');
+
+
+
 -- insertamos alergenos en productos
 INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(1, 3);
 INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(1, 4);
@@ -212,6 +215,92 @@ INSERT INTO productos_alergenos(productos_id,alergenos_id) VALUES(3, 6);
 
 
 
+-- insertamos pedidos
+INSERT INTO pedidos(id, fecha, hora_estimada, comentario, valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(1,'2020-08-06 15:59:42', '16:59:42', 'excelente', 5, 'efectivo', 'Entregado', 'enLocal', 2);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(2,'2020-01-02 15:57:48', '16:57:48', 'tarjeta', 'pendiente', 'enLocal', 3);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(3,'2020-05-11 15:41:11', '16:41:11', 'efectivo', 'pendiente', 'enLocal', 4);
 
--- -- relacion repartidores-reparto
--- --INSERT INTO REPARTIDORES_REPARTOS(REPARTIDOR_ID, REPARTOS_ID) VALUES ('1', '1');
+INSERT INTO pedidos(id, fecha, hora_estimada, comentario, valoracion, metodopago, estadopedido, tipopedido, cliente_id) VALUES(4,'2020-07-05 15:59:48', '16:59:48', 'bueno', 4, 'efectivo', 'Entregado', 'aDomicilio', 2);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(5,'2020-01-02 17:12:30', '18:12:30', 'tarjeta', 'enReparto', 'aDomicilio', 3);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(6,'2021-01-14 12:42:20', '13:42:20', 'tarjeta', 'pendiente', 'aDomicilio', 4);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(7,'2021-01-23 10:44:02', '11:44:02', 'efectivo', 'pendiente', 'aDomicilio', 2);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(8,'2021-02-02 09:11:38', '10:11:38', 'tarjeta', 'pendiente', 'aDomicilio', 3);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(9,'2021-02-17 17:33:06', '18:33:06', 'efectivo', 'pendiente', 'aDomicilio', 4);
+INSERT INTO pedidos(id, fecha, hora_estimada, metodopago, estadopedido, tipopedido, cliente_id) VALUES(10,'2021-02-26 21:05:18', '22:05:18', 'tarjeta', 'pendiente', 'aDomicilio', 2);
+
+
+
+-- insertamos linea_pedidos
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (1, 2, 1);
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (2, 1, 3);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (3, 3, 3);
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (4, 4, 2);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (5, 6, 1);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (6, 1, 2);
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (7, 1, 3);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (8, 2, 1);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (9, 4, 3);
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (10, 1, 1);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (11, 3, 2);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (12, 2, 3);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (13, 1, 3);
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (14, 2, 1);
+
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (15, 3, 2);
+INSERT INTO linea_pedidos(id, cantidad, producto_id) VALUES (16, 1, 1);
+
+
+
+-- insertamos pedidos_linea_pedidos
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (1, 1);
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (1, 2);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (2, 3);
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (2, 4);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (3, 5);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (4, 6);
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (4, 7);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (5, 8);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (6, 9);
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (6, 10);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (7, 11);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (8, 12);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (9, 13);
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (9, 14);
+
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (10, 15);
+INSERT INTO pedidos_linea_pedidos(pedido_id, linea_pedidos_id) VALUES (10, 16);
+
+
+
+-- insertamos repartos
+INSERT INTO repartos(id, fecha, hora_inicio, repartidor_id) VALUES (1, '1999-11-12', '12:11:11', 1);
+
+
+
+-- insertamos pedidos en el reparto
+INSERT INTO repartos_pedidos(reparto_id, pedidos_id) VALUES (1, 4);
+INSERT INTO repartos_pedidos(reparto_id, pedidos_id) VALUES (1, 5);
+
+
+
+
+
+
+
+
