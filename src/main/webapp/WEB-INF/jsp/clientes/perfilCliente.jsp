@@ -3,11 +3,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
-
-<currogas:layout pageName="cliente">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<currogas:layout pageName="Mi Perfil">
 
 	<h1>Mi Perfil</h1>
-	<h3>Datos personales</h3>
+	<h2>Datos personales</h2>
 		<table class="table table-striped">
 			<tr>
 				<th>Nombre y Apellidos</th>
@@ -24,10 +24,42 @@
 				<td><c:out value="${cliente.fechanacimiento}"></c:out></td>
 			</tr>
 		</table>
-		<div>
+
+		<div style="margin-bottom: 4vh;">
 			<spring:url value = "/clientes/edit/{clienteId}" var = "clienteEditUrl">
 				<spring:param name="clienteId" value="${cliente.id}"/>
             </spring:url>
             <a href = "${fn:escapeXml(clienteEditUrl)}">Modificar mis datos</a>
 		</div>
+
+		<h2>Mis Pedidos</h2>
+		<table class="table table-striped">
+			<tr>
+				<th>ID</th>
+				<th>Fecha de realización</th>
+				<th>Hora estimada</th>
+				<th>Método de pago</th>
+				<th>Estado</th>
+				<th>Tipo de pedido</th>
+				<th>Acciones</th>
+			</tr>
+			<c:forEach items="${pedidos}" var="pedido">
+				<c:if test="${pedido.estadopedido != null || pedido.tipopedido != null}">
+					<tr>
+						<td><c:out value="${pedido.id}"/></td>
+						<td><c:out value="${pedido.fecha}"/></td>
+						<td><c:out value="${pedido.horaEstimada}"></c:out></td>
+						<td><c:out value="${pedido.metodopago}"></c:out></td>
+						<td><c:out value="${pedido.estadopedido}"></c:out></td>
+						<td><c:out value="${pedido.tipopedido}"></c:out></td>
+						<td>
+							<spring:url value = "/clientes/valorar/{pedidoId}" var = "valoracionUrl">
+								<spring:param name = "pedidoId" value ="${pedido.id}"/>
+							</spring:url>
+							<a href = "${fn:escapeXml(valoracionUrl)}">Realizar valoración</a>
+						</td>
+					</tr>
+				</c:if>
+			</c:forEach>
+		</table>	
 </currogas:layout>

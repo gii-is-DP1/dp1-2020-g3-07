@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.LineaPedido;
 import org.springframework.samples.petclinic.model.Pedido;
+import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Reparto;
 import org.springframework.samples.petclinic.model.estadoPedido;
 import org.springframework.samples.petclinic.model.tipoPedido;
@@ -46,7 +47,6 @@ public class PedidoService {
 		return pedidoRepo.findAll();
 	}
 
-	
 	@Transactional(readOnly = true)
 	public Optional<Pedido> findPedidoById(int id) throws DataAccessException {
 		return pedidoRepo.findById(id);

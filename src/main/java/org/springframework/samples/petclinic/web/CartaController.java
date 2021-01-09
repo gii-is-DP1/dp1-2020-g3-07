@@ -33,65 +33,9 @@ public class CartaController {
 	public String listadoCartas(ModelMap modelMap) {
 		String vista = "carta/listadoCarta";
 		Iterable<Producto> productos = productoService.findAll();
-		modelMap.addAttribute("carta", productos);
+		modelMap.addAttribute("productos", productos);
 		return vista;
 	}
 	
-//	@GetMapping(value = "/new")
-//	public String initCreationForm(Map<String, Object> model) {
-//		Producto producto = new Producto();
-//		model.put("productos", producto);
-//		return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
-//	}
-//
-//	@PostMapping(value = "/new")
-//	public String processCreationForm(@Valid Producto producto, BindingResult result) {
-//		if (result.hasErrors()) {
-//			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
-//		}
-//		else {
-//			//creating owner, user and authorities
-//			this.productoService.saveProducto(producto);
-//			return "redirect:/productos";
-//		}
-//	}
-//	
-//	
-//	@GetMapping(value="/delete/{productoID}")
-//	public String borrarProducto(@PathVariable("productoID") int productoID, ModelMap modelMap) {
-//		Optional<Producto> producto = productoService.findProductoById(productoID);
-//		if(producto.isPresent()) {
-//			productoService.deleteProducto(producto.get());
-//			modelMap.addAttribute("message", "Producto borrado correctamente");
-//		} else {
-//			modelMap.addAttribute("message", "Producto no encontrado");
-//		}
-//		return "redirect:/productos";
-//	}
-//	
-//	@GetMapping(value = "/save/{productoID}")
-//	public String initUpdateForm(@PathVariable("productoID") int productoID, Model model) {
-//		Optional<Producto> producto = this.productoService.findProductoById(productoID);
-//		if(producto.isPresent()) {
-//			model.addAttribute("productos", producto.get());
-//			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
-//		} else {
-//			model.addAttribute("message", "Producto no encontrado");
-//			return "redirect:/productos";
-//		}
-//	}
-//
-//	@PostMapping(value = "/save/{productoID}")
-//	public String processUpdateForm(@Valid Producto producto, BindingResult result,
-//			@PathVariable("productoID") int productoID) {
-//		if (result.hasErrors()) {
-//			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
-//		}
-//		else {
-//			producto.setId(productoID);
-//			this.productoService.saveProducto(producto);
-//			return "redirect:/productos";
-//		}
-//	}
 
 }
