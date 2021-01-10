@@ -55,18 +55,7 @@
 							<fmt:parseDate value="${pedido.fecha}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
 							<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${ parsedDateTime }" />
 						</td>
-						<c:choose>
-							<c:when test="${not empty pedido.horaCliente}">
-								<td>
-									<c:out value="${pedido.horaCliente}"/>
-								</td>
-							</c:when>
-							<c:otherwise>
-								<td>
-									<c:out value="${pedido.horaEstimada}"/>
-								</td>
-							</c:otherwise>
-						</c:choose>
+						<td><c:out value="${pedido.horaEstimada}"/></td>
 						<td><c:out value="${pedido.metodopago}"></c:out></td>
 						<td><c:out value="${pedido.estadopedido}"></c:out></td>
 						<td><c:out value="${pedido.tipopedido}"></c:out></td>
