@@ -7,7 +7,7 @@
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 
 <currogas:layout pageName="clientes">
-    <h2>Clientes</h2>
+    <h1>Clientes</h1>
 
     <table id="empleadosTable" class="table table-striped">
         <thead>

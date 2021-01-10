@@ -7,15 +7,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <currogas:layout pageName="carta">
-    <h2>Carta</h2>
+    <h1>Carta</h1>
 
     <table id="productoTable" class="table table-striped">
         <thead>
         <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Descripcion</th>
-            <th>Alergenos</th>
+            <th>Descripción</th>
+            <th>Alérgenos</th>
 <!--             <th>Acciones</th>    -->   
         </tr>
         </thead>

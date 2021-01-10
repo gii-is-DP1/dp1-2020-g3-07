@@ -6,53 +6,8 @@
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <currogas:layout pageName="empleados">
-    <%-- <h2>Empleados</h2>
 
-    <table id="empleadosTable" class="table table-striped">
-        <thead>
-        <tr>
-            <th style="width: 150px;">Nombre</th>
-            <th style="width: 200px;">DNI</th>
-            <th>Sueldo</th>
-            <th>fechanacimiento</th>
-            <th>Accion</th>
-         
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${empleados}" var="empleado">
-            <tr>
-                <td>
-                    <c:out value="${empleado.nombre}"/>
-                </td>
-                <td>
-                    <c:out value="${empleado.dni}"/>
-                </td>
-                <td>
-                    <c:out value="${empleado.sueldo}"/>
-                </td>
-                <td>
-                    <c:out value="${empleado.fechanacimiento}"/>
-                </td>
-                <td>
-                    <spring:url value = "/empleados/save/{empleadoId}" var = "empleadoUrl">
-                    	<spring:param name = "empleadoId" value ="${empleado.id}"/>
-                    </spring:url>
-                    <a href = "${fn:escapeXml(empleadoUrl)}">Edit</a>
-                </td>
-                
-                
-                
-
-                
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table> --%>
-    
-    
-    
-    <h2>Dependientes</h2>
+    <h1>Dependientes</h1>
     
     <table id="dependientesTable" class="table table-striped">
         <thead>
@@ -104,11 +59,11 @@
     <a class="btn btn-default" href='<spring:url value="/dependientes/new" htmlEscape="true"/>'>A�adir dependiente</a>
     
     
+</br>
+</br>
     
     
-    
-    
-    <h2>Repartidores</h2>
+    <h1>Repartidores</h1>
     
     <table id="repartidoresTable" class="table table-striped">
         <thead>
@@ -163,12 +118,10 @@
     
     <a class="btn btn-default" href='<spring:url value="/repartidores/new" htmlEscape="true"/>'>A�adir repartidor</a>
     
-    
-    
-    
-    
-    
-    <h2>Cocineros</h2>
+</br>
+</br>
+
+    <h1>Cocineros</h1>
     
     <table id="cocinerosTable" class="table table-striped">
         <thead>

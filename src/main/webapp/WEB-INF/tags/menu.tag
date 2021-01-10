@@ -73,13 +73,13 @@
 					<span>Mi Perfil</span>
 				</petclinic:menuItem>
 				
-				<petclinic:menuItem active="${name eq 'owners'}" url="/owners"
+<!--				<petclinic:menuItem active="${name eq 'owners'}" url="/owners"
 					title="owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<span>Owners</span>
 				</petclinic:menuItem>
 
-<!--				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
+				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<span>Find owners</span>

@@ -6,7 +6,7 @@
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <currogas:layout pageName="vehiculos">
-    <h2>Vehiculos</h2>
+    <h1>Vehiculos</h1>
 
     <table id="vehiculosTable" class="table table-striped">
         <thead>
