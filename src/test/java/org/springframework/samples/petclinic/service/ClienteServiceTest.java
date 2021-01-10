@@ -26,13 +26,19 @@ public class ClienteServiceTest {
 	@Test
 	public void testCountWithInitialData() {
 		int count = clientServ.clienteCount();
-		assertEquals(count,1);
+		assertEquals(count, 4);
+	}
+	
+	@Test
+	public void testFindAll() {
+		assertThat(this.clientServ.findAll().iterator().next().getNombre()).isEqualTo("Generico");
 	}
 	
 	@Test
 	@Transactional
 	public void insertCliente() {
 		Cliente cliente = new Cliente();
+		cliente.setId(100);
 //		cliente.setContrasena("1234");
 		User user = new User();
 		user.setUsername("Mperez");
@@ -51,7 +57,7 @@ public class ClienteServiceTest {
 		cliente.setFechanacimiento(LocalDate.of(1999, 2, 3));
 		
 		this.clientServ.saveCliente(cliente);
-		assertThat(cliente.getId().intValue()).isEqualTo(2);
+		assertThat(cliente.getId().intValue()).isEqualTo(100);
 		}
 	
 	@Test
