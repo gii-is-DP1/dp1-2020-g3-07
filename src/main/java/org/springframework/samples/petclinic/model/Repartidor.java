@@ -23,15 +23,15 @@ import lombok.Setter;
 @Table(name = "repartidores")
 public class Repartidor extends Empleado{
 	
-	@OneToMany(mappedBy = "repartidor")
+	@OneToMany(mappedBy = "repartidor", cascade = CascadeType.ALL)
 	//(cascade = CascadeType.ALL, mappedBy = "repartidor")
 	private Set<Reparto> repartos;
 	
 	@NotNull
-	@OneToOne(optional = false)
+	@OneToOne		//(optional = false)
 	private Vehiculo vehiculo;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne		//(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	
