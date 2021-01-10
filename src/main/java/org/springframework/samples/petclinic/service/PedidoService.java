@@ -84,5 +84,7 @@ public class PedidoService {
 		Collection<Pedido> res = StreamSupport.stream(pedidos.spliterator(), false).collect(Collectors.toList());
 		return new ArrayList<Pedido>(res);
 	}
+	
+	
 
 }
