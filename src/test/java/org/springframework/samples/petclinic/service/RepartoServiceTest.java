@@ -1,13 +1,16 @@
 package org.springframework.samples.petclinic.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -25,30 +28,30 @@ public class RepartoServiceTest {
 
 	@Autowired
 	private RepartoService repartoService;
+	@Autowired
+	private RepartidorService repartidorService;
 	
 	@Test
 	@Transactional
 	public void testSave() {
 		Reparto reparto = new Reparto();
-		reparto.setId(100);
+		reparto.setId(2);	
 		
-		LocalDate fecha = LocalDate.of(2000, 1, 1);
+		LocalDate fecha = LocalDate.of(2021, 01, 10);
 		reparto.setFecha(fecha);
 		
 		LocalTime horaInicio = LocalTime.now();
-		reparto.setHoraInicio(horaInicio);
+		reparto.setHoraInicio(horaInicio);	
 		
-		Repartidor repartidor = new Repartidor();
-		repartidor.setId(100);
+		Repartidor repartidor = repartidorService.findRepartidorById(1).get();
 		reparto.setRepartidor(repartidor);
 		
-		Pedido p1 = new Pedido();
-		Pedido p2 = new Pedido();
-		Set<Pedido> pedidos = new HashSet<Pedido>(Arrays.asList(p1, p2));
-		reparto.setPedidos(pedidos);
+		reparto.setPedidos(null);
 		
 		this.repartoService.save(reparto);
-		Reparto r = this.repartoService.findRepartoById(100).get();
+		Reparto r = this.repartoService.findRepartoById(2).get();
+		
+		
 		assertNotNull(r);
 	}
 	
