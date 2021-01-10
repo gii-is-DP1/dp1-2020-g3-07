@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -73,6 +74,11 @@ public class ClienteServiceTest {
 	        // retrieving new name from database
 	        cliente = this.clientServ.findClienteById(1);
 	        assertThat(cliente.get().getNombre()).isEqualTo(newName);
+	}
+	
+	@Test
+	public void testFindClienteByUsername() {
+		assertNotNull(this.clientServ.findClienteByUsername("juan@gmail.com"));
 	}
  
 }
