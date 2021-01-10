@@ -60,7 +60,7 @@ public class Cliente extends BaseEntity{
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechanacimiento;
 	
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	private Set<Pedido> pedidos;
 	
 	// asociacion con entidad User para inicio de sesion

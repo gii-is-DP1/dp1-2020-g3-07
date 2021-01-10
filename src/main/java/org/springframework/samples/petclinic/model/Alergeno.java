@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
@@ -30,7 +31,7 @@ public class Alergeno extends BaseEntity{
 	@Enumerated(value=EnumType.STRING)
 	private AlergenoEnum alergenotype;
 	
-	@ManyToMany(mappedBy="alergenos")
+	@ManyToMany(mappedBy="alergenos", cascade = CascadeType.ALL)
 	private Set<Producto> productos;
 	
 	
