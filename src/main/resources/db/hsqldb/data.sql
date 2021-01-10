@@ -195,9 +195,9 @@ INSERT INTO alergenos(alergenotype) VALUES ('Altramuces');
 
 
 -- insertamos productos
-INSERT INTO productos(id, name, precio, tamanopizza, descripcion) VALUES (1, 'Pizza Margarita', 10, 'pequena', 'La pizza margarita de nuestro local es atípica, contiene atún, anchoa, jamón york y aceitunas');
-INSERT INTO productos(id, name, precio, tamanopizza, descripcion) VALUES (2, 'Gallo Morón', 12, 'pequena', 'La pizza Gallo Morón es original de nuestra pizzería haciendo honor a un símbolo del pueblo, está elaborada con carne de pollo, queso, salami, jamón york y champiñones');
-INSERT INTO productos(id, name, precio, tamanopizza, descripcion) VALUES (3, 'Pizza Leonor', 11, 'pequena', 'La pizza Leonor, contiene piña y jamón york ');
+INSERT INTO productos(id, name, precio, descripcion) VALUES (1, 'Pizza Margarita', 10, 'La pizza margarita de nuestro local es atípica, contiene atún, anchoa, jamón york y aceitunas');
+INSERT INTO productos(id, name, precio, descripcion) VALUES (2, 'Gallo Morón', 12, 'La pizza Gallo Morón es original de nuestra pizzería haciendo honor a un símbolo del pueblo, está elaborada con carne de pollo, queso, salami, jamón york y champiñones');
+INSERT INTO productos(id, name, precio, descripcion) VALUES (3, 'Pizza Leonor', 11, 'La pizza Leonor, contiene piña y jamón york ');
 
 
 

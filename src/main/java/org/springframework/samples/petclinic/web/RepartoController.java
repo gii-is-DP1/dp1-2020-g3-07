@@ -137,6 +137,13 @@ public class RepartoController {
 			Set<Pedido> pedidos = new HashSet<Pedido>(cp.getPedidosAsignados());
 			estadoPedido ep = estadoPedido.enReparto;
 			pedidos.stream().forEach(p->p.setEstadopedido(ep));
+			pedidos.stream().forEach(p->p.setHoraEstimada(LocalTime.now().plusMinutes(10)));
+//			List<LocalTime> listHorasEstimadas = pedidos.stream().map(p->p.getHoraEstimada()).collect(Collectors.toList());
+//			for(int i=0; i<listHorasEstimadas.size(); i++) {
+//				LocalTime horaEstimada = listHorasEstimadas.get(i);
+//				pedidos.stream().forEach(p->p.setHoraEstimada(horaEstimada.plusMinutes(10)));
+//			}
+			
 			reparto.setPedidos(pedidos);
 			reparto.setRepartidor(repartidor);
 			

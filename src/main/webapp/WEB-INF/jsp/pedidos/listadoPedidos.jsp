@@ -9,13 +9,14 @@
 <script type="text/javascript" src="jquery.tablesorter.js"></script> 
 
 <currogas:layout pageName="pedidos">
-    <h2>Pedidos A Domicilio</h2>
+    <h1>Pedidos A Domicilio</h1>
     <table id="pedidosTable" class="table table-striped">
         <thead>
         <tr>
             <th>Fecha y hora</th>
             <th>Comentario</th>
             <th>Valoración</th>
+            <th>Hora Estimada</th>
             <th>Método de pago</th>
             <th>Estado de pedido</th>
             <th>Contenido del pedido</th>
@@ -26,7 +27,8 @@
         <c:forEach items="${pedidosADomicilio}" var="pedidosadom">
             <tr>
                 <td>
-                    <c:out value="${pedidosadom.fecha}"/>
+                    <fmt:parseDate value="${pedidosadom.fecha}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                    <fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${ parsedDateTime }" />
                 </td>
                 <td>
                     <c:out value="${pedidosadom.comentario}"/>
@@ -34,6 +36,18 @@
                 <td>
                     <c:out value="${pedidosadom.valoracion}"/>
                 </td>
+                <c:choose>
+                    <c:when test="${not empty pedidosadom.horaCliente}">
+                        <td>
+                            <c:out value="${pedidosadom.horaCliente}"/>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>
+                            <c:out value="${pedidosadom.horaEstimada}"/>
+                        </td>
+                    </c:otherwise>
+                </c:choose>
                 <td>
                     <c:out value="${pedidosadom.metodopago}"/>
                 </td>
@@ -46,11 +60,11 @@
     				</spring:url>
     				<a href="${fn:escapeXml(pedidodomUrl)}" >Detalles pedido</a>
                 </td>       
-                 <td>
-                	<spring:url value="pedidos/delete/{pedidoID}" var="delpedidodomUrl">
-       				<spring:param name="pedidoID" value="${pedidosadom.id}"/>
-    				</spring:url>
-    				<a href="${fn:escapeXml(delpedidodomUrl)}" >Eliminar pedido</a>
+                 <td>            
+                    <spring:url value="pedidos/delete/{pedidoID}" var="delpedidodomUrl">
+                        <spring:param name="pedidoID" value="${pedidosadom.id}"/>
+                    </spring:url>
+                    <a href="${fn:escapeXml(delpedidodomUrl)}" >Eliminar pedido</a>
                 </td>            
             </tr>
         </c:forEach>
@@ -59,13 +73,14 @@
     
     
     
-    <h2>Pedidos En Local</h2>
+    <h1>Pedidos En Local</h1>
     <table id="pedidosTable" class="table table-striped">
         <thead>
         <tr>
             <th>Fecha y hora</th>
             <th>Comentario</th>
             <th>Valoración</th>
+            <th>Hora Estimada</th>
             <th>Método de pago</th>
             <th>Estado de pedido</th>
             <th>Contenido del pedido</th>
@@ -75,8 +90,9 @@
         <tbody>
         <c:forEach items="${pedidosEnLocal}" var="pedidosenloc">
             <tr>
-                <td data-sortable = "true">
-                    <c:out value="${pedidosenloc.fecha}"/>
+                <td>
+                    <fmt:parseDate value="${pedidosenloc.fecha}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                    <fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${ parsedDateTime }" />
                 </td>
                 <td>
                     <c:out value="${pedidosenloc.comentario}"/>
@@ -84,6 +100,18 @@
                 <td>
                     <c:out value="${pedidosenloc.valoracion}"/>
                 </td>
+                <c:choose>
+                    <c:when test="${not empty pedidosenloc.horaCliente}">
+                        <td>
+                            <c:out value="${pedidosenloc.horaCliente}"/>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>
+                            <c:out value="${pedidosenloc.horaEstimada}"/>
+                        </td>
+                    </c:otherwise>
+                </c:choose>
                 <td>
                     <c:out value="${pedidosenloc.metodopago}"/>
                 </td>

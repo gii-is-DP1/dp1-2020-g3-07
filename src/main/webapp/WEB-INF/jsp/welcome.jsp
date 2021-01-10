@@ -6,7 +6,7 @@
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 
 <currogas:layout pageName="home">
-    <h2><fmt:message key="welcome"/></h2>
+    <h1><fmt:message key="welcome"/></h1>
     <div class="row">
     <h2> Project ${title}</h2>
     <p><h2> Group ${group}</h2></p>
@@ -18,8 +18,6 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            
-            <h3>Hola</h3>
             <img src="https://www.us.es/sites/default/files/logoPNG_3.png"/>
         </div>
     </div>
