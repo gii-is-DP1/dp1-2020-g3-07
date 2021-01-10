@@ -36,18 +36,9 @@
                 <td>
                     <c:out value="${pedidosadom.valoracion}"/>
                 </td>
-                <c:choose>
-                    <c:when test="${not empty pedidosadom.horaCliente}">
-                        <td>
-                            <c:out value="${pedidosadom.horaCliente}"/>
-                        </td>
-                    </c:when>
-                    <c:otherwise>
-                        <td>
-                            <c:out value="${pedidosadom.horaEstimada}"/>
-                        </td>
-                    </c:otherwise>
-                </c:choose>
+                <td>
+                    <c:out value="${pedidosadom.horaEstimada}"/>
+                </td>
                 <td>
                     <c:out value="${pedidosadom.metodopago}"/>
                 </td>
@@ -100,18 +91,9 @@
                 <td>
                     <c:out value="${pedidosenloc.valoracion}"/>
                 </td>
-                <c:choose>
-                    <c:when test="${not empty pedidosenloc.horaCliente}">
-                        <td>
-                            <c:out value="${pedidosenloc.horaCliente}"/>
-                        </td>
-                    </c:when>
-                    <c:otherwise>
-                        <td>
-                            <c:out value="${pedidosenloc.horaEstimada}"/>
-                        </td>
-                    </c:otherwise>
-                </c:choose>
+                <td>
+                    <c:out value="${pedidosenloc.horaEstimada}"/>
+                </td>
                 <td>
                     <c:out value="${pedidosenloc.metodopago}"/>
                 </td>
