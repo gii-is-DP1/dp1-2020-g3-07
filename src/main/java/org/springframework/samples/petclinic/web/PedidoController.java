@@ -40,6 +40,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/pedidos")
 public class PedidoController {
@@ -97,7 +100,7 @@ public class PedidoController {
 ////			modelMap.addAttribute("pedidos", pedidos);
 //			modelMap.addAttribute("pedidosadom", pedidosaDom);
 //			modelMap.addAttribute("pedidosenloc", pedidosenLoc);
-			
+			log.info("Se muestra el listado de pedidos");
 			return vista;
 		}
 		
@@ -150,6 +153,7 @@ public class PedidoController {
 //			modelMap.addAttribute("reparto", reparto);
 //			modelMap.addAttribute("pedido", pedido);
 			modelMap.addAttribute("lineapedido", res);
+			log.info("Se muestran detalles del pedido con id = "+pedidoId);
 			return "pedidos/detallesPedido";
 		}
 		
@@ -189,6 +193,7 @@ public class PedidoController {
 		    
 			pedidoService.savePedido(pedido);
 			Integer idPedido = pedido.getId();
+			log.info("Solicitud para realizar un nuevo pedido");
 			return "redirect:/pedidos/new/" + idPedido;
 		}
 		
@@ -199,6 +204,7 @@ public class PedidoController {
 			model.put("pedidos", pedido);
 			Iterable<Producto> productos = productoService.findAll();
 			model.put("productos", productos);
+			log.info("Solicitud para signar productos al pedido de id = "+pedidoID);
 			return VIEWS_SELECCION_PRODUCTOS;
 		}
 		@PostMapping(value="/new/{pedidoID}")
@@ -207,6 +213,7 @@ public class PedidoController {
 				return "redirect:/pedidos/new/" + pedidoID;
 				// esto envia a un jsp, puedes meter model return "pedidos/new/" + pedidoID;
 			} else {
+				log.info("Se muestra resumen del pedido de id = "+pedidoID);
 				return "redirect:/pedidos/new/resumendelpedido/" + pedidoID;
 			}
 		}
@@ -218,12 +225,14 @@ public class PedidoController {
 			model.put("productos", producto);
 			LineaPedido lineaPedido = new LineaPedido();
 			model.put("lineapedidos", lineaPedido);
+			log.info("Solicitud para asignar la cantidad del producto con id = "+productoID+" asociado al pedido con id = "+pedidoID);
 			return VIEWS_SELECCION_CANTIDAD_PRODUCTO;
 		}
 		@PostMapping(value="/new/{pedidoID}/{productoID}")
 		public String procesarCrearLineaPedido(@PathVariable("productoID") int productoID, @PathVariable("pedidoID") int pedidoID, @Valid LineaPedido lineaPedido, 
 				BindingResult result) {
 				if (result.hasErrors()) {
+					log.info("Error al seleccionar la cantidad del producto con id = "+productoID+" asignado al pedido con id = "+pedidoID);
 					return VIEWS_SELECCION_CANTIDAD_PRODUCTO;
 				} else {
 					lineaPedido.setProducto(productoService.findProductoById(productoID).get());
@@ -233,6 +242,7 @@ public class PedidoController {
 					set.add(lineaPedido);
 					pedido.setLineaPedidos(set);
 					this.pedidoService.savePedido(pedido);
+					log.info("Cantidad del producto con id = "+productoID+" asociado al pedido con id = "+pedidoID+" asignada con exito");
 					return "redirect:/pedidos/new/" + pedidoID;
 				}
 		}
@@ -252,6 +262,7 @@ public class PedidoController {
 			model.put("pedido", pedidoService.findPedidoById(pedidoID).get());
 			model.put("lineapedido", listaLineaPedidos);
 			//model.put("producto", listaProductos);
+			log.info("Muestra resumen del pedido de id = "+pedidoID+" antes de confirmarlo");
 			return VIEWS_RESUMEN_DEL_PEDIDO;
 		}
 		@PostMapping(value = "/new/resumendelpedido/{pedidoID}")
@@ -259,6 +270,7 @@ public class PedidoController {
 				if (result.hasErrors()) {
 					return VIEWS_SELECCION_CANTIDAD_PRODUCTO;
 				} else {
+					log.info("Solicitud para confirmar pedido de id = "+pedidoID);
 					return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
 				}
 		}
@@ -276,6 +288,7 @@ public class PedidoController {
 					}
 				}
 				lineaPedidoService.deleteLineaPedido(lineapedido.get());
+				log.info("Linea de Pedido asociado al pedido con id = "+pedidoID+" eliminada con exito");
 				modelMap.addAttribute("message", "Pedido borrado correctamente");
 			} else {
 				modelMap.addAttribute("message", "Pedido no encontrado");
@@ -295,6 +308,7 @@ public class PedidoController {
 			Producto producto = lineaPedido.getProducto();		
 			model.put("productos", producto);
 			model.put("lineapedidos", lineaPedido);
+			log.info("Solicitud para editar la cantidad del producto de id = "+productoID+" asociado al pedido con id = "+pedidoID);
 			return "pedidos/formularioModificarCantidad";
 		}
 		@PostMapping(value="/new/resumendelpedido/edit/{pedidoID}/{lineapedidoID}/{productoID}")
@@ -306,6 +320,7 @@ public class PedidoController {
 					lineaPedido.setId(lineapedidoID);
 					lineaPedido.setProducto(productoService.findProductoById(productoID).get());
 					this.lineaPedidoService.saveLineaPedido(lineaPedido);
+					log.info("Cantidad del producto con id = "+productoID+" asociado al pedido con id = "+pedidoID+" asignada con exito");
 					return "redirect:/pedidos/new/resumendelpedido/" + pedidoID;
 				}
 		}
@@ -315,13 +330,13 @@ public class PedidoController {
 		public String finalizarPedido(@PathVariable("pedidoID") int pedidoID, Map<String, Object> model) {
 			Pedido pedido = pedidoService.findPedidoById(pedidoID).get();
 			model.put("pedidos", pedido);
-
 			return VIEWS_FINALIZAR_PEDIDO;
 		}
 		@PostMapping(value = "/new/finalizarpedido/{pedidoID}")
 		public String procesarFinalizarPedido(@PathVariable("pedidoID") int pedidoID, Map<String, Object> model, @Valid Pedido pedido, 
 				BindingResult result) {
 			if (result.hasErrors()) {
+				log.info("Errores de validacion de entrada de datos al realizar el pedido con id = "+pedidoID);
 				return VIEWS_FINALIZAR_PEDIDO;
 			} else{
 				pedido.setId(pedidoID);
@@ -338,6 +353,7 @@ public class PedidoController {
                 } 
 				pedido.setEstadopedido(estadoPedido.pendiente);
 				pedidoService.savePedido(pedido);
+				log.info("Pedido con id = "+pedidoID+" realizado con exito");
 				return "redirect:/pedidos";
 			}
 		}
@@ -347,6 +363,7 @@ public class PedidoController {
 			Optional<Pedido> pedido = pedidoService.findPedidoById(pedidoID);
 			if(pedido.isPresent()) {
 				pedidoService.deletePedido(pedido.get());
+				log.info("El pedido con id = "+pedidoID+" eliminado con exito");
 				modelMap.addAttribute("message", "Pedido borrado correctamente");
 			} else {
 				modelMap.addAttribute("message", "Pedido no encontrado");

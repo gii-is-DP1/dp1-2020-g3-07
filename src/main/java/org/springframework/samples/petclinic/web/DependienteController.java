@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/dependientes")
 public class DependienteController {
@@ -36,6 +39,7 @@ public class DependienteController {
 		if(d.isPresent()) {
 			depenService.deleteDependiente(d.get());
 			modelMap.addAttribute("message", "Dependiente borrado correctamente");
+			log.info("El dependiente con id = "+dependienteID+" se ha borrado con exito");
 		} else {
 			modelMap.addAttribute("message", "Dependiente no encontrado");
 		}
@@ -46,17 +50,20 @@ public class DependienteController {
 	public String initCreationForm(Map<String, Object> model) {
 		Dependiente dep = new Dependiente();
 		model.put("dependiente", dep);
+		log.info("Se ha producido una solicitud para dar de alta a un dependiente");
 		return VIEWS_DEPENDIENTE_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/new")
 	public String processCreationForm(@Valid Dependiente dep, BindingResult result) {
 		if (result.hasErrors()) {
+			log.info("El dependiente no se pudo dar de ata debido a errores de validacion de entrada de datos");
 			return VIEWS_DEPENDIENTE_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			//creating owner, user and authorities
 			this.depenService.saveDependiente(dep);
+			log.info("El dependiente de nombre "+dep.getNombre()+" se ha dado de alta con exito");
 			return "redirect:/empleados";
 		}
 	}
@@ -66,6 +73,7 @@ public class DependienteController {
 		Optional<Dependiente> d = this.depenService.findDependienteById(dependienteId);
 		if(d.isPresent()) {
 			model.addAttribute("dependiente", d.get());
+			log.info("Se ha producido una solicitud para editar el dependiente con id = "+dependienteId);
 			return VIEWS_DEPENDIENTE_CREATE_OR_UPDATE_FORM;
 		} else {
 			model.addAttribute("message", "Dependiente no encontrado");
@@ -77,11 +85,13 @@ public class DependienteController {
 	public String processUpdateForm(@Valid Dependiente d, BindingResult result,
 			@PathVariable("dependienteId") int dependienteId) {
 		if (result.hasErrors()) {
+			log.info("El dependiente con id = "+dependienteId+" no se ha editado debido a errores de validacion de entrada de datos");
 			return VIEWS_DEPENDIENTE_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			d.setId(dependienteId);
 			this.depenService.saveDependiente(d);
+			log.info("El dependiente con id = "+dependienteId+" se ha editado con exito");
 			return "redirect:/empleados";
 		}
 	}

@@ -11,7 +11,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.slf4j.Slf4j;
 	
+	@Slf4j
 	@Controller
 	@RequestMapping("/alergenos")
 	public class AlergenoController {
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 			String vista = "alergenos/listadoAlergenos";
 			Iterable<Alergeno> alergenos = AlergenoService.findAll();
 			modelMap.addAttribute("alergenos", alergenos);
+			log.info("Mostrando listado de alergenos");
 			return vista;
 		}
 		

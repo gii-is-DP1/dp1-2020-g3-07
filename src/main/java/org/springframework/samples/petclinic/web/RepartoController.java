@@ -33,6 +33,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.validation.Valid;
 
 import java.time.LocalDate;
@@ -68,6 +70,8 @@ import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNam
  * @author Ken Krebs
  * @author Arjen Poutsma
  */
+
+@Slf4j
 @Controller
 @RequestMapping("/repartidores/{repartidorId}")
 public class RepartoController {
@@ -115,7 +119,7 @@ public class RepartoController {
 		ConjuntoPedidos cp = new ConjuntoPedidos();
 		model.addAttribute("command", cp);
 		
-		
+		log.info("Solicitud para realizar un nuevo reparto");
 		return "repartidores/listadoPedidosRepartidor";
 	}
 	
@@ -125,6 +129,7 @@ public class RepartoController {
 		if(cp.getPedidosAsignados().size()>4 || cp.getPedidosAsignados().size()<1) {
 			model.addAttribute("command", cp);
 			model.addAttribute("message", "Elija entre 1 y 4 pedidos");
+			log.info("Error de validacion de datos de entrada para el reparto");
 			return "repartidores/listadoPedidosRepartidor";
 		}else {
 		
@@ -148,7 +153,7 @@ public class RepartoController {
 			reparto.setRepartidor(repartidor);
 			
 			repartoService.save(reparto);
-			
+			log.info("Reparto asignado al repartidor con id = "+repartidor.getId()+" con exito");
 	//		return "redirect:/repartidores";
 			return "redirect:/repartidores/" + repartidor.getId();
 			
@@ -173,6 +178,7 @@ public class RepartoController {
 		Optional<Reparto> r = repartoService.findRepartoById(repartoId);
 		if(r.isPresent()) {
 			model.addAttribute("reparto", r.get());
+			log.info("Se muestra informacion del reparto de id = "+repartoId);
 			return "repartos/infoReparto";
 		}else {
 			return "redirect:/repartidores";
@@ -186,6 +192,7 @@ public class RepartoController {
 		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
 		pedido.setEstadopedido(estadoPedido.Entregado);
 		pedidoService.savePedido(pedido);
+		log.info("El estado del pedido con id = "+pedidoId+" se ha cambiado a Entregado");
 		return "redirect:/repartidores/" + repartidorId + "/repartos/" + repartoId;
 	}
 	
@@ -216,6 +223,7 @@ public class RepartoController {
 //		modelMap.addAttribute("reparto", reparto);
 //		modelMap.addAttribute("pedido", pedido);
 		modelMap.addAttribute("lineapedido", res);
+		log.info("Se muestran detalles del pedido con id = "+pedidoId+" asignado al reparto con id = "+repartoId);
 		return "repartos/infoPedidoReparto";
 	}
 
@@ -226,6 +234,7 @@ public class RepartoController {
 		modelMap.addAttribute("cliente", cliente);
 		Reparto reparto = repartoService.findRepartoById(repartoId).get();
 		modelMap.addAttribute("reparto", reparto);
+		log.info("Se muestra informacion del cliente con id = "+clienteId+" asociado al reparto con id = "+repartoId);
 		return "clientes/infoCliente";
 	}
 	

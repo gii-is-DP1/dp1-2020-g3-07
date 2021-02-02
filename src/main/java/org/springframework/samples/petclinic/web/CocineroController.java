@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/cocineros")
 public class CocineroController {
@@ -37,6 +39,7 @@ public class CocineroController {
 		if(d.isPresent()) {
 			cociService.deleteCocinero(d.get());
 			modelMap.addAttribute("message", "Cocinero borrado correctamente");
+			log.info("Cocinero con id = "+cocineroID+" eliminado con exito");
 		} else {
 			modelMap.addAttribute("message", "Cocinero no encontrado");
 		}
@@ -47,17 +50,20 @@ public class CocineroController {
 	public String initCreationForm(Map<String, Object> model) {
 		Cocinero dep = new Cocinero();
 		model.put("cocinero", dep);
+		log.info("Solicitud para dar de alta a un cocinero");
 		return VIEWS_COCINERO_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/new")
 	public String processCreationForm(@Valid Cocinero dep, BindingResult result) {
 		if (result.hasErrors()) {
+			log.info("El cocinero no se pudo dar de alta debido a errores de validacion de entrada de datos");
 			return VIEWS_COCINERO_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			//creating owner, user and authorities
 			this.cociService.saveCocinero(dep);
+			log.info("El cocinero de nombre "+dep.getNombre()+" se ha dado de alta con exito");
 			return "redirect:/empleados";
 		}
 	}
@@ -67,6 +73,7 @@ public class CocineroController {
 		Optional<Cocinero> d = this.cociService.findCocineroById(cocineroID);
 		if(d.isPresent()) {
 			model.addAttribute("cocinero", d.get());
+			log.info("Solicitud para editar cocinero con id = "+cocineroID);
 			return VIEWS_COCINERO_CREATE_OR_UPDATE_FORM;
 		} else {
 			model.addAttribute("message", "Cocinero no encontrado");
@@ -78,11 +85,13 @@ public class CocineroController {
 	public String processUpdateForm(@Valid Cocinero d, BindingResult result,
 			@PathVariable("cocineroID") int cocineroID) {
 		if (result.hasErrors()) {
+			log.info("El cocinero con id = "+cocineroID+" no se pudo editar debido a errores de validacion de entrada de datos");
 			return VIEWS_COCINERO_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			d.setId(cocineroID);
 			this.cociService.saveCocinero(d);
+			log.info("El cocinero con id = "+cocineroID+" y nombre "+d.getNombre()+" se ha dado de alta con exito");
 			return "redirect:/empleados";
 		}
 	}

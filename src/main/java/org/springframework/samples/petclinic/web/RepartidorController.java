@@ -28,6 +28,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/repartidores")
 public class RepartidorController {
@@ -78,6 +81,7 @@ public class RepartidorController {
 		String vista = "repartidores/listadoRepartidores";
 		Iterable<Repartidor> repartidores = repartidorService.findAll();
 		modelMap.addAttribute("repartidores", repartidores);
+		log.info("Se muestra un listado de los repartidores");
 		return vista;
 	}
 	
@@ -95,6 +99,7 @@ public class RepartidorController {
 		if(repartidor.isPresent()) {
 			model.addAttribute("repartidor", repartidor.get());
 			model.addAttribute("repartos", repartoService.findByRepartidorId(repartidor.get().getId()));
+			log.info("Se muestra informacion del repartidor con id = "+repartidorId);
 			return "repartidores/repartidorRepartos";
 		}else {
 //			model.addAttribute("message", "Repartidor no encontrado!");
@@ -113,6 +118,7 @@ public class RepartidorController {
 			vehiculoService.saveVehiculo(v);
 			repartidorService.deleteRepartidor(r);
 			modelMap.addAttribute("message", "Repartidor borrado correctamente");
+			log.info("Repartidor con id = "+repartidorID+" dado de baja con exito");
 		} else {
 			modelMap.addAttribute("message", "Repartidor no encontrado");
 		}
@@ -126,14 +132,15 @@ public class RepartidorController {
 		
 		List<Repartidor> repartidores = new ArrayList<Repartidor>(this.repartidorService.findRepartidores());
 		List<Vehiculo> vehiculosOcupados = repartidores.stream().map(r->r.getVehiculo()).collect(Collectors.toList());
-		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
-		vehiculos.removeAll(vehiculosOcupados);
+		List<Vehiculo> vehiculosNoOcupados = new ArrayList<Vehiculo>(this.vehiculoService.findVehiculo());
+		vehiculosNoOcupados.removeAll(vehiculosOcupados);
 		
-		model.put("vehiculos", vehiculos);
+		model.put("vehiculos", vehiculosNoOcupados);
 		
 		
 		Repartidor dep = new Repartidor();
 		model.put("repartidor", dep);
+		log.info("Solicitud para dar de alta a un nuevo repartidor");
 		return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -149,12 +156,13 @@ public class RepartidorController {
 			
 			model.addAttribute("vehiculos", vehiculos);
 			
-			
+			log.info("Error al dar de alta al repartidor debido a errores en la validacion de entrada de datos");
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			//creating owner, user and authorities
 			this.repartidorService.saveRepartidor(dep);
+			log.info("Repartidor de nombre "+dep.getNombre()+" dado de alta con exito");
 			return "redirect:/empleados";
 		}
 	}
@@ -174,6 +182,7 @@ public class RepartidorController {
 			model.addAttribute("vehiculos", vehiculos);
 			
 			model.addAttribute("repartidor", d.get());
+			log.info("Solicitud para editar el repartidor con id = "+repartidorID);
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 		} else {
 			model.addAttribute("message", "Repartidor no encontrado");
@@ -195,12 +204,13 @@ public class RepartidorController {
 			
 			model.addAttribute("vehiculos", vehiculos);
 			
-			
+			log.info("Error al editar el repartidor con di = "+repartidorID+" debido a errores de validacion de entrada de datos");
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			d.setId(repartidorID);
 			this.repartidorService.saveRepartidor(d);
+			log.info("Repartidor con id = "+repartidorID+" editado con exito");
 			return "redirect:/empleados";
 		}
 	}

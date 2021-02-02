@@ -32,12 +32,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Juergen Hoeller
  * @author Ken Krebs
  * @author Arjen Poutsma
  * @author Michael Isvy
  */
+
+@Slf4j
 @Controller
 public class UserController {
 
@@ -74,6 +78,7 @@ public class UserController {
 	public String initCreationForm(Map<String, Object> model) {
 		Cliente c = new Cliente();
 		model.put("cliente", c);
+		log.info("Solicitud para dar de alta a un nuevo cliente");
 		return VIEWS_CLIENTE_INSERT_FORM;
 	}
 
@@ -91,6 +96,7 @@ public class UserController {
 	@PostMapping(value = "/users/new")
 	public String processCreationForm(@Valid Cliente c, BindingResult result) {
 		if (result.hasErrors()) {
+			log.info("El cliente no se pudo dar de alta debido a errores en la validacion de entrada de datos");
 			return VIEWS_CLIENTE_INSERT_FORM;
 		}
 		else {
@@ -98,6 +104,7 @@ public class UserController {
 			c.getUser().setEnabled(true);
 			this.cliSer.saveCliente(c);
 			authSer.saveAuthorities(c.getUser().getUsername(), "cliente");
+			log.info("Se ha dado de alta el cliente de nombre "+c.getNombre()+" con exito");
 			return "redirect:/";
 		}
 	}
