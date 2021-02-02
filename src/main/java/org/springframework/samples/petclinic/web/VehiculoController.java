@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/vehiculos")
 public class VehiculoController {
@@ -35,6 +38,7 @@ public class VehiculoController {
 	public String listadoVehiculo(ModelMap model) {
 		Iterable<Vehiculo> vehiculos = vehiculoService.findAll();
 		model.addAttribute("vehiculos", vehiculos);
+		log.info("Se muestra el listado de vehiculos");
 		return "vehiculos/listadoVehiculos";
 	}
 	
@@ -42,17 +46,20 @@ public class VehiculoController {
 	public String initCreationForm(Map<String, Object> model) {
 		Vehiculo vehiculo = new Vehiculo();
 		model.put("vehiculo", vehiculo);
+		log.info("Solicitud para anadir un nuevo vehiculo");
 		return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/new")
 	public String processCreationForm(@Valid Vehiculo vehiculo, BindingResult result) {
 		if (result.hasErrors()) {
+			log.info("El vehiculo no se pudo anadir debido a errores en la validacion de entrada de datos");
 			return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			//creating owner, user and authorities
 			this.vehiculoService.saveVehiculo(vehiculo);
+			log.info("El vehiculo de matricula "+vehiculo.getMatricula()+" se ha anadido con exito");
 			return "redirect:/vehiculos";
 		}
 	}
@@ -65,6 +72,7 @@ public class VehiculoController {
 			if(vehiculo.get().getRepartidor()!=null) return "redirect:/vehiculos";
 			vehiculoService.deleteVehiculo(vehiculo.get());
 			modelMap.addAttribute("message", "Vehiculo borrado correctamente");
+			log.info("El vehiculo con id = "+vehiculoID+" se ha borrado con exito");
 		} else {
 			modelMap.addAttribute("message", "Vehiculo no encontrado");
 		}
@@ -76,6 +84,7 @@ public class VehiculoController {
 		Optional<Vehiculo> vehiculo = this.vehiculoService.findVehiculoById(vehiculoID);
 		if(vehiculo.isPresent()) {
 			model.addAttribute("vehiculo", vehiculo.get());
+			log.info("Solicitud para editar el vehiculo con id = "+vehiculoID);
 			return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 		} else {
 			model.addAttribute("message", "Vehiculo no encontrado");
@@ -87,11 +96,13 @@ public class VehiculoController {
 	public String processUpdateForm(@Valid Vehiculo vehiculo, BindingResult result,
 			@PathVariable("vehiculoID") int vehiculoID) {
 		if (result.hasErrors()) {
+			log.info("No se pudo editar el vehiculo con id = "+vehiculoID+" debido a errores en la validacion de entrada de datos");
 			return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			vehiculo.setId(vehiculoID);
 			this.vehiculoService.saveVehiculo(vehiculo);
+			log.info("El vehiculo con id = "+vehiculoID+" se ha editado con exito");
 			return "redirect:/vehiculos";
 		}
 	}

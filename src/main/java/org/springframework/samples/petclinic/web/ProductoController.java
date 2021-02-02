@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/productos")
 public class ProductoController {
@@ -41,6 +44,7 @@ public class ProductoController {
 		String vista = "productos/listadoProductos";
 		Iterable<Producto> productos = productoService.findAll();
 		modelMap.addAttribute("productos", productos);
+		log.info("Se muestra el listado de productos");
 		return vista;
 	}
 	
@@ -55,6 +59,7 @@ public class ProductoController {
 		}
 		model.put("producto", producto);
 		model.put("alergenos", result);
+		log.info("Solicitud para crear nuevo producto");
 		return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
 	}
 	
@@ -62,11 +67,13 @@ public class ProductoController {
 	@PostMapping(value = "/new")
 	public String processCreationForm(@Valid Producto producto, BindingResult result) {
 		if (result.hasErrors()) {
+			log.info("No se pudo crear el producto debido a errores de validacion de entrada de datos");
 			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			//creating owner, user and authorities
 			this.productoService.saveProducto(producto);
+			log.info("Producto de nombre "+producto.getName()+" anadido con exito");
 			return "redirect:/productos";
 		}
 	}
@@ -77,6 +84,7 @@ public class ProductoController {
 		Optional<Producto> producto = productoService.findProductoById(productoID);
 		if(producto.isPresent()) {
 			productoService.deleteProducto(producto.get());
+			log.info("Producto con id = "+productoID+" borrado con exito");
 			modelMap.addAttribute("message", "Producto borrado correctamente");
 		} else {
 			modelMap.addAttribute("message", "Producto no encontrado");
@@ -96,6 +104,7 @@ public class ProductoController {
                 result.add(ita.next());
             }            
             model.addAttribute("alergenos", result);
+            log.info("Solicitud para asignar alergenos al producto de id = "+productoID);
             return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
         } else {
             model.addAttribute("message", "Producto no encontrado");
@@ -108,11 +117,13 @@ public class ProductoController {
 	public String processUpdateForm(@Valid Producto producto, BindingResult result,
 			@PathVariable("productoID") int productoID) {
 		if (result.hasErrors()) {
+			log.info("No se pudieron asignar los alergenos al producto de id = "+productoID+" debido a errores de validacion de entrada de datos");
 			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			producto.setId(productoID);
 			this.productoService.saveProducto(producto);
+			log.info("Se asignaron los alergenos al producto con id = "+productoID+" con exito");
 			return "redirect:/productos";
 		}
 	}

@@ -30,6 +30,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -57,6 +60,7 @@ public class ClienteController {
 	public String listadoCliente(ModelMap modelMap) {
 		Iterable<Cliente> empleados = clienteService.findAll();
 		modelMap.addAttribute("clientes", empleados);
+		log.info("Mostrando listado de clientes");
 		return "clientes/listadoClientes";
 	}
 	
@@ -73,6 +77,7 @@ public class ClienteController {
 			res.add(pedido);
 		}
 		modelMap.addAttribute("pedidos", res);
+		log.info("Mostrando perfil del cliente con nombre "+cliente.getNombre());
 		return "clientes/perfilCliente";
 	}
 	
@@ -81,6 +86,7 @@ public class ClienteController {
 		Optional<Pedido> p = this.pedidoService.findPedidoById(pedidoId);
 		if(p.isPresent()) {
 			model.addAttribute("pedido", p.get());
+			log.info("Solicitud para valorar pedido con id = "+pedidoId);
 			return VIEWS_PEDIDO_VALORACION;
 		} else {
 			model.addAttribute("message", "Pedido no encontrado");
@@ -93,6 +99,7 @@ public class ClienteController {
 			@PathVariable("pedidoId") int pedidoId, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "Error al validar");
+			log.info("Error al realizar valoracion del pedido con id = "+pedidoId);
 			return VIEWS_PEDIDO_VALORACION;
 		}
 		else {
@@ -100,6 +107,7 @@ public class ClienteController {
 			pedidoService.savePedido(p);
 //			Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
 //			BeanUtils.copyProperties(p, pedido, "comentario", "valoracion");
+			log.info("Pedido con id = "+pedidoId+" asignado a una valoracion = "+p.getValoracion());
 			return "redirect:/clientes/perfil";
 		}
 	}
@@ -109,12 +117,14 @@ public class ClienteController {
 	public String initCreationForm(Map<String, Object> model) {
 		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
+		log.info("Solicitud para dar de alta a un nuevo cliente");
 		return VIEWS_CLIENTE_INSERT_FORM;
 	}
 
 	@PostMapping(value = "/new")
 	public String processCreationForm(@Valid Cliente cliente, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
+			log.info("Cliente no dado de alta debido a errores en validacion de entrada de datos");
 			return VIEWS_CLIENTE_INSERT_FORM;
 		}
 		else {
@@ -122,6 +132,7 @@ public class ClienteController {
 			cliente.getUser().setEnabled(true);
 			this.clienteService.saveCliente(cliente);
 			authSer.saveAuthorities(cliente.getUser().getUsername(), "cliente");
+			log.info("Cliente de nombre "+cliente.getNombre()+" "+cliente.getApellidos()+" dado de alta con exito");
 			return "redirect:/clientes";
 		}
 	}
@@ -132,6 +143,7 @@ public class ClienteController {
 		Optional<Cliente> c = this.clienteService.findClienteById(clienteId);
 		if(c.isPresent()) {
 			model.addAttribute("cliente", c.get());
+			log.info("Solicitud de editar datos del cliente con id = "+clienteId);
 			return VIEWS_CLIENTE_CREATE_OR_UPDATE_FORM;
 		} else {
 			model.addAttribute("message", "Cliente no encontrado");
@@ -143,11 +155,13 @@ public class ClienteController {
 	public String processUpdateForm(@Valid Cliente c, BindingResult result,
 			@PathVariable("clienteId") int clienteId) {
 		if (result.hasErrors()) {
+			log.info("Cliente con id = "+clienteId+" no actualizado debido a errores en validacion de entrada de datos");
 			return VIEWS_CLIENTE_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			c.setId(clienteId);
 			this.clienteService.saveCliente(c);
+			log.info("Cliente con id = "+clienteId+" dado de alta con exito");
 			return "clientes/perfilCliente";
 		}
 	}

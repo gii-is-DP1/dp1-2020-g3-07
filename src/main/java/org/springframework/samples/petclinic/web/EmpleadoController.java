@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/empleados")
 public class EmpleadoController {
@@ -60,7 +63,7 @@ public class EmpleadoController {
 		modelMap.addAttribute("repartidores", repartidores);
 		modelMap.addAttribute("cocineros", cocineros);
 		// aqui se añadirian al modelMap los iterables cocineros y repartidores antes creados
-		
+		log.info("Se muestra un listado de todos los empleados dados de alta");
 		return vista;
 	}
 	

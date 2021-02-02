@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/carta")
 public class CartaController {
@@ -34,6 +37,7 @@ public class CartaController {
 		String vista = "carta/listadoCarta";
 		Iterable<Producto> productos = productoService.findAll();
 		modelMap.addAttribute("productos", productos);
+		log.info("Mostrando carta");
 		return vista;
 	}
 	

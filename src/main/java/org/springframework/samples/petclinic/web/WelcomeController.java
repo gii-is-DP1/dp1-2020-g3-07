@@ -11,10 +11,13 @@ import org.springframework.samples.petclinic.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 @Controller
 public class WelcomeController {
 	
@@ -55,6 +58,7 @@ public class WelcomeController {
 		  model.put("group", "G3-07");
 		  
 
+		  log.info("Pagina de inicio o bienvenida del sistema");
 	    return "welcome";
 	  }
 }
