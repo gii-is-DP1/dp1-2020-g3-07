@@ -1,0 +1,99 @@
+2021-02-03 00:29:24,275 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting PetclinicApplication on DESKTOP-PIT9FQ6 with PID 3232 (started by Daniel Rico Ostos in C:\Users\Daniel Rico Ostos\OneDrive - UNIVERSIDAD DE SEVILLA\Datos programas\3o IIS\eclipse-workspace\java-workspace-dp1\dp1-2020-g3-07)
+2021-02-03 00:29:24,280 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-03 00:29:24,371 INFO org.springframework.boot.logging.DeferredLog [restartedMain] The Class-Path manifest attribute in C:\Users\Daniel Rico Ostos\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Daniel%20Rico%20Ostos/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Daniel%20Rico%20Ostos/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Daniel%20Rico%20Ostos/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Daniel%20Rico%20Ostos/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Daniel%20Rico%20Ostos/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Daniel%20Rico%20Ostos/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2021-02-03 00:29:24,372 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-03 00:29:24,373 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-03 00:29:26,736 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-03 00:29:27,015 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 252ms. Found 17 JPA repository interfaces.
+2021-02-03 00:29:27,820 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-03 00:29:29,423 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8085 (http)
+2021-02-03 00:29:29,557 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8085"]
+2021-02-03 00:29:29,559 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2021-02-03 00:29:29,562 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.30]
+2021-02-03 00:29:30,192 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-02-03 00:29:30,210 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-02-03 00:29:30,211 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 5838 ms
+2021-02-03 00:29:30,587 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2021-02-03 00:29:31,155 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2021-02-03 00:29:31,172 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-03 00:29:32,095 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-03 00:29:32,299 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate Core {5.4.10.Final}
+2021-02-03 00:29:32,646 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-03 00:29:32,960 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-03 00:29:35,589 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-03 00:29:35,604 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-03 00:29:35,877 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2021-02-03 00:29:36,125 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-03 00:29:38,212 INFO org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor [restartedMain] Autowired annotation is not supported on static fields: private static final java.lang.String org.springframework.samples.petclinic.web.VehiculoController.VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM
+2021-02-03 00:29:38,212 INFO org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor [restartedMain] Autowired annotation is not supported on static fields: private static final java.lang.String org.springframework.samples.petclinic.web.VehiculoController.VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM
+2021-02-03 00:29:38,607 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3dd9df22, org.springframework.security.web.context.SecurityContextPersistenceFilter@64cd5829, org.springframework.security.web.header.HeaderWriterFilter@46940cfe, org.springframework.security.web.csrf.CsrfFilter@62409e48, org.springframework.security.web.authentication.logout.LogoutFilter@9f7fef8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@615f7111, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1986dd0f, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5f903e7f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36f94801, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@59c2a58a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@506bc41a, org.springframework.security.web.session.SessionManagementFilter@18d7dd2e, org.springframework.security.web.access.ExceptionTranslationFilter@1c590dbe, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7edbb079]
+2021-02-03 00:29:38,828 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 00:29:40,318 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/actuator'
+2021-02-03 00:29:40,390 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8085"]
+2021-02-03 00:29:40,456 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8085 (http) with context path ''
+2021-02-03 00:29:40,459 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started PetclinicApplication in 16.938 seconds (JVM running for 18.556)
+2021-02-03 00:29:40,518 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Se ha lanzado la aplicacion
+2021-02-03 00:29:50,859 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8085-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-03 00:29:50,859 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8085-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-02-03 00:29:50,874 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8085-exec-1] Completed initialization in 15 ms
+2021-02-03 00:29:50,956 INFO org.springframework.samples.petclinic.web.WelcomeController [http-nio-8085-exec-1] Pagina de inicio o bienvenida del sistema
+2021-02-03 00:29:57,308 INFO org.springframework.samples.petclinic.web.ClienteController [http-nio-8085-exec-9] Mostrando listado de clientes
+2021-02-03 00:30:00,759 INFO org.springframework.samples.petclinic.web.ProductoController [http-nio-8085-exec-10] Se muestra el listado de productos
+2021-02-03 00:30:03,768 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-1] SQL Error: 23503, SQLState: 23503
+2021-02-03 00:30:03,770 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-1] Violación de una restricción de Integridad Referencial: "FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (1)"
+Referential integrity constraint violation: "FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (1)"; SQL statement:
+delete from productos where id=? [23503-200]
+2021-02-03 00:30:03,773 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8085-exec-1] HHH000010: On release of batch it still contained JDBC statements
+2021-02-03 00:30:03,781 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8085-exec-1] Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (1)"; SQL statement:
+delete from productos where id=? [23503-200]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2021-02-03 00:30:07,149 INFO org.springframework.samples.petclinic.web.ProductoController [http-nio-8085-exec-6] Se muestra el listado de productos
+2021-02-03 00:30:17,577 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-2] SQL Error: 23503, SQLState: 23503
+2021-02-03 00:30:17,578 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-2] Violación de una restricción de Integridad Referencial: "FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (3)"
+Referential integrity constraint violation: "FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (3)"; SQL statement:
+delete from productos where id=? [23503-200]
+2021-02-03 00:30:17,583 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8085-exec-2] HHH000010: On release of batch it still contained JDBC statements
+2021-02-03 00:30:17,585 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8085-exec-2] Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (3)"; SQL statement:
+delete from productos where id=? [23503-200]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2021-02-03 00:30:19,629 INFO org.springframework.samples.petclinic.web.ProductoController [http-nio-8085-exec-8] Se muestra el listado de productos
+2021-02-03 00:30:24,254 INFO org.springframework.samples.petclinic.web.ProductoController [http-nio-8085-exec-4] Solicitud para crear nuevo producto
+2021-02-03 00:30:35,064 INFO org.springframework.samples.petclinic.web.ProductoController [http-nio-8085-exec-10] Producto de nombre Ams OK anadido con exito
+2021-02-03 00:30:35,092 INFO org.springframework.samples.petclinic.web.ProductoController [http-nio-8085-exec-10] Se muestra el listado de productos
+2021-02-03 00:30:38,265 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-5] SQL Error: 23503, SQLState: 23503
+2021-02-03 00:30:38,265 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-5] Violación de una restricción de Integridad Referencial: "FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (3)"
+Referential integrity constraint violation: "FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (3)"; SQL statement:
+delete from productos where id=? [23503-200]
+2021-02-03 00:30:38,266 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8085-exec-5] HHH000010: On release of batch it still contained JDBC statements
+2021-02-03 00:30:38,271 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8085-exec-5] Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["FKQYOCRVM1GOG0BJJ080RY3OQ3Y: PUBLIC.LINEA_PEDIDOS FOREIGN KEY(PRODUCTO_ID) REFERENCES PUBLIC.PRODUCTOS(ID) (3)"; SQL statement:
+delete from productos where id=? [23503-200]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2021-02-03 00:30:40,081 INFO org.springframework.samples.petclinic.web.ProductoController [http-nio-8085-exec-7] Se muestra el listado de productos
+2021-02-03 00:30:41,658 INFO org.springframework.samples.petclinic.web.VehiculoController [http-nio-8085-exec-6] Se muestra el listado de vehiculos
+2021-02-03 00:30:46,269 INFO org.springframework.samples.petclinic.web.VehiculoController [http-nio-8085-exec-2] Solicitud para editar el vehiculo con id = 2
+2021-02-03 00:30:53,605 INFO org.springframework.samples.petclinic.web.VehiculoController [http-nio-8085-exec-8] El vehiculo con id = 2 se ha editado con exito
+2021-02-03 00:30:53,634 INFO org.springframework.samples.petclinic.web.VehiculoController [http-nio-8085-exec-4] Se muestra el listado de vehiculos
+2021-02-03 00:30:56,276 INFO org.springframework.samples.petclinic.web.VehiculoController [http-nio-8085-exec-10] El vehiculo con id = 1 se ha borrado con exito
+2021-02-03 00:30:56,289 INFO org.springframework.samples.petclinic.web.VehiculoController [http-nio-8085-exec-1] Se muestra el listado de vehiculos
+2021-02-03 00:30:58,062 INFO org.springframework.samples.petclinic.web.RepartidorController [http-nio-8085-exec-5] Se muestra un listado de los repartidores
+2021-02-03 00:31:00,857 INFO org.springframework.samples.petclinic.web.RepartidorController [http-nio-8085-exec-7] Se muestra informacion del repartidor con id = 2
+2021-02-03 00:31:03,300 INFO org.springframework.samples.petclinic.web.RepartoController [http-nio-8085-exec-6] Solicitud para realizar un nuevo reparto
+2021-02-03 00:31:06,828 INFO org.springframework.samples.petclinic.web.RepartoController [http-nio-8085-exec-2] Reparto asignado al repartidor con id = 2 con exito
+2021-02-03 00:31:06,846 INFO org.springframework.samples.petclinic.web.RepartidorController [http-nio-8085-exec-8] Se muestra informacion del repartidor con id = 2
+2021-02-03 00:31:09,525 INFO org.springframework.samples.petclinic.web.CartaController [http-nio-8085-exec-4] Mostrando carta
+2021-02-03 00:31:12,888 INFO org.springframework.samples.petclinic.web.PedidoController [http-nio-8085-exec-9] Se muestra el listado de pedidos
+2021-02-03 00:31:16,149 INFO org.springframework.samples.petclinic.web.PedidoController [http-nio-8085-exec-7] Se muestran detalles del pedido con id = 5
+2021-02-03 00:31:18,302 INFO org.springframework.samples.petclinic.web.PedidoController [http-nio-8085-exec-6] Se muestra el listado de pedidos
+2021-02-03 00:31:19,863 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-3] SQL Error: 23503, SQLState: 23503
+2021-02-03 00:31:19,864 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8085-exec-3] Violación de una restricción de Integridad Referencial: "FK7GG6AJPN0XKI9ITOG36QCA25G: PUBLIC.REPARTOS_PEDIDOS FOREIGN KEY(PEDIDOS_ID) REFERENCES PUBLIC.PEDIDOS(ID) (5)"
+Referential integrity constraint violation: "FK7GG6AJPN0XKI9ITOG36QCA25G: PUBLIC.REPARTOS_PEDIDOS FOREIGN KEY(PEDIDOS_ID) REFERENCES PUBLIC.PEDIDOS(ID) (5)"; SQL statement:
+delete from pedidos where id=? [23503-200]
+2021-02-03 00:31:19,866 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8085-exec-3] HHH000010: On release of batch it still contained JDBC statements
+2021-02-03 00:31:19,868 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8085-exec-3] Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["FK7GG6AJPN0XKI9ITOG36QCA25G: PUBLIC.REPARTOS_PEDIDOS FOREIGN KEY(PEDIDOS_ID) REFERENCES PUBLIC.PEDIDOS(ID) (5)"; SQL statement:
+delete from pedidos where id=? [23503-200]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2021-02-03 00:31:22,218 INFO org.springframework.samples.petclinic.web.PedidoController [http-nio-8085-exec-2] Se muestra el listado de pedidos
+2021-02-03 00:31:25,179 INFO org.springframework.samples.petclinic.web.EmpleadoController [http-nio-8085-exec-8] Se muestra un listado de todos los empleados dados de alta
+2021-02-03 00:31:29,777 INFO org.springframework.samples.petclinic.web.RepartidorController [http-nio-8085-exec-9] Repartidor con id = 2 dado de baja con exito
+2021-02-03 00:31:29,798 INFO org.springframework.samples.petclinic.web.EmpleadoController [http-nio-8085-exec-10] Se muestra un listado de todos los empleados dados de alta
+2021-02-03 00:31:32,331 INFO org.springframework.samples.petclinic.web.RepartidorController [http-nio-8085-exec-1] Solicitud para dar de alta a un nuevo repartidor
+2021-02-03 00:31:44,188 INFO org.springframework.samples.petclinic.web.RepartidorController [http-nio-8085-exec-9] Repartidor de nombre Ams dado de alta con exito
+2021-02-03 00:31:44,213 INFO org.springframework.samples.petclinic.web.EmpleadoController [http-nio-8085-exec-10] Se muestra un listado de todos los empleados dados de alta
+2021-02-03 00:31:47,589 INFO org.springframework.samples.petclinic.web.ClienteController [http-nio-8085-exec-2] Mostrando listado de clientes
+2021-02-03 00:31:54,568 INFO org.springframework.samples.petclinic.web.WelcomeController [http-nio-8085-exec-7] Pagina de inicio o bienvenida del sistema
