@@ -9,7 +9,7 @@
 <currogas:layout pageName="pedidos">
 	<h2>Resumen del pedido</h2>	
 	<c:forEach items="${lineapedido}" var="lineapedido">
-		<h2><c:out value="${lineapedido.producto.name}"/>, Cantidad: <c:out value="${lineapedido.cantidad}"/>, Precio por unidad: <c:out value="${lineapedido.producto.precio}"/>$</h2>
+		<h2><c:out value="${lineapedido.producto.name}"/>, Cantidad: <c:out value="${lineapedido.cantidad}"/>, Precio por unidad: <c:out value="${lineapedido.producto.precio}"/>€</h2>
         <spring:url value="edit/{pedidoID}/{lineapedidoID}/{productoID}" var="pedidoUrl">
 			<spring:param name="pedidoID" value="${pedido.id}"/>
 			<spring:param name="lineapedidoID" value="${lineapedido.id}"/>
