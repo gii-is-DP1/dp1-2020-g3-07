@@ -37,6 +37,12 @@
 		</div>
 
 		<h2>Mis Pedidos</h2>
+		
+		<c:if test="${fn:length(pedidos)==0}">
+	    	<p>No hay pedidos disponibles</p>
+	    </c:if>
+		
+		<c:if test="${fn:length(pedidos)!=0}">
 		<table class="table table-striped">
 			<tr>
 				<th>Fecha de realización</th>
@@ -73,4 +79,5 @@
 				</c:if>
 			</c:forEach>
 		</table>	
+		</c:if>
 </currogas:layout>

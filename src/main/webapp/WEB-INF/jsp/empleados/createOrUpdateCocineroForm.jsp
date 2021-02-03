@@ -7,15 +7,23 @@
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <currogas:layout pageName="empleados">
+	<jsp:attribute name="customScript">
+        <script>
+            $(function () {
+                $("#fechanacimiento").datepicker({dateFormat: 'yy/mm/dd'});
+            });
+        </script>
+    </jsp:attribute>
+    <jsp:body>
     <h2>
         <c:if test="${cocinero['new']}">Nuevo</c:if> Cocinero
     </h2>
     <form:form modelAttribute="cocinero" class="form-horizontal" id="add-cocinero-form">
         <div class="form-group has-feedback">
-            <currogas:inputField label="nombre" name="nombre"/>
-            <currogas:inputField label="dni" name="dni"/>
-            <currogas:inputField label="sueldo" name="sueldo"/>
-            <currogas:inputField label="fechanacimiento" name="fechanacimiento"/>
+            <currogas:inputField label="Nombre" name="nombre"/>
+            <currogas:inputField label="DNI" name="dni"/>
+            <currogas:inputField label="Sueldo" name="sueldo"/>
+            <currogas:inputField label="Fecha de Nacimiento" name="fechanacimiento"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -30,4 +38,5 @@
             </div>
         </div>
     </form:form>
+    </jsp:body>
 </currogas:layout>

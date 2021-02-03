@@ -21,10 +21,10 @@
     <form:form modelAttribute="repartidor" class="form-horizontal" id="add-repartidor-form">
         <div class="form-group has-feedback">
         	<input type="hidden" name="id" value="${repartidor.id}"/>
-            <currogas:inputField label="nombre" name="nombre"/>
-            <currogas:inputField label="dni" name="dni"/>
-            <currogas:inputField label="sueldo" name="sueldo"/>
-            <currogas:inputField label="fechanacimiento" name="fechanacimiento"/>
+            <currogas:inputField label="Nombre" name="nombre"/>
+            <currogas:inputField label="DNI" name="dni"/>
+            <currogas:inputField label="Sueldo" name="sueldo"/>
+            <currogas:inputField label="Fecha de Nacimiento" name="fechanacimiento"/>
             <%-- <form:input type="date" path="fechanacimiento"/> --%>
             <div class="control-group">
                 <currogas:selectField name="vehiculo" label="Vehiculo asignado " names="${vehiculos}" size="5"/>

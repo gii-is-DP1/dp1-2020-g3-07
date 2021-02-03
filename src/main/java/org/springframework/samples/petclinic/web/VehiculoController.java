@@ -1,11 +1,15 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.TipoVehiculo;
 import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.samples.petclinic.service.VehiculoService;
 import org.springframework.stereotype.Controller;
@@ -44,15 +48,24 @@ public class VehiculoController {
 	
 	@GetMapping(value = "/new")
 	public String initCreationForm(Map<String, Object> model) {
+		TipoVehiculo moto = TipoVehiculo.Moto;
+		TipoVehiculo coche = TipoVehiculo.Coche;
+		List<TipoVehiculo> tiposVehiculo = new ArrayList<TipoVehiculo>(Arrays.asList(moto, coche));
+		model.put("tiposVehiculo", tiposVehiculo);
 		Vehiculo vehiculo = new Vehiculo();
+//		vehiculo.setTipovehiculo(moto);
 		model.put("vehiculo", vehiculo);
 		log.info("Solicitud para anadir un nuevo vehiculo");
 		return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/new")
-	public String processCreationForm(@Valid Vehiculo vehiculo, BindingResult result) {
+	public String processCreationForm(@Valid Vehiculo vehiculo, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			TipoVehiculo moto = TipoVehiculo.Moto;
+			TipoVehiculo coche = TipoVehiculo.Coche;
+			List<TipoVehiculo> tiposVehiculo = new ArrayList<TipoVehiculo>(Arrays.asList(moto, coche));
+			model.addAttribute("tiposVehiculo", tiposVehiculo);
 			log.info("El vehiculo no se pudo anadir debido a errores en la validacion de entrada de datos");
 			return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 		}
@@ -84,6 +97,10 @@ public class VehiculoController {
 		Optional<Vehiculo> vehiculo = this.vehiculoService.findVehiculoById(vehiculoID);
 		if(vehiculo.isPresent()) {
 			model.addAttribute("vehiculo", vehiculo.get());
+			TipoVehiculo moto = TipoVehiculo.Moto;
+			TipoVehiculo coche = TipoVehiculo.Coche;
+			List<TipoVehiculo> tiposVehiculo = new ArrayList<TipoVehiculo>(Arrays.asList(moto, coche));
+			model.addAttribute("tiposVehiculo", tiposVehiculo);
 			log.info("Solicitud para editar el vehiculo con id = "+vehiculoID);
 			return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 		} else {
@@ -94,8 +111,12 @@ public class VehiculoController {
 
 	@PostMapping(value = "/edit/{vehiculoID}")
 	public String processUpdateForm(@Valid Vehiculo vehiculo, BindingResult result,
-			@PathVariable("vehiculoID") int vehiculoID) {
+			@PathVariable("vehiculoID") int vehiculoID, Model model) {
 		if (result.hasErrors()) {
+			TipoVehiculo moto = TipoVehiculo.Moto;
+			TipoVehiculo coche = TipoVehiculo.Coche;
+			List<TipoVehiculo> tiposVehiculo = new ArrayList<TipoVehiculo>(Arrays.asList(moto, coche));
+			model.addAttribute("tiposVehiculo", tiposVehiculo);
 			log.info("No se pudo editar el vehiculo con id = "+vehiculoID+" debido a errores en la validacion de entrada de datos");
 			return VIEWS_VEHICULO_CREATE_OR_UPDATE_FORM;
 		}

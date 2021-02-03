@@ -16,11 +16,13 @@
 	        <tr>
 	            <th>ID</th>
 	            <th>Fecha y Hora</th>
+	            <th>Nombre del cliente</th>
 	        </tr>
 	        <c:forEach items="${pedidosList}" var="pedido">
 	            <tr>
 	                <td><form:checkbox path="pedidosAsignados" value="${pedido}" label="${pedido.id}" /></td>
 	                <td><c:out value="${pedido.fecha}" /></td>
+	                <td><c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
 	            </tr>
 	        </c:forEach>
 		</table>
