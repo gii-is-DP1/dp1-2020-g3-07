@@ -8,14 +8,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <petclinic:layout pageName="pedidos">
     <h2>Nueva linea de Pedido</h2>
-    <h2><c:out value="${productos.name}, ${productos.precio}"/>$</h2>
+    <h2><c:out value="${productos.name}, ${productos.precio}"/>€</h2>
 	<form:form modelAttribute="lineapedidos" class="form-horizontal" id="add-lineaPedidos-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="cantidad" name="cantidad"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-				<button class="btn btn-default" type="submit">A�adir linea pedidos</button>
+				<button class="btn btn-default" type="submit">Añadir linea pedidos</button>
             </div>
         </div>
     </form:form>

@@ -9,12 +9,12 @@
 <petclinic:layout pageName="pedidos">
 	<h2>Nuevo Pedido</h2>
     <c:forEach items="${productos}" var="productos">
-		<h2><c:out value="${productos.name}"/>, <c:out value="${productos.precio}"/>$</h2> 
+		<h2><c:out value="${productos.name}"/>, <c:out value="${productos.precio}"/>€</h2> 
 			<spring:url value="{pedidoID}/{productoID}" var="lineaPedidoUrl">
        			<spring:param name="pedidoID" value="${pedidos.id}"/>
        			<spring:param name="productoID" value="${productos.id}"/>
     		</spring:url>
-    		<a href="${fn:escapeXml(lineaPedidoUrl)}" class="btn btn-default">A�adir producto al carrito</a>
+    		<a href="${fn:escapeXml(lineaPedidoUrl)}" class="btn btn-default">Añadir producto al carrito</a>
 	</c:forEach>
 	<form:form modelAttribute="lineapedidos" class="form-horizontal" id="add-lineaPedidos-form">
 		<br><button class="btn btn-default" type="submit">Continuar con el pedido</button>

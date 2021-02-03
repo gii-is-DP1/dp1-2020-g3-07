@@ -21,7 +21,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${cocinero['new']}">
-                        <button class="btn btn-default" type="submit">A�adir cocinero</button>
+                        <button class="btn btn-default" type="submit">Añadir cocinero</button>
                     </c:when>
                     <c:otherwise>
                         <button class="btn btn-default" type="submit">Actualizar datos cocinero</button>

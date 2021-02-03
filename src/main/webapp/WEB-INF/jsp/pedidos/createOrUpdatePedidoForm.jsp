@@ -22,7 +22,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${pedidos['new']}">
-                        <button class="btn btn-default" type="submit">A�adir pedidos</button>
+                        <button class="btn btn-default" type="submit">Añadir pedidos</button>
                     </c:when>
                 </c:choose>
             </div>

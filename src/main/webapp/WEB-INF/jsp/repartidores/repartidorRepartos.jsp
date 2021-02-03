@@ -60,7 +60,7 @@
     <spring:url value="{repartidorId}/repartos/new" var="addUrl">
         <spring:param name="repartidorId" value="${repartidor.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">A�adir nuevo Reparto</a>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Añadir nuevo Reparto</a>
 
     <!-- <br/>
     <br/>

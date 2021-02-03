@@ -56,7 +56,7 @@
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/dependientes/new" htmlEscape="true"/>'>A�adir dependiente</a>
+    <a class="btn btn-default" href='<spring:url value="/dependientes/new" htmlEscape="true"/>'>Añadir dependiente</a>
     
     
 </br>
@@ -116,7 +116,7 @@
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/repartidores/new" htmlEscape="true"/>'>A�adir repartidor</a>
+    <a class="btn btn-default" href='<spring:url value="/repartidores/new" htmlEscape="true"/>'>Añadir repartidor</a>
     
 </br>
 </br>
@@ -170,7 +170,7 @@
         </tbody>
     </table>
     
-    <a class="btn btn-default" href='<spring:url value="/cocineros/new" htmlEscape="true"/>'>A�adir cocinero</a>
+    <a class="btn btn-default" href='<spring:url value="/cocineros/new" htmlEscape="true"/>'>Añadir cocinero</a>
     
     
     

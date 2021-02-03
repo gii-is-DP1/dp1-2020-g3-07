@@ -34,7 +34,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${repartidor['new']}">
-                        <button class="btn btn-default" type="submit">A�adir repartidor</button>
+                        <button class="btn btn-default" type="submit">Añadir repartidor</button>
                     </c:when>
                     <c:otherwise>
                         <button class="btn btn-default" type="submit">Actualizar datos repartidor</button>
