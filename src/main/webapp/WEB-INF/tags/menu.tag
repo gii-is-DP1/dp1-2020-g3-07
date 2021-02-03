@@ -21,58 +21,74 @@
 		</div>
 		<div class="navbar-collapse collapse" id="main-navbar">
 			<ul class="nav navbar-nav">
-
+				
 				<petclinic:menuItem active="${name eq 'home'}" url="/"
 					title="home page">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 					<span>Home</span>
 				</petclinic:menuItem>
 				
+				<sec:authorize access="hasAuthority('admin')">
 				<petclinic:menuItem active="${name eq 'clientes'}" url="/clientes"
 					title="clientes">
 					<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
 					<span>Clientes</span>
 				</petclinic:menuItem>
+				</sec:authorize>
 				
+				<sec:authorize access="hasAuthority('admin')">
 				<petclinic:menuItem active="${name eq 'empleados'}" url="/empleados"
 					title="empleados">
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<span>Empleados</span>
 				</petclinic:menuItem>
+				</sec:authorize>
 				
+				<sec:authorize access="hasAuthority('admin') or hasAuthority('dependiente') or hasAuthority('cliente')">
 				<petclinic:menuItem active="${name eq 'pedidos'}" url="/pedidos"
 					title="pedidos">
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 					<span>Pedidos</span>
 				</petclinic:menuItem>
+				</sec:authorize>
 				
+				<sec:authorize access="hasAuthority('admin')">
 				<petclinic:menuItem active="${name eq 'productos'}" url="/productos"
 					title="productos">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Productos</span>
 				</petclinic:menuItem>
+				</sec:authorize>
 				
+				<sec:authorize access="hasAuthority('admin')">
 				<petclinic:menuItem active="${name eq 'vehiculos'}" url="/vehiculos"
 					title="vehiculos">
 					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
 					<span>Vehiculos</span>
 				</petclinic:menuItem>
+				</sec:authorize>
+				
+				<sec:authorize access="hasAuthority('admin') or hasAuthority('repartidor')">
 				<petclinic:menuItem active="${name eq 'repartidores'}" url="/repartidores"
 					title="repartidores">
 					<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
 					<span>Repartos</span>
 				</petclinic:menuItem>
+				</sec:authorize>
+				
 				<petclinic:menuItem active="${name eq 'carta'}" url="/carta"
 					title="carta">
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 					<span>Carta</span>
 				</petclinic:menuItem>
+				
+				<sec:authorize access="hasAuthority('cliente')">
 				<petclinic:menuItem active="${name eq 'Mi Perfil'}" url="/clientes/perfil"
 					title="Mi Perfil">
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<span>Mi Perfil</span>
 				</petclinic:menuItem>
-				
+				</sec:authorize>
 <!--				<petclinic:menuItem active="${name eq 'owners'}" url="/owners"
 					title="owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

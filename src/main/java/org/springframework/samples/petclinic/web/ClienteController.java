@@ -162,7 +162,7 @@ public class ClienteController {
 			c.setId(clienteId);
 			this.clienteService.saveCliente(c);
 			log.info("Cliente con id = "+clienteId+" dado de alta con exito");
-			return "clientes/perfilCliente";
+			return "redirect:/clientes/perfil";
 		}
 	}
 	
