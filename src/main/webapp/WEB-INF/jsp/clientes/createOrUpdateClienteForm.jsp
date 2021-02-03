@@ -10,6 +10,7 @@
     <h2>Cliente</h2>
     <form:form modelAttribute="cliente" class="form-horizontal" id="add-dependiente-form">
         <div class="form-group has-feedback">
+            <form:input type="hidden" path="user"/>
             <currogas:inputField label="Nombre" name="nombre"/>
             <currogas:inputField label="Apellidos" name="apellidos"/>
             <currogas:inputField label="Teléfono" name="telefono"/>

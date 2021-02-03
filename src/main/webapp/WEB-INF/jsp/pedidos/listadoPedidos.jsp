@@ -4,11 +4,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.tablesorter.js"></script> 
 
 <currogas:layout pageName="pedidos">
+	<sec:authorize access="hasAuthority('admin') or hasAuthority('dependiente')">
     <h1>Pedidos A Domicilio</h1>
     <table id="pedidosTable" class="table table-striped">
         <thead>
@@ -115,7 +118,8 @@
             </tr>
         </c:forEach>
         </tbody>
-    </table>     
+    </table> 
+    </sec:authorize>    
     
-    <a class="btn btn-default" href='<spring:url value="/pedidos/new" htmlEscape="true"/>'>Anadir pedido</a>
+    <center><a class="btn btn-default" href='<spring:url value="/pedidos/new" htmlEscape="true"/>'>Nuevo pedido</a></center>
 </currogas:layout>
