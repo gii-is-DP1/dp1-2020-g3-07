@@ -32,6 +32,11 @@
     
     <h2>Repartos del repartidor</h2>
     
+    <c:if test="${fn:length(repartos)==0}">
+    	<p>No hay repartos disponibles</p>
+    </c:if>
+    
+    <c:if test="${fn:length(repartos)!=0}">
     <table class="table table-striped">
     
 	    <tr>
@@ -55,6 +60,7 @@
     	</c:forEach>
     
     </table>
+    </c:if>
     
 
     <spring:url value="{repartidorId}/repartos/new" var="addUrl">
