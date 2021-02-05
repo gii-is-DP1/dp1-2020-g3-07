@@ -58,8 +58,8 @@ public class ClienteController {
 	
 	@GetMapping()
 	public String listadoCliente(ModelMap modelMap) {
-		Iterable<Cliente> empleados = clienteService.findAll();
-		modelMap.addAttribute("clientes", empleados);
+		Iterable<Cliente> clientes = clienteService.findAll();
+		modelMap.addAttribute("clientes", clientes);
 		log.info("Mostrando listado de clientes");
 		return "clientes/listadoClientes";
 	}
