@@ -204,7 +204,7 @@ public class RepartidorController {
 			
 			model.addAttribute("vehiculos", vehiculos);
 			
-			log.info("Error al editar el repartidor con di = "+repartidorID+" debido a errores de validacion de entrada de datos");
+			log.info("Error al editar el repartidor con id = "+repartidorID+" debido a errores de validacion de entrada de datos");
 			return VIEWS_REPARTIDOR_CREATE_OR_UPDATE_FORM;
 		}
 		else {

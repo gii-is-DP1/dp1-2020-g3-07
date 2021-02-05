@@ -85,7 +85,7 @@ public class EmpleadoControllerTests {
 		Optional<Repartidor> repOp = Optional.of(rep);
 		
 		coc = new Cocinero();
-		coc.setId(TEST_REP_ID);
+		coc.setId(TEST_COC_ID);
 		coc.setNombre("Tomas");
 		coc.setSueldo("2300");
 		coc.setDni("12345678W");
@@ -93,9 +93,10 @@ public class EmpleadoControllerTests {
 		coc.setCuentabancaria("8741 1406 33 2598326978");
 		Optional<Cocinero> cocOp = Optional.of(coc);
 		
-		given(this.depeService.findDependienteById(TEST_DEP_ID)).willReturn(depOp);
-		given(this.repaService.findRepartidorById(TEST_REP_ID)).willReturn(repOp);
-		given(this.cociService.findCocineroById(TEST_COC_ID)).willReturn(cocOp);
+		// Todos los metodos de los servicios que se usaran estan a continuacion
+		given(this.depeService.findAll()).willReturn(Lists.newArrayList(dep, new Dependiente()));
+		given(this.repaService.findAll()).willReturn(Lists.newArrayList(rep, new Repartidor()));
+		given(this.cociService.findAll()).willReturn(Lists.newArrayList(coc, new Cocinero()));
 		
 	}
 	
@@ -103,10 +104,6 @@ public class EmpleadoControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testListadoEmpleados() throws Exception {
-		
-		given(this.depeService.findAll()).willReturn(Lists.newArrayList(dep, new Dependiente()));
-		given(this.repaService.findAll()).willReturn(Lists.newArrayList(rep, new Repartidor()));
-		given(this.cociService.findAll()).willReturn(Lists.newArrayList(coc, new Cocinero()));
 		
 		mockMvc.perform(get("/empleados")).andExpect(status().isOk())
 		.andExpect(view().name("empleados/listadoEmpleados"))
