@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/carta")
 public class CartaController {
 	
-	private static final String VIEWS_CARTA_CREATE_OR_UPDATE_FORM = "carta/createOrUpdateCartaForm";
+
 	private final ProductoService productoService;
 	
 	@Autowired
@@ -42,4 +42,8 @@ public class CartaController {
 	}
 	
 
+	
+	
+	
+	
 }
