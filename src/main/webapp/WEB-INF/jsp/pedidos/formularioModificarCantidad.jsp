@@ -10,11 +10,11 @@
     <h2>Finaliza tu pedido</h2>
     <form:form modelAttribute="lineapedidos" class="form-horizontal" id="add-pedidos-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="cantidad" name="cantidad"/>
+            <petclinic:selectField label="cantidad" name="cantidad" names="${cantidadProducto}" size="6"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-               <button class="btn btn-default" type="submit">Finalizar pedido</button>
+               <button class="btn btn-default" type="submit">Modificar la cantidad</button>
             </div>
         </div>
     </form:form>
