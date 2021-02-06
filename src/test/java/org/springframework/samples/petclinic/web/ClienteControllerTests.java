@@ -72,9 +72,7 @@ public class ClienteControllerTests {
 		
 		
 	}
-	
-	
-	
+
 
 	@WithMockUser(value = "spring")
 	@Test
