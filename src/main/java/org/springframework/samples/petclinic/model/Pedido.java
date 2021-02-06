@@ -36,10 +36,6 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
     @DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime horaEstimada;
 	
-	@Column(name = "horaCliente")					// es opcional ponerla
-    @DateTimeFormat(pattern = "HH:mm:ss")
-	private LocalTime horaCliente;
-	
 	@Column(name = "comentario")
 	private String comentario;
 	

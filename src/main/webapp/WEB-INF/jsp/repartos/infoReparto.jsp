@@ -18,7 +18,10 @@
 			<tr>
 				<td><c:out value="${reparto.repartidor.nombre}"></c:out></td>
 				<td><c:out value="${reparto.fecha}"></c:out></td>
-				<td><c:out value="${reparto.horaInicio}"></c:out></td>
+				<td>
+					<fmt:parseDate value="${reparto.horaInicio}" pattern="HH:mm" var="parsedDateTime" type="both" />
+					<fmt:formatDate pattern="HH:mm" value="${ parsedDateTime }" />
+				</td>
 			</tr>
 		</table>
 
@@ -36,13 +39,21 @@
 			<c:forEach items="${reparto.pedidos}" var="pedido">
 				<tr>
 					<td>
-						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/cliente/{clienteId}" var="clienteUrl">
+						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/{pedidoId}/cliente/{clienteId}" var="clienteUrl">
 							<spring:param name="clienteId" value="${pedido.cliente.id}"/>
 							<spring:param name="repartoId" value="${reparto.id}"/>
+							<spring:param name="pedidoId" value="${pedido.id}"/>
 							<spring:param name="repartidorId" value="${repartidor.id}"/>
 						</spring:url>
 						<a href="${fn:escapeXml(clienteUrl)}" class="btn btn-outline-secondary">
-							<c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
+							<c:choose>
+								<c:when test="${pedido.cliente.id==1}">
+									<c:out value="${pedido.nombreClienteGenerico}"></c:out>
+								</c:when>    
+								<c:otherwise>
+									<c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
+								</c:otherwise>
+							</c:choose>
 						</a>
 					</td>
 					<td>

@@ -10,6 +10,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.Getter;
@@ -22,6 +24,7 @@ import lombok.Setter;
 public class Producto extends NamedEntity{
 	
 	@Column(name = "precio")
+	@NotNull(message = "no puede estar vacío")
 	private Integer precio;
 	
     @Column(name="tamanopizza")
@@ -29,9 +32,11 @@ public class Producto extends NamedEntity{
     private Tamanopizza tamanopizza;
     
     @Column(name = "descripcion")
+    @NotEmpty
     private String descripcion;
     
     @Column(name = "alergenos")
+    
     @ManyToMany
     private List<Alergeno> alergenos;
 
