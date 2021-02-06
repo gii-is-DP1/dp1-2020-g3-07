@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.assertj.core.util.Lists;
@@ -26,9 +27,13 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Alergeno;
 import org.springframework.samples.petclinic.model.AlergenoEnum;
+import org.springframework.samples.petclinic.model.Cliente;
+import org.springframework.samples.petclinic.model.Cocinero;
 import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.service.AlergenoService;
+import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.ProductoService;
+import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -54,6 +59,12 @@ public class ProductoControllerTest {
 	@MockBean
 	private AlergenoService alerService;
 	
+	@MockBean
+	private AuthoritiesService authoritiesService; 
+	
+	@MockBean
+	private UserService userService;
+	
 	
 	private Producto prod;
 	private List<Alergeno> listAler;	
@@ -67,17 +78,18 @@ public class ProductoControllerTest {
 		aler.setAlergenotype(AlergenoEnum.Altramuces);
 		listAler.add(aler);
 		prod = new Producto();
+		prod.setId(TEST_PRODUCT_ID);
 		prod.setName("Pollo Frito");
 		prod.setDescripcion("Excelente POLLO FRITO");
 		prod.setPrecio(12);
 		prod.setAlergenos(listAler);
-		prod.setId(TEST_PRODUCT_ID);
+		Optional<Producto> prodOp = Optional.of(prod);
 		
 		
-		
+
 		// Todos los metodos de los servicios que se usaran estan a continuacion
-		given(this.prodService.findAll()).willReturn(Lists.newArrayList(prod, new Producto()));
-		
+		//given(this.prodService.findAll()).willReturn(Lists.newArrayList(prod, new Producto()));
+		given(this.prodService.findProductoById(TEST_PRODUCT_ID)).willReturn(prodOp);
 	}
 	
 	
@@ -99,23 +111,7 @@ public class ProductoControllerTest {
 	  				.andExpect(view().name("productos/createOrUpdateProductoForm"));
 	  	}
 	
-	
-//  	@WithMockUser(value = "spring")
-//    @Test
-//void testProcessCreationFormHasErrors() throws Exception {
-//	mockMvc.perform(post("/productos/new")
-//						.with(csrf())
-//						.param("nombre", "Pollo Frito")
-//						.param("lastName", "Bloggs")
-//						.param("city", "London"))
-//			.andExpect(status().isOk())
-//			.andExpect(model().attributeHasErrors("owner"))
-//			.andExpect(model().attributeHasFieldErrors("owner", "address"))
-//			.andExpect(model().attributeHasFieldErrors("owner", "telephone"))
-//			.andExpect(view().name("owners/createOrUpdateOwnerForm"));
-//}	
-//	
-  	
+
   	
 
 	@WithMockUser(value = "spring")
@@ -126,7 +122,22 @@ public class ProductoControllerTest {
 							.param("precio", "12"))
 				.andExpect(status().is3xxRedirection());
 	}
-    
+ 
+	@WithMockUser(value = "spring")
+    @Test
+void testProcessCreationFormHasErrors() throws Exception {
+	mockMvc.perform(post("/productos/new")
+						.with(csrf())
+						.param("name", "")
+						.param("precio", "12"))
+			.andExpect(status().isOk())
+			.andExpect(model().attributeHasErrors("producto"))
+			.andExpect(model().attributeHasFieldErrors("producto", "name"))
+			.andExpect(view().name("productos/createOrUpdateProductoForm"));
+}	
+	
+	
+	
 	
 	@WithMockUser(value = "spring")
 	@Test
@@ -139,23 +150,58 @@ public class ProductoControllerTest {
 
 
 
-	
-	
-//    @WithMockUser(value = "spring")
-//@Test
-//void testInitUpdateProductForm() throws Exception {
-//	mockMvc.perform(get("/productos/save/{productoID}", TEST_PRODUCT_ID)).andExpect(status().isOk())
-//			.andExpect(model().attributeExists("producto"))
-//			.andExpect(model().attribute("producto", hasProperty("name", is("Pollo Frito"))))
-//			.andExpect(model().attribute("producto", hasProperty("descripcion", is("Excelente POLLO FRITO"))))
-//			.andExpect(model().attribute("producto", hasProperty("precio", is(12))))
-//			//.andExpect(model().attribute("producto", hasProperty("alergenos", is(listAler))))
-//			.andExpect(view().name("productos/createOrUpdateProductoForm"));
-//}
-//
-//
+    @WithMockUser(value = "spring")
+    @Test
+    void testInitUpdateProductForm() throws Exception {
+    	mockMvc.perform(get("/productos/save/{productoID}", TEST_PRODUCT_ID)).andExpect(status().isOk())
+    		.andExpect(view().name("productos/createOrUpdateProductoForm"))
+			.andExpect(model().attributeExists("producto"))
+			.andExpect(model().attribute("producto", hasProperty("name", is("Pollo Frito"))))
+			.andExpect(model().attribute("producto", hasProperty("descripcion", is("Excelente POLLO FRITO"))))
+			.andExpect(model().attribute("producto", hasProperty("precio", is(12))));
+			//.andExpect(model().attribute("producto", hasProperty("alergenos", is(listAler))));
+			
+}
 
 
+
+	@WithMockUser(value = "spring")
+	@Test
+	void testProcessUpdateFormSuccess() throws Exception {
+		
+		mockMvc.perform(post("/productos/save/{productoID}", TEST_PRODUCT_ID)
+					.with(csrf())
+					.param("name", "Pizza española")
+					.param("precio", "14"))
+		.andExpect(status().is3xxRedirection())
+		.andExpect(view().name("redirect:/productos"));
+		
+	}
+	
+
+	
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testProcessUpdateFormFailure() throws Exception {
+		
+		mockMvc.perform(post("/productos/save/{productoID}", TEST_PRODUCT_ID)
+					.with(csrf())
+					.param("name", "")
+					.param("precio", "10"))
+		.andExpect(status().isOk())
+		.andExpect(model().attributeHasFieldErrors("producto", "name"))
+		.andExpect(view().name("productos/createOrUpdateProductoForm"));
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	}
