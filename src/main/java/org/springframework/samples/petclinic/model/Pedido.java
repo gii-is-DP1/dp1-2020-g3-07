@@ -62,6 +62,9 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Enumerated(value = EnumType.STRING)
 	private tipoPedido tipopedido;
 	
+	@Column(name="direccionClienteGenerico")
+	private String direccionClienteGenerico;
+	
 	@Override
 	public int compareTo(Pedido o) {
 		if ( fecha.isBefore(o.getFecha())) {

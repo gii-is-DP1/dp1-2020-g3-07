@@ -22,8 +22,8 @@
        		<spring:param name="lineapedidoID" value="${lineapedido.id}"/>
     	</spring:url>
     	<a href="${fn:escapeXml(pedidoUrl)}" class="btn btn-default">Eliminar producto</a>
-	</c:forEach>       	
-       	
+	</c:forEach>
+    <h2>Precio total del pedido: <c:out value="${precioTotal}"/>€</h2>
 	<form:form modelAttribute="listaLineaPedidos" class="form-horizontal" id="add-lineaPedidos-form">
 		<br><button class="btn btn-default" type="submit">Continuar con el pedido</button>
  	</form:form>

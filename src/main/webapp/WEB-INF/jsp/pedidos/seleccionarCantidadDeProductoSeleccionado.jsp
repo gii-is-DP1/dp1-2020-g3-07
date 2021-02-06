@@ -11,7 +11,7 @@
     <h2><c:out value="${productos.name}, ${productos.precio}"/>€</h2>
 	<form:form modelAttribute="lineapedidos" class="form-horizontal" id="add-lineaPedidos-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="cantidad" name="cantidad"/>
+            <petclinic:selectField label="Cantidad " name="cantidad" names="${cantidadProducto}" size="6"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
