@@ -12,8 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RepartoService {
 
+//	@Autowired
+	private RepartoRepository repRepos;
+	
 	@Autowired
-	RepartoRepository repRepos;
+	public RepartoService(RepartoRepository rR) {
+		this.repRepos = rR;
+	}
 	
 	@Transactional
 	public void save(Reparto r) {
