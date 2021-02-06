@@ -18,7 +18,9 @@
             <petclinic:selectField label="Tipo de pedido " name="tipopedido" names="${tipoDePedido}" size="2"/>
            	<c:choose>
     			<c:when test="${pedidos.cliente.id=='1'}">
-					  <petclinic:inputField label="Direccion de entrega" name="direccionClienteGenerico"/>
+					  <petclinic:inputField label="Nombre del cliente" name="nombreClienteGenerico"/>
+					  <petclinic:inputField label="Telefono del cliente" name="telefonoClienteGenerico"/>
+					  <petclinic:inputField label="Direccion de entrega del cliente" name="direccionClienteGenerico"/>
     			</c:when>    
 			</c:choose>
             <p><strong>Hora de llegada: </strong><select label="horaEstimada" name ="horaEstimada">

@@ -65,6 +65,12 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Column(name="direccionClienteGenerico")
 	private String direccionClienteGenerico;
 	
+	@Column(name="nombreClienteGenerico")
+	private String nombreClienteGenerico;
+	
+	@Column(name="telefonoClienteGenerico")
+	private Integer telefonoClienteGenerico;
+	
 	@Override
 	public int compareTo(Pedido o) {
 		if ( fecha.isBefore(o.getFecha())) {

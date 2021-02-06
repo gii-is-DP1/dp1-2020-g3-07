@@ -381,7 +381,7 @@ public class PedidoController {
 							return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
 						}
 					}else {
-						if(pedido.getMetodopago() == null || pedido.getTipopedido() == null || pedido.getDireccionClienteGenerico() == ""){
+						if(pedido.getMetodopago() == null || pedido.getTipopedido() == null || pedido.getDireccionClienteGenerico() == "" || pedido.getNombreClienteGenerico() == "" || pedido.getTelefonoClienteGenerico() == null){
 							return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
 						}
 					}	
