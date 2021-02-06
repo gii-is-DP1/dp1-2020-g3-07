@@ -376,11 +376,17 @@ public class PedidoController {
 				pedido.setEstadopedido(estadoPedido.pendiente);
 				pedidoService.savePedido(pedido);
 				if(pedido.getCliente().getId()==1) {
-					if(pedido.getEstadopedido() == null || pedido.getTipopedido() == null || pedido.getDireccionClienteGenerico() == ""){
-						return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
-					}
+					if(pedido.getTipopedido() == tipoPedido.enLocal) {
+						if(pedido.getMetodopago() == null) {
+							return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
+						}
+					}else {
+						if(pedido.getMetodopago() == null || pedido.getTipopedido() == null || pedido.getDireccionClienteGenerico() == ""){
+							return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
+						}
+					}	
 				}else {
-					if(pedido.getEstadopedido() == null || pedido.getTipopedido() == null) {
+					if(pedido.getMetodopago() == null || pedido.getTipopedido() == null) {
 						return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
 					}
 				}
