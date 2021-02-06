@@ -23,7 +23,7 @@
             <th>Método de pago</th>
             <th>Estado de pedido</th>
             <th>Contenido del pedido</th>
-            <th>Acciones</th>     
+            <!-- <th>Acciones</th>      -->
         </tr>
         </thead>
         <tbody>
@@ -40,7 +40,8 @@
                     <c:out value="${pedidosadom.valoracion}"/>
                 </td>
                 <td>
-                    <c:out value="${pedidosadom.horaEstimada}"/>
+                    <fmt:parseDate value="${pedidosadom.horaEstimada}" pattern="HH:mm" var="parsedDateTime" type="both" />
+                    <fmt:formatDate pattern="HH:mm" value="${ parsedDateTime }" />
                 </td>
                 <td>
                     <c:out value="${pedidosadom.metodopago}"/>
@@ -54,12 +55,12 @@
     				</spring:url>
     				<a href="${fn:escapeXml(pedidodomUrl)}" >Detalles pedido</a>
                 </td>       
-                 <td>            
+                 <!-- <td>            
                     <spring:url value="pedidos/delete/{pedidoID}" var="delpedidodomUrl">
                         <spring:param name="pedidoID" value="${pedidosadom.id}"/>
                     </spring:url>
                     <a href="${fn:escapeXml(delpedidodomUrl)}" >Eliminar pedido</a>
-                </td>            
+                </td>             -->
             </tr>
         </c:forEach>
         </tbody>
@@ -78,7 +79,7 @@
             <th>Método de pago</th>
             <th>Estado de pedido</th>
             <th>Contenido del pedido</th>
-            <th>Acciones</th>      
+            <!-- <th>Acciones</th>       -->
         </tr>
         </thead>
         <tbody>
@@ -95,7 +96,8 @@
                     <c:out value="${pedidosenloc.valoracion}"/>
                 </td>
                 <td>
-                    <c:out value="${pedidosenloc.horaEstimada}"/>
+                    <fmt:parseDate value="${pedidosenloc.horaEstimada}" pattern="HH:mm" var="parsedDateTime" type="both" />
+                    <fmt:formatDate pattern="HH:mm" value="${ parsedDateTime }" />
                 </td>
                 <td>
                     <c:out value="${pedidosenloc.metodopago}"/>
@@ -109,12 +111,12 @@
     				</spring:url>
     				<a href="${fn:escapeXml(pedidolocUrl)}" >Detalles pedido</a>
                 </td>
-                <td>
+                <!-- <td>
                 	<spring:url value="pedidos/delete/{pedidoID}" var="delpedidolocUrl">
        				<spring:param name="pedidoID" value="${pedidosenloc.id}"/>
     				</spring:url>
     				<a href="${fn:escapeXml(delpedidolocUrl)}" >Eliminar pedido</a>
-                </td>            
+                </td>             -->
             </tr>
         </c:forEach>
         </tbody>

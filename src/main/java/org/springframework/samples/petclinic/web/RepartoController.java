@@ -210,30 +210,20 @@ public class RepartoController {
 			LineaPedido lineapedido = lineaPedidoService.findLineaPedidoById(ids.get(i)).get();
 			res.add(lineapedido);
 		}
-//		List<Integer> listaIDLineaPedido = pedidoService.resumenLineasPedido(pedidoId);
-//		List<LineaPedido> listaLineaPedidos = new ArrayList<>();
-//		//List<Producto> listaProductos = new ArrayList<>();
-//		int i = 0;
-//		while(i<listaIDLineaPedido.size()) {
-//			listaLineaPedidos.add(lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get());
-//			//listaProductos.add(lineaPedidoService.findPedidoById(listaIDLineaPedido.get(i)).get().getProducto());
-//			i++;
-//		}	
-//		Reparto reparto = repartoService.findRepartoById(repartoId).get();
-//		modelMap.addAttribute("reparto", reparto);
-//		modelMap.addAttribute("pedido", pedido);
 		modelMap.addAttribute("lineapedido", res);
 		log.info("Se muestran detalles del pedido con id = "+pedidoId+" asignado al reparto con id = "+repartoId);
 		return "repartos/infoPedidoReparto";
 	}
 
 	
-	@GetMapping(value = "repartos/{repartoId}/cliente/{clienteId}")
-	public String showInfoCliente(@PathVariable("clienteId") int clienteId, @PathVariable("repartoId") int repartoId, ModelMap modelMap) {
+	@GetMapping(value = "repartos/{repartoId}/{pedidoId}/cliente/{clienteId}")
+	public String showInfoCliente(@PathVariable("clienteId") int clienteId, @PathVariable("repartoId") int repartoId, @PathVariable("pedidoId") int pedidoId, ModelMap modelMap) {
 		Cliente cliente = clienteService.findClienteById(clienteId).get();
 		modelMap.addAttribute("cliente", cliente);
 		Reparto reparto = repartoService.findRepartoById(repartoId).get();
 		modelMap.addAttribute("reparto", reparto);
+		Pedido pedido = pedidoService.findPedidoById(pedidoId).get();
+		modelMap.addAttribute("pedido", pedido);
 		log.info("Se muestra informacion del cliente con id = "+clienteId+" asociado al reparto con id = "+repartoId);
 		return "clientes/infoCliente";
 	}

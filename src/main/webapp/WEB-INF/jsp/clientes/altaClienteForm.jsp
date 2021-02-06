@@ -23,10 +23,10 @@
             <currogas:inputField label="Nombre" name="nombre"/>
             <currogas:inputField label="Apellidos" name="apellidos"/>
             <currogas:inputField label="Fecha de nacimiento" name="fechanacimiento"/>
-            <currogas:inputField label="Direcci�n" name="direccion"/>
-            <currogas:inputField label="Tel�fono" name="telefono"/>
+            <currogas:inputField label="Dirección" name="direccion"/>
+            <currogas:inputField label="Teléfono" name="telefono"/>
             <currogas:inputField label="Email" name="user.username"/>
-            <currogas:inputField label="Contrase�a" name="user.password"/>
+            <currogas:inputField label="Contraseña" name="user.password"/>
             
         </div>
         <div class="form-group">

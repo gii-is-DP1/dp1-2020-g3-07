@@ -34,10 +34,10 @@
                     
                 </td>
                 <td>
-                    <spring:url value="productos/delete/{productoID}" var="productoUrl">
+                    <!-- <spring:url value="productos/delete/{productoID}" var="productoUrl">
        				 <spring:param name="productoID" value="${productos.id}"/>
     				</spring:url>
-    				<a href="${fn:escapeXml(productoUrl)}" >Eliminar producto</a>
+    				<a href="${fn:escapeXml(productoUrl)}" >Eliminar producto</a> -->
     				
     				<spring:url value = "/productos/save/{productoID}" var = "productoUrl1">
                     	<spring:param name = "productoID" value ="${productos.id}"/>
