@@ -1,5 +1,6 @@
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="currogas" tagdir="/WEB-INF/tags" %>
@@ -47,8 +48,11 @@
     
     	<c:forEach var="reparto" items="${repartos}">
     		<tr>
-    		<td>${reparto.fecha}</td>
-    		<td>${reparto.horaInicio}</td>
+    		<td><c:out value="${reparto.fecha}"></c:out></td>
+    		<td>
+                <fmt:parseDate value="${reparto.horaInicio}" pattern="HH:mm" var="parsedDateTime" type="both" />
+                <fmt:formatDate pattern="HH:mm" value="${ parsedDateTime }" />
+            </td>
     		<td>
     		<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}" var="addUrl">
 		        <spring:param name="repartoId" value="${reparto.id}"/>

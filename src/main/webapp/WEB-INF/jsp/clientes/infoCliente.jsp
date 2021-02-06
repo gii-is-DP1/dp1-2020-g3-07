@@ -15,9 +15,36 @@
 				<th>Dirección</th>
 			</tr>
 			<tr>
-				<td><c:out value="${cliente.nombre} ${cliente.apellidos}"></c:out></td>
-				<td><c:out value="${cliente.telefono}"></c:out></td>
-				<td><c:out value="${cliente.direccion}"></c:out></td>
+				<td>
+					<c:choose>
+						<c:when test="${cliente.id==1}">
+							<c:out value="${pedido.nombreClienteGenerico}"></c:out>
+						</c:when>    
+						<c:otherwise>
+							<c:out value="${cliente.nombre} ${cliente.apellidos}"></c:out>
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td>
+					<c:choose>
+						<c:when test="${cliente.id==1}">
+							<c:out value="${pedido.telefonoClienteGenerico}"></c:out>
+						</c:when>    
+						<c:otherwise>
+							<c:out value="${cliente.telefono}"></c:out>
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td>
+					<c:choose>
+						<c:when test="${cliente.id==1}">
+							<c:out value="${pedido.direccionClienteGenerico}"></c:out>
+						</c:when>    
+						<c:otherwise>
+							<c:out value="${cliente.direccion}"></c:out>
+						</c:otherwise>
+					</c:choose>
+				</td>
 			</tr>
 		</table>
 		<form:form>
