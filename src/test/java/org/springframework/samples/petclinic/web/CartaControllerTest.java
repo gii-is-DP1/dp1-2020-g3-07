@@ -7,7 +7,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,15 +24,9 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Alergeno;
 import org.springframework.samples.petclinic.model.AlergenoEnum;
-import org.springframework.samples.petclinic.model.Cocinero;
-import org.springframework.samples.petclinic.model.Dependiente;
 import org.springframework.samples.petclinic.model.Producto;
-import org.springframework.samples.petclinic.model.Repartidor;
 import org.springframework.samples.petclinic.service.AlergenoService;
-import org.springframework.samples.petclinic.service.CocineroService;
-import org.springframework.samples.petclinic.service.DependienteService;
 import org.springframework.samples.petclinic.service.ProductoService;
-import org.springframework.samples.petclinic.service.RepartidorService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -56,13 +52,13 @@ public class CartaControllerTest {
 	
 	
 	private Producto prod;
-	private Set<Alergeno> listAler;	
+	private List<Alergeno> listAler;	
 	private Alergeno aler;
 
 	@BeforeEach
 	void setup() {
 		
-		Set<Alergeno> listAler= new HashSet<Alergeno>();	
+		List<Alergeno> listAler= new ArrayList<Alergeno>();	
 		aler = new Alergeno();
 		aler.setAlergenotype(AlergenoEnum.Altramuces);
 		listAler.add(aler);

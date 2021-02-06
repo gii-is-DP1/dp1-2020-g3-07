@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -8,7 +10,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.assertj.core.util.Lists;
@@ -38,7 +42,7 @@ excludeAutoConfiguration= SecurityConfiguration.class)
 public class ProductoControllerTest {
 	
 	
-	private static final int TEST_PRODUCT_ID = 1;
+	private static final int TEST_PRODUCT_ID = 7;
 	
 	
 	@Autowired
@@ -52,13 +56,13 @@ public class ProductoControllerTest {
 	
 	
 	private Producto prod;
-	private Set<Alergeno> listAler;	
+	private List<Alergeno> listAler;	
 	private Alergeno aler;
 
 	@BeforeEach
 	void setup() {
 		
-		Set<Alergeno> listAler= new HashSet<Alergeno>();	
+		List<Alergeno> listAler= new ArrayList<Alergeno>();	
 		aler = new Alergeno();
 		aler.setAlergenotype(AlergenoEnum.Altramuces);
 		listAler.add(aler);
@@ -135,8 +139,21 @@ public class ProductoControllerTest {
 
 
 
-
-
+	
+	
+//    @WithMockUser(value = "spring")
+//@Test
+//void testInitUpdateProductForm() throws Exception {
+//	mockMvc.perform(get("/productos/save/{productoID}", TEST_PRODUCT_ID)).andExpect(status().isOk())
+//			.andExpect(model().attributeExists("producto"))
+//			.andExpect(model().attribute("producto", hasProperty("name", is("Pollo Frito"))))
+//			.andExpect(model().attribute("producto", hasProperty("descripcion", is("Excelente POLLO FRITO"))))
+//			.andExpect(model().attribute("producto", hasProperty("precio", is(12))))
+//			//.andExpect(model().attribute("producto", hasProperty("alergenos", is(listAler))))
+//			.andExpect(view().name("productos/createOrUpdateProductoForm"));
+//}
+//
+//
 
 
 
