@@ -29,6 +29,7 @@ import org.springframework.samples.petclinic.model.Alergeno;
 import org.springframework.samples.petclinic.model.AlergenoEnum;
 import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.model.Cocinero;
+import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.service.AlergenoService;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
@@ -66,6 +67,8 @@ public class ProductoControllerTest {
 	private UserService userService;
 	
 	
+	
+	private Pedido ped;
 	private Producto prod;
 	private List<Alergeno> listAler;	
 	private Alergeno aler;
@@ -81,7 +84,7 @@ public class ProductoControllerTest {
 		prod.setId(TEST_PRODUCT_ID);
 		prod.setName("Pollo Frito");
 		prod.setDescripcion("Excelente POLLO FRITO");
-		prod.setPrecio(12);
+		prod.setPrecio(12.5);
 		prod.setAlergenos(listAler);
 		Optional<Producto> prodOp = Optional.of(prod);
 		
@@ -119,17 +122,18 @@ public class ProductoControllerTest {
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/productos/new").param("name", "Pollo Asado")
 							.with(csrf())
-							.param("precio", "12"))
+							.param("precio", "14.5"))
 				.andExpect(status().is3xxRedirection());
 	}
  
+	
 	@WithMockUser(value = "spring")
     @Test
 void testProcessCreationFormHasErrors() throws Exception {
 	mockMvc.perform(post("/productos/new")
 						.with(csrf())
 						.param("name", "")
-						.param("precio", "12"))
+						.param("precio", "12.5"))
 			.andExpect(status().isOk())
 			.andExpect(model().attributeHasErrors("producto"))
 			.andExpect(model().attributeHasFieldErrors("producto", "name"))
@@ -158,7 +162,7 @@ void testProcessCreationFormHasErrors() throws Exception {
 			.andExpect(model().attributeExists("producto"))
 			.andExpect(model().attribute("producto", hasProperty("name", is("Pollo Frito"))))
 			.andExpect(model().attribute("producto", hasProperty("descripcion", is("Excelente POLLO FRITO"))))
-			.andExpect(model().attribute("producto", hasProperty("precio", is(12))));
+			.andExpect(model().attribute("producto", hasProperty("precio", is(12.5))));
 			//.andExpect(model().attribute("producto", hasProperty("alergenos", is(listAler))));
 			
 }
@@ -172,7 +176,7 @@ void testProcessCreationFormHasErrors() throws Exception {
 		mockMvc.perform(post("/productos/save/{productoID}", TEST_PRODUCT_ID)
 					.with(csrf())
 					.param("name", "Pizza española")
-					.param("precio", "14"))
+					.param("precio", "14.1"))
 		.andExpect(status().is3xxRedirection())
 		.andExpect(view().name("redirect:/productos"));
 		
@@ -188,7 +192,7 @@ void testProcessCreationFormHasErrors() throws Exception {
 		mockMvc.perform(post("/productos/save/{productoID}", TEST_PRODUCT_ID)
 					.with(csrf())
 					.param("name", "")
-					.param("precio", "10"))
+					.param("precio", "10.2"))
 		.andExpect(status().isOk())
 		.andExpect(model().attributeHasFieldErrors("producto", "name"))
 		.andExpect(view().name("productos/createOrUpdateProductoForm"));

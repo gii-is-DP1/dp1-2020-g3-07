@@ -50,12 +50,8 @@ public class RepartidorController {
 		this.vehiculoService = vs;
 	}
 	
-//	@InitBinder("pedido")
-//	public void initPedidoBinder(WebDataBinder dataBinder) {
-//		dataBinder.setValidator(new PedidoValidator());
-//	}
-//	
-//	
+	
+	
 	
 	
 	@InitBinder
