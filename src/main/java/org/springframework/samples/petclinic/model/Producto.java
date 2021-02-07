@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Producto extends NamedEntity{
 	
 	@Column(name = "precio")
-	@NotNull(message = "no puede estar vacío")
+	//@NotNull(message = "no puede estar vacío")
 	private Integer precio;
 	
     @Column(name="tamanopizza")
@@ -32,7 +32,7 @@ public class Producto extends NamedEntity{
     private Tamanopizza tamanopizza;
     
     @Column(name = "descripcion")
-    @NotEmpty
+    //@NotEmpty
     private String descripcion;
     
     @Column(name = "alergenos")
