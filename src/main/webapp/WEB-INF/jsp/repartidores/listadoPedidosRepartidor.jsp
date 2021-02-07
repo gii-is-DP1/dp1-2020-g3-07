@@ -21,7 +21,10 @@
 	        <c:forEach items="${pedidosList}" var="pedido">
 	            <tr>
 	                <td><form:checkbox path="pedidosAsignados" value="${pedido}" label="${pedido.id}" /></td>
-	                <td><c:out value="${pedido.fecha}" /></td>
+	                <td>
+						<fmt:parseDate value="${pedido.fecha}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+						<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${ parsedDateTime }" />
+					</td>
 	                <td><c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
 	            </tr>
 	        </c:forEach>

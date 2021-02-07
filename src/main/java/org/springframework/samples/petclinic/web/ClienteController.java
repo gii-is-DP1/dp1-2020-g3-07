@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -76,6 +78,8 @@ public class ClienteController {
 			Pedido pedido = pedidoService.findPedidoById(ids.get(i)).get();
 			res.add(pedido);
 		}
+		res.sort(Comparator.comparing(p->(p.getFecha())));
+        Collections.reverse(res);
 		modelMap.addAttribute("pedidos", res);
 		log.info("Mostrando perfil del cliente con nombre "+cliente.getNombre());
 		return "clientes/perfilCliente";

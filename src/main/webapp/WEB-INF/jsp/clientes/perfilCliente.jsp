@@ -61,7 +61,10 @@
 							<fmt:parseDate value="${pedido.fecha}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
 							<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${ parsedDateTime }" />
 						</td>
-						<td><c:out value="${pedido.horaEstimada}"/></td>
+						<td>
+							<fmt:parseDate value="${pedido.horaEstimada}" pattern="HH:mm" var="parsedDateTime" type="both" />
+							<fmt:formatDate pattern="HH:mm" value="${ parsedDateTime }" />
+						</td>
 						<td><c:out value="${pedido.metodopago}"></c:out></td>
 						<td><c:out value="${pedido.estadopedido}"></c:out></td>
 						<td><c:out value="${pedido.tipopedido}"></c:out></td>

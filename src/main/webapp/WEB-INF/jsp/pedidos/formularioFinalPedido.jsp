@@ -9,19 +9,27 @@
 
 <petclinic:layout pageName="pedidos">
     
-    <h2>Finaliza tu pedido</h2>
+    <h2>Finaliza tu pedido</h2>   
     <form:form modelAttribute="pedidos" class="form-horizontal" id="add-pedidos-form">
         <div class="form-group has-feedback">
         	<form:input type="hidden" path="cliente"/>
             <form:input type="hidden" path="lineaPedidos"/>
-            <petclinic:inputField label="metodopago" name="metodopago"/>
-            <petclinic:inputField label="tipopedido" name="tipopedido"/>
+            <petclinic:selectField label="Metodo de pago " name="metodopago" names="${metodoDePago}" size="2"/>
+            <petclinic:selectField label="Tipo de pedido " name="tipopedido" names="${tipoDePedido}" size="2"/>
+           	<c:choose>
+    			<c:when test="${pedidos.cliente.id=='1'}">
+					  <petclinic:inputField label="Nombre del cliente" name="nombreClienteGenerico"/>
+					  <petclinic:inputField label="Telefono del cliente" name="telefonoClienteGenerico"/>
+					  <petclinic:inputField label="Direccion de entrega del cliente" name="direccionClienteGenerico"/>
+    			</c:when>    
+			</c:choose>
             <p><strong>Hora de llegada: </strong><select label="horaEstimada" name ="horaEstimada">
                 <option value="03:00:00">Lo antes posible</option>
                 <option value="03:00:01">En 1 hora</option>
                 <option value="03:00:02">En 1 hora y media</option>
                 <option value="03:00:03">En 2 horas</option>
             </select></p>
+            
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

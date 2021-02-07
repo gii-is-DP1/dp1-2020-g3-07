@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.web;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -21,7 +22,9 @@ import org.springframework.samples.petclinic.model.Pedido;
 import org.springframework.samples.petclinic.model.Producto;
 import org.springframework.samples.petclinic.model.Repartidor;
 import org.springframework.samples.petclinic.model.Reparto;
+import org.springframework.samples.petclinic.model.TipoVehiculo;
 import org.springframework.samples.petclinic.model.estadoPedido;
+import org.springframework.samples.petclinic.model.metodoPago;
 import org.springframework.samples.petclinic.model.tipoPedido;
 import org.springframework.samples.petclinic.service.ClienteService;
 import org.springframework.samples.petclinic.service.LineaPedidoService;
@@ -226,6 +229,8 @@ public class PedidoController {
 			LineaPedido lineaPedido = new LineaPedido();
 			model.put("lineapedidos", lineaPedido);
 			log.info("Solicitud para asignar la cantidad del producto con id = "+productoID+" asociado al pedido con id = "+pedidoID);
+			List<Integer> cantidadProducto = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+			model.put("cantidadProducto", cantidadProducto);
 			return VIEWS_SELECCION_CANTIDAD_PRODUCTO;
 		}
 		@PostMapping(value="/new/{pedidoID}/{productoID}")
@@ -237,6 +242,9 @@ public class PedidoController {
 				} else {
 					lineaPedido.setProducto(productoService.findProductoById(productoID).get());
 					this.lineaPedidoService.saveLineaPedido(lineaPedido);
+					if(lineaPedido.getCantidad() == null) {
+						return "redirect:/pedidos/new/" + pedidoID + "/" + productoID;
+					}
 					Pedido pedido = pedidoService.findPedidoById(pedidoID).get();
 					Set<LineaPedido> set = pedido.getLineaPedidos();
 					set.add(lineaPedido);
@@ -254,15 +262,20 @@ public class PedidoController {
 			List<LineaPedido> listaLineaPedidos = new ArrayList<>();
 			//List<Producto> listaProductos = new ArrayList<>();
 			int i = 0;
+			int result = 0;
 			while(i<listaIDLineaPedido.size()) {
 				listaLineaPedidos.add(lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get());
+				int cantidad = lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get().getCantidad();
+				int precio = lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get().getProducto().getPrecio();
+				result = result + cantidad*precio;
 				//listaProductos.add(lineaPedidoService.findPedidoById(listaIDLineaPedido.get(i)).get().getProducto());
 				i++;
 			}	
 			model.put("pedido", pedidoService.findPedidoById(pedidoID).get());
 			model.put("lineapedido", listaLineaPedidos);
+			model.put("precioTotal", result);
 			//model.put("producto", listaProductos);
-			log.info("Muestra resumen del pedido de id = "+pedidoID+" antes de confirmarlo");
+			log.info("Muestra resumen del pedido de id = "+pedidoID+" antes de confirmarlo");			
 			return VIEWS_RESUMEN_DEL_PEDIDO;
 		}
 		@PostMapping(value = "/new/resumendelpedido/{pedidoID}")
@@ -309,6 +322,8 @@ public class PedidoController {
 			model.put("productos", producto);
 			model.put("lineapedidos", lineaPedido);
 			log.info("Solicitud para editar la cantidad del producto de id = "+productoID+" asociado al pedido con id = "+pedidoID);
+			List<Integer> cantidadProducto = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+			model.put("cantidadProducto", cantidadProducto);
 			return "pedidos/formularioModificarCantidad";
 		}
 		@PostMapping(value="/new/resumendelpedido/edit/{pedidoID}/{lineapedidoID}/{productoID}")
@@ -330,6 +345,14 @@ public class PedidoController {
 		public String finalizarPedido(@PathVariable("pedidoID") int pedidoID, Map<String, Object> model) {
 			Pedido pedido = pedidoService.findPedidoById(pedidoID).get();
 			model.put("pedidos", pedido);
+			metodoPago tarjeta = metodoPago.tarjeta;
+			metodoPago efectivo = metodoPago.efectivo;
+			List<metodoPago> metodoDePago = new ArrayList<metodoPago>(Arrays.asList(tarjeta, efectivo));
+			model.put("metodoDePago", metodoDePago);
+			tipoPedido local = tipoPedido.enLocal;
+			tipoPedido domicilio = tipoPedido.aDomicilio;
+			List<tipoPedido> tipoDePedido = new ArrayList<tipoPedido>(Arrays.asList(local, domicilio));
+			model.put("tipoDePedido", tipoDePedido);
 			return VIEWS_FINALIZAR_PEDIDO;
 		}
 		@PostMapping(value = "/new/finalizarpedido/{pedidoID}")
@@ -341,7 +364,6 @@ public class PedidoController {
 			} else{
 				pedido.setId(pedidoID);
 				pedido.setFecha(LocalDateTime.now());
-				//pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));
 				if(pedido.getHoraEstimada().equals(LocalTime.parse("03:00:00"))) {
                     pedido.setHoraEstimada(LocalTime.now().plusMinutes(30));
                 } else if(pedido.getHoraEstimada().equals(LocalTime.parse("03:00:01"))){
@@ -353,6 +375,21 @@ public class PedidoController {
                 } 
 				pedido.setEstadopedido(estadoPedido.pendiente);
 				pedidoService.savePedido(pedido);
+				if(pedido.getCliente().getId()==1) {
+					if(pedido.getTipopedido() == tipoPedido.enLocal) {
+						if(pedido.getMetodopago() == null) {
+							return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
+						}
+					}else {
+						if(pedido.getMetodopago() == null || pedido.getTipopedido() == null || pedido.getDireccionClienteGenerico() == "" || pedido.getNombreClienteGenerico() == "" || pedido.getTelefonoClienteGenerico() == null){
+							return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
+						}
+					}	
+				}else {
+					if(pedido.getMetodopago() == null || pedido.getTipopedido() == null) {
+						return "redirect:/pedidos/new/finalizarpedido/" + pedidoID;
+					}
+				}
 				log.info("Pedido con id = "+pedidoID+" realizado con exito");
 				return "redirect:/pedidos";
 			}
