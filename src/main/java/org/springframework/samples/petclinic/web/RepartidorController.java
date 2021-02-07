@@ -50,6 +50,7 @@ public class RepartidorController {
 		this.vehiculoService = vs;
 	}
 	
+	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
