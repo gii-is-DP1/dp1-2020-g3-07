@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 import lombok.Data;
 import lombok.Getter;
@@ -24,19 +26,20 @@ import lombok.Setter;
 public class Producto extends NamedEntity{
 	
 	@Column(name = "precio")
-	//@NotNull(message = "no puede estar vacío")
-	private Integer precio;
+	@NotNull(message="No puede estar vacío")
+	private Double precio;
 	
     @Column(name="tamanopizza")
     @Enumerated(value = EnumType.STRING)
     private Tamanopizza tamanopizza;
     
+    
     @Column(name = "descripcion")
-    //@NotEmpty
+    @NotNull
+    @NotEmpty(message="No puede estar vacío")
     private String descripcion;
     
     @Column(name = "alergenos")
-    
     @ManyToMany
     private List<Alergeno> alergenos;
 

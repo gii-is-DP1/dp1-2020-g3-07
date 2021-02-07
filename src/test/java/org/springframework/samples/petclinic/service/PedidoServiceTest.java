@@ -99,7 +99,7 @@ public class PedidoServiceTest {
 		Producto producto = new Producto();
 		producto.setDescripcion("Pizza");
 		producto.setName("Pizza");
-		producto.setPrecio(14);
+		producto.setPrecio(14.);
 		producto.setTamanopizza(Tamanopizza.mediana);
 		this.ProductoService.saveProducto(producto);	
 	
@@ -189,7 +189,7 @@ public class PedidoServiceTest {
 		Producto producto = new Producto();
 		producto.setDescripcion("Pizza");
 		producto.setName("Pizza");
-		producto.setPrecio(14);
+		producto.setPrecio(14.);
 		producto.setTamanopizza(Tamanopizza.mediana);
 		this.ProductoService.saveProducto(producto);
 
@@ -211,7 +211,7 @@ public class PedidoServiceTest {
 		Producto producto = new Producto();
 		producto.setDescripcion("Pizza");
 		producto.setName("Pizza");
-		producto.setPrecio(14);
+		producto.setPrecio(14.);
 		producto.setTamanopizza(Tamanopizza.mediana);
 		this.ProductoService.saveProducto(producto);
 

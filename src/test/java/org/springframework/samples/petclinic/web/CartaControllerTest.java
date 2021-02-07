@@ -65,7 +65,7 @@ public class CartaControllerTest {
 		prod = new Producto();
 		prod.setName("Pollo Frito");
 		prod.setDescripcion("Excelente POLLO FRITO");
-		prod.setPrecio(12);
+		prod.setPrecio(12.);
 		prod.setAlergenos(listAler);
 		
 		
