@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,10 +36,6 @@ public class Pedido extends BaseEntity implements Comparable<Pedido>{
 	@Column(name = "horaEstimada")					// es opcional ponerla
     @DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime horaEstimada;
-	
-	@Column(name = "horaCliente")					// es opcional ponerla
-    @DateTimeFormat(pattern = "HH:mm:ss")
-	private LocalTime horaCliente;
 	
 	@Column(name = "comentario")
 	private String comentario;

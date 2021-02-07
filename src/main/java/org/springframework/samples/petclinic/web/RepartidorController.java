@@ -51,9 +51,6 @@ public class RepartidorController {
 	}
 	
 	
-	
-	
-	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
