@@ -14,8 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class LineaPedidoService {
 	
-	@Autowired
+//	@Autowired
 	private LineaPedidoRepository lineaPedidoRepo;
+	
+	@Autowired
+	public LineaPedidoService(LineaPedidoRepository lineaPedidoR) {
+		this.lineaPedidoRepo = lineaPedidoR;
+	}
 	
 	@Transactional
 	public int pedidoCount(){
