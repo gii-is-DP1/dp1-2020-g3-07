@@ -36,7 +36,7 @@ public class ProductoServiceTest {
 	public void shouldInsertProducto() {
 		Producto producto = new Producto();
 		producto.setName("Antonio");
-		producto.setPrecio(15);
+		producto.setPrecio(15.);
 		producto.setTamanopizza(Tamanopizza.familiar);
 		this.productoService.saveProducto(producto);
 		assertThat(producto.getId().longValue()).isEqualTo(2);

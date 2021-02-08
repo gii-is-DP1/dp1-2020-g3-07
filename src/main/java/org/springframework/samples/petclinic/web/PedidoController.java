@@ -37,7 +37,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,6 +76,8 @@ public class PedidoController {
 		}
 		
 	
+		
+		
 		@GetMapping()
 		public String listadoPedidos(ModelMap modelMap) {
 			String vista = "pedidos/listadoPedidos";
@@ -262,11 +266,11 @@ public class PedidoController {
 			List<LineaPedido> listaLineaPedidos = new ArrayList<>();
 			//List<Producto> listaProductos = new ArrayList<>();
 			int i = 0;
-			int result = 0;
+			double result = 0;
 			while(i<listaIDLineaPedido.size()) {
 				listaLineaPedidos.add(lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get());
 				int cantidad = lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get().getCantidad();
-				int precio = lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get().getProducto().getPrecio();
+				double precio = lineaPedidoService.findLineaPedidoById(listaIDLineaPedido.get(i)).get().getProducto().getPrecio();
 				result = result + cantidad*precio;
 				//listaProductos.add(lineaPedidoService.findPedidoById(listaIDLineaPedido.get(i)).get().getProducto());
 				i++;

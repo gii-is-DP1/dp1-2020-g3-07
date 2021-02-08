@@ -14,8 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class VehiculoService {
 	
-	@Autowired
+//	@Autowired
 	private VehiculoRepository VehiculoRepo;
+	
+	@Autowired
+	public VehiculoService(VehiculoRepository VR) {
+		this.VehiculoRepo = VR;
+	}
 	
 	@Transactional
 	public int vehiculoCount() {

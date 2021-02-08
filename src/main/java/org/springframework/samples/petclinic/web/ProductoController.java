@@ -64,12 +64,23 @@ public class ProductoController {
 	}
 	
 
+	
+	
+
+	
+	
 	@PostMapping(value = "/new")
-	public String processCreationForm(@Valid Producto producto, BindingResult result) {
+	public String processCreationForm(@Valid Producto producto, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			log.info("No se pudo crear el producto debido a errores de validacion de entrada de datos");
-			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
-		}
+	        Iterator<Alergeno> ita = alergenoService.findAll().iterator();    
+	        List<Alergeno> resultt = new ArrayList<>();
+	        while (ita.hasNext()) {
+	            resultt.add(ita.next());
+	        }
+	        model.addAttribute("alergenos", resultt);
+	        log.info("No se pudo crear el producto debido a errores de validacion de entrada de datos");
+	        return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
+	    }
 		else {
 			//creating owner, user and authorities
 			this.productoService.saveProducto(producto);
@@ -112,14 +123,22 @@ public class ProductoController {
         }
 
 	}
+	
+	
 
 	@PostMapping(value = "/save/{productoID}")
 	public String processUpdateForm(@Valid Producto producto, BindingResult result,
-			@PathVariable("productoID") int productoID) {
+			@PathVariable("productoID") int productoID, Model model) {
 		if (result.hasErrors()) {
-			log.info("No se pudieron asignar los alergenos al producto de id = "+productoID+" debido a errores de validacion de entrada de datos");
-			return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
-		}
+	        Iterator<Alergeno> ita = alergenoService.findAll().iterator();    
+	        List<Alergeno> resultt = new ArrayList<>();
+	        while (ita.hasNext()) {
+	            resultt.add(ita.next());
+	        }
+	        model.addAttribute("alergenos", resultt);
+	        log.info("No se pudo crear el producto debido a errores de validacion de entrada de datos");
+	        return VIEWS_PRODUCTO_CREATE_OR_UPDATE_FORM;
+	    }
 		else {
 			producto.setId(productoID);
 			this.productoService.saveProducto(producto);

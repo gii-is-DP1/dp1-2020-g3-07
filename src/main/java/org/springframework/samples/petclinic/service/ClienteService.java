@@ -13,8 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ClienteService {
 
-	@Autowired
+//	@Autowired
 	private ClienteRepository clientRepos;
+	
+	@Autowired
+	public ClienteService(ClienteRepository cR) {
+		this.clientRepos = cR;
+	}
 	
 	@Transactional
 	public int clienteCount() {
