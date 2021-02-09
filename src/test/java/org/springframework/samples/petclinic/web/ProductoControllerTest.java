@@ -122,7 +122,9 @@ public class ProductoControllerTest {
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/productos/new").param("name", "Pollo Asado")
 							.with(csrf())
-							.param("precio", "14.5"))
+							.param("precio", "14.5")
+							.param("descripcion", "Rico pollo asado"))
+							
 				.andExpect(status().is3xxRedirection());
 	}
  
@@ -133,7 +135,8 @@ void testProcessCreationFormHasErrors() throws Exception {
 	mockMvc.perform(post("/productos/new")
 						.with(csrf())
 						.param("name", "")
-						.param("precio", "12.5"))
+						.param("precio", "12.5")
+						.param("descripcion", "Gran pollo asado"))
 			.andExpect(status().isOk())
 			.andExpect(model().attributeHasErrors("producto"))
 			.andExpect(model().attributeHasFieldErrors("producto", "name"))
@@ -176,7 +179,8 @@ void testProcessCreationFormHasErrors() throws Exception {
 		mockMvc.perform(post("/productos/save/{productoID}", TEST_PRODUCT_ID)
 					.with(csrf())
 					.param("name", "Pizza española")
-					.param("precio", "14.1"))
+					.param("precio", "14.1")
+					.param("descripcion", "Pizza artesana con tomate,cebolla y pimiento"))
 		.andExpect(status().is3xxRedirection())
 		.andExpect(view().name("redirect:/productos"));
 		
