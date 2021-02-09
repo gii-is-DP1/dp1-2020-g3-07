@@ -1,8 +1,10 @@
 package org.springframework.samples.petclinic.service;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,4 +62,19 @@ public class VehiculoServiceTest {
 		vehiculoCollection = (Collection) this.vehiculoService.findAll();
 		assertEquals(vehiculoCollection.size(), found);	
 	}
+	
+	@Test
+	@Transactional
+	public void testCountTipo() {
+		TipoVehiculo tipovehiculo = TipoVehiculo.Coche;
+		assertEquals(this.vehiculoService.countTipo(tipovehiculo), 2);
+	}
+	
+	@Test
+	@Transactional
+	public void testFindByMatricula(){
+		Optional<Vehiculo> v = this.vehiculoService.findByMatricula("4772HZC");
+		assertNotNull(v.get());
+	}
+	
 }

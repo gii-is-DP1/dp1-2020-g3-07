@@ -107,7 +107,7 @@ public class RepartoControllerTests {
 	
 	private Authorities au;
 	
-//	private ConjuntoPedidos cp;
+	private ConjuntoPedidos cp;
 	
 	private List<Pedido> pedidosList;
 	
@@ -173,8 +173,8 @@ public class RepartoControllerTests {
 		pedido.setLineaPedidos(Sets.newSet(linPed));
 		Optional<Pedido> pedOp = Optional.of(pedido);
 		
-//		cp = new ConjuntoPedidos();
-//		cp.setPedidosAsignados(Lists.newArrayList(pedido, new Pedido()));
+		cp = new ConjuntoPedidos();
+		cp.setPedidosAsignados(Lists.newArrayList(pedido, new Pedido()));
 		
 		pedidosList = new ArrayList<Pedido>();
 		pedidosList.add(pedido);
@@ -211,25 +211,27 @@ public class RepartoControllerTests {
 //		
 //		mockMvc.perform(post("/repartidores/{repartidorId}/repartos/new", TEST_REP_ID)
 //					.with(csrf())
-//					.param("pedidosAsignados", ""))
+//					.param("pedidosAsignados", "1"))
 //		.andExpect(status().is3xxRedirection())
 //		.andExpect(view().name("redirect:/empleados"));
 //		
 //	}
 	
-//	@WithMockUser(value = "spring")
-//	@Test
-//	void testInitCreationFormFailure() throws Exception {
-//		
-//		mockMvc.perform(post("/repartidores/{repartidorId}/repartos/new", TEST_REP_ID)
-//					.with(csrf())
-//					)
-////		.andExpect(status().is3xxRedirection())
-////		.andExpect(model().attributeHasErrors("pedidosAsignados"))
-////		.andExpect(view().name("repartidores/listadoPedidosRepartidor"));
+	@WithMockUser(value = "spring")
+	@Test
+	void testInitCreationFormFailure() throws Exception {
+		
+		mockMvc.perform(post("/repartidores/1/repartos/new")
+					.with(csrf())
+				.param("pedidos", "1")	
+				)
+//		.andExpect(status().is3xxRedirection());
+//		.andExpect(model().attributeHasErrors("pedidosAsignados"))
+//		.andExpect(view().name("repartidores/listadoPedidosRepartidor"));
 //		.andExpect(model().attributeDoesNotExist("command"));
-//		
-//	}
+		.andExpect(status().isOk());
+		
+	}
 	
 	@WithMockUser(value = "spring")
 	@Test
