@@ -34,7 +34,7 @@ public class EmpleadoServiceTest {
 		int c2 = dependienteService.dependienteCount();
 		int c3 = repartidorService.repartidorCount();
 		int ctotal = c1+c2+c3;
-		assertEquals(ctotal,3);
+		assertEquals(ctotal,4);
 	}
 	
 	

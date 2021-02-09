@@ -22,7 +22,7 @@ public class ProductoServiceTest {
 	@Test
 	public void testCountWithInititalData() {
 		int count = productoService.productoCount();
-		assertEquals(count,1);
+		assertEquals(count,3);
 	}
 	
 	@Test
@@ -38,8 +38,9 @@ public class ProductoServiceTest {
 		producto.setName("Antonio");
 		producto.setPrecio(15.);
 		producto.setTamanopizza(Tamanopizza.familiar);
+		producto.setDescripcion("Producto");
 		this.productoService.saveProducto(producto);
-		assertThat(producto.getId().longValue()).isEqualTo(2);
+		assertThat(producto.getId().longValue()).isEqualTo(4);
 	}
 
 	@Test
