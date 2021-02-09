@@ -59,7 +59,6 @@ public class PedidoControllerTests {
 		ped.setId(TEST_PED_ID);
 		ped.setFecha(LocalDateTime.of(2000, 12, 29, 12, 25));
 		ped.setHoraEstimada(LocalTime.of(12, 25));
-		ped.setHoraCliente(LocalTime.of(12, 25));
 		ped.setComentario("Muy bueno");
 		ped.setValoracion(7);
 		ped.setMetodopago(metodoPago.efectivo);
