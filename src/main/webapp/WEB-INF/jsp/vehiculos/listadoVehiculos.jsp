@@ -31,10 +31,10 @@
                     <c:out value="${vehiculo.repartidor.nombre}"/>
                 </td>
                 <td>
-                    <spring:url value = "/vehiculos/edit/{vehiculoID}" var = "vehiculoUrl1">
+                    <%-- <spring:url value = "/vehiculos/edit/{vehiculoID}" var = "vehiculoUrl1">
                     	<spring:param name = "vehiculoID" value ="${vehiculo.id}"/>
                     </spring:url>
-                    <a href = "${fn:escapeXml(vehiculoUrl1)}">Editar</a>
+                    <a href = "${fn:escapeXml(vehiculoUrl1)}">Editar</a> --%>
 
                 	<c:if test="${vehiculo.repartidor.nombre==null }">
 	                    <spring:url value="vehiculos/delete/{vehiculoID}" var="vehiculoUrl">
