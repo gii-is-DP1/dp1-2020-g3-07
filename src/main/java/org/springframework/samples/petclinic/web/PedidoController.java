@@ -194,7 +194,7 @@ public class PedidoController {
 		    } else {
 		    	Cliente cliente = this.clienteService.findClienteByUsername(user.getUsername());
 		    	pedido.setCliente(cliente);
-		    }
+		    } 
 			
 		    //Cliente cliente = this.clienteService.findClienteByUsername("juan@gmail.com");
 		    
@@ -365,6 +365,7 @@ public class PedidoController {
 			if (result.hasErrors()) {
 				log.info("Errores de validacion de entrada de datos al realizar el pedido con id = "+pedidoID);
 				return VIEWS_FINALIZAR_PEDIDO;
+				//return "redirect:/pedidos";
 			} else{
 				pedido.setId(pedidoID);
 				pedido.setFecha(LocalDateTime.now());
@@ -399,13 +400,15 @@ public class PedidoController {
 			}
 		}
 		
-		@GetMapping(value="/delete/{pedidoID}")
-		public String borrarPedido(@PathVariable("pedidoID") int pedidoID, ModelMap modelMap) {
+		@GetMapping(value="/cancelar/{pedidoID}")
+		public String cancelarPedido(@PathVariable("pedidoID") int pedidoID, ModelMap modelMap) {
 			Optional<Pedido> pedido = pedidoService.findPedidoById(pedidoID);
-			if(pedido.isPresent()) {
+			if(pedido.isPresent() && pedido.get().getEstadopedido().equals(estadoPedido.pendiente)) {
 				pedidoService.deletePedido(pedido.get());
-				log.info("El pedido con id = "+pedidoID+" eliminado con exito");
-				modelMap.addAttribute("message", "Pedido borrado correctamente");
+				pedido.get().setEstadopedido(estadoPedido.cancelado);
+				pedidoService.savePedido(pedido.get());
+				log.info("El pedido con id = "+pedidoID+" ha sido cancelado con exito");
+				modelMap.addAttribute("message", "Pedido cancelado correctamente");
 			} else {
 				modelMap.addAttribute("message", "Pedido no encontrado");
 			}

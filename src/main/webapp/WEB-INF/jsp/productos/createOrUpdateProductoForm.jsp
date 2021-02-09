@@ -12,9 +12,9 @@
     </h2>
     <form:form modelAttribute="producto" class="form-horizontal" id="add-productos-form">
         <div class="form-group has-feedback">
-            <currogas:inputField label="name" name="name"/>
-            <currogas:inputField label="precio" name="precio"/>
-            <currogas:inputField label="descripcion" name="descripcion"/>
+            <currogas:inputField label="Nombre" name="name"/>
+            <currogas:inputField label="Precio" name="precio"/>
+            <currogas:inputField label="Descripción" name="descripcion"/>
         </div>
 
         <form:checkboxes items="${alergenos}" path="alergenos" name = "alergenos"  itemLabel="alergenotype"/>

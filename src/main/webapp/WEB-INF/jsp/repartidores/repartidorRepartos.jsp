@@ -58,7 +58,7 @@
 		        <spring:param name="repartoId" value="${reparto.id}"/>
 		        <spring:param name="repartidorId" value="${reparto.repartidor.id}"/>
 		    </spring:url>
-		    <a href="${fn:escapeXml(addUrl)}" class="btn btn-outline-secondary">Ver detalles</a>
+		    <a href="${fn:escapeXml(addUrl)}" class="enlacea">Ver detalles</a>
     		</td>
     		</tr>
     	</c:forEach>

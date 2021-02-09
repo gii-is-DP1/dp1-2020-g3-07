@@ -53,7 +53,7 @@
 							<spring:param name="repartoId" value="${reparto.id}"/>
 							<spring:param name="repartidorId" value="${repartidor.id}"/>
 				</spring:url>
-				<a href="${fn:escapeXml(volverUrl)}" class="btn btn-outline-secondary">Volver al Reparto</a>
+				<a href="${fn:escapeXml(volverUrl)}" class="enlacea">Volver al Reparto</a>
 			</div>
 		</form:form>
 </currogas:layout>

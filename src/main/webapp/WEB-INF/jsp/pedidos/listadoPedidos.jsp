@@ -23,7 +23,7 @@
             <th>Método de pago</th>
             <th>Estado de pedido</th>
             <th>Contenido del pedido</th>
-            <!-- <th>Acciones</th>      -->
+            <th>Acciones</th>     
         </tr>
         </thead>
         <tbody>
@@ -55,12 +55,12 @@
     				</spring:url>
     				<a href="${fn:escapeXml(pedidodomUrl)}" >Detalles pedido</a>
                 </td>       
-                 <!-- <td>            
-                    <spring:url value="pedidos/delete/{pedidoID}" var="delpedidodomUrl">
+                <td>            
+                    <spring:url value="pedidos/cancelar/{pedidoID}" var="delpedidodomUrl">
                         <spring:param name="pedidoID" value="${pedidosadom.id}"/>
                     </spring:url>
-                    <a href="${fn:escapeXml(delpedidodomUrl)}" >Eliminar pedido</a>
-                </td>             -->
+                    <a href="${fn:escapeXml(delpedidodomUrl)}" >Cancelar pedido</a>
+                </td>             
             </tr>
         </c:forEach>
         </tbody>
@@ -79,7 +79,7 @@
             <th>Método de pago</th>
             <th>Estado de pedido</th>
             <th>Contenido del pedido</th>
-            <!-- <th>Acciones</th>       -->
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -111,12 +111,12 @@
     				</spring:url>
     				<a href="${fn:escapeXml(pedidolocUrl)}" >Detalles pedido</a>
                 </td>
-                <!-- <td>
-                	<spring:url value="pedidos/delete/{pedidoID}" var="delpedidolocUrl">
+                <td>
+                	<spring:url value="pedidos/cancelar/{pedidoID}" var="delpedidolocUrl">
        				<spring:param name="pedidoID" value="${pedidosenloc.id}"/>
     				</spring:url>
-    				<a href="${fn:escapeXml(delpedidolocUrl)}" >Eliminar pedido</a>
-                </td>             -->
+    				<a href="${fn:escapeXml(delpedidolocUrl)}" >Cancelar pedido</a>
+                </td>            
             </tr>
         </c:forEach>
         </tbody>
