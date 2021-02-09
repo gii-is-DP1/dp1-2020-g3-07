@@ -15,7 +15,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Cocinero;
 import org.springframework.samples.petclinic.model.Dependiente;
 import org.springframework.samples.petclinic.model.Repartidor;
+import org.springframework.samples.petclinic.model.TipoVehiculo;
 import org.springframework.samples.petclinic.model.User;
+import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -34,7 +36,7 @@ public class EmpleadoServiceTest {
 		int c2 = dependienteService.dependienteCount();
 		int c3 = repartidorService.repartidorCount();
 		int ctotal = c1+c2+c3;
-		assertEquals(ctotal,3);
+		assertEquals(ctotal,4);
 	}
 	
 	
@@ -65,11 +67,19 @@ public class EmpleadoServiceTest {
 	
 	@Test
 	public void shouldRepartidor() {
+		
+		Vehiculo coche= new Vehiculo();
+		coche.setId(3);
+		coche.setMatricula("5874ADR");
+		coche.setTipovehiculo(TipoVehiculo.Coche);
+		
+		
 		Repartidor repartidor = new Repartidor();
 		repartidor.setNombre("Juan");
 		repartidor.setDni("83591261A");
 		repartidor.setSueldo("1300");
 		repartidor.setFechanacimiento(LocalDate.of(1998, 10, 22));
+		repartidor.setVehiculo(coche);
 //		repartidor.setUsuario("Isma");
 //		repartidor.setContrasena("123456");
 		User user = new User();
@@ -78,8 +88,11 @@ public class EmpleadoServiceTest {
 		user.setEnabled(false);
 		repartidor.setUser(user);
 
+		
+		
+		
         this.repartidorService.saveRepartidor(repartidor);
-        assertThat(repartidor.getNombre()).isEqualTo("Pedro");
+        assertThat(repartidor.getNombre()).isEqualTo("Juan");
 
     }
 	
