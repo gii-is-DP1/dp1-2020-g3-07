@@ -89,7 +89,9 @@ public class ClienteController {
 	public String initValoracion(@PathVariable("pedidoId") int pedidoId, Model model) {
 		Optional<Pedido> p = this.pedidoService.findPedidoById(pedidoId);
 		if(p.isPresent()) {
-			model.addAttribute("pedido", p.get());
+			Pedido pedido = p.get();
+			pedido.setValoracion(5);
+			model.addAttribute("pedido", pedido);
 			log.info("Solicitud para valorar pedido con id = "+pedidoId);
 			return VIEWS_PEDIDO_VALORACION;
 		} else {
@@ -101,6 +103,22 @@ public class ClienteController {
 	@PostMapping(value = "/valorar/{pedidoId}")
 	public String processValoracion(@Valid Pedido p, BindingResult result,
 			@PathVariable("pedidoId") int pedidoId, Model model) {
+		
+//		if(p.getValoracion()<0 || p.getValoracion()>5 || p.getValoracion().equals(null)) {
+////			model.addAttribute("message", "La valoración debe encontrarse en el rango entre 0 y 5");
+//			result.rejectValue("valoracion", "required", "La valoración debe encontrarse en el rango entre 0 y 5");
+////			model.addAttribute("pedido", p);
+//			log.info("Error al realizar valoracion del pedido con id = "+pedidoId);
+//			return VIEWS_PEDIDO_VALORACION;
+//		}
+		
+		if(p.getComentario().isEmpty() || p.getComentario().equals(null)) {
+			result.rejectValue("comentario", "required", "Debe proporcionar un comentario");
+//			model.addAttribute("pedido", p);
+			log.info("Error al realizar valoracion del pedido con id = "+pedidoId);
+			return VIEWS_PEDIDO_VALORACION;
+		}
+		
 		if (result.hasErrors()) {
 			model.addAttribute("message", "Error al validar");
 			log.info("Error al realizar valoracion del pedido con id = "+pedidoId);

@@ -29,8 +29,10 @@
                 <currogas:inputField label="cliente" name="cliente"/> 
             </div>
 
-            <currogas:inputField label="Valoración" name="valoracion"/>
+            <%-- <currogas:inputField label="Valoración" name="valoracion"/> --%>
             <currogas:inputField label="Comentario" name="comentario"/>
+            <label for="valoracion" align="center">Valoración del pedido (entre 0 y 5): </label>
+  			<input type="number" align="center" name="valoracion" min="1" max="5">
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
