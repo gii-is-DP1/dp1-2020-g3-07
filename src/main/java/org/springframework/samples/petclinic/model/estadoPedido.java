@@ -5,6 +5,7 @@ public enum estadoPedido {
 	
 	pendiente,
 	enReparto,
+	cancelado,
 	Entregado;
 
 }
