@@ -25,12 +25,12 @@ import lombok.Setter;
 public class Vehiculo extends BaseEntity{
 	
 	@Column(name = "matricula")
-	@NotEmpty
-	@Pattern(regexp = "^[0-9]{4}[A-Z]{3}", message = "el formato de matricula no es correcto")
+//	@NotEmpty
+//	@Pattern(regexp = "^[0-9]{4}[A-Z]{3}", message = "el formato de matricula no es correcto")
 	private String matricula;
 	
 	@Column(name = "tipovehiculo")
-	@NotNull(message = "no puede estar vacío")
+//	@NotNull(message = "no puede estar vacío")
 	@Enumerated(value = EnumType.STRING)
 	private TipoVehiculo tipovehiculo;
 	

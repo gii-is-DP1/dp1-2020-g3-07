@@ -67,6 +67,8 @@ public class RepartidorControllerTests {
 	
 	private Vehiculo veh;
 	
+	private Vehiculo veh1;
+	
 	@BeforeEach
 	void setup() {
 		
@@ -87,9 +89,16 @@ public class RepartidorControllerTests {
 		veh = new Vehiculo();
 		veh.setId(TEST_VEH_ID);
 		veh.setMatricula("0000ZZZ");
-		veh.setTipovehiculo(TipoVehiculo.Coche);
+		veh.setTipovehiculo(TipoVehiculo.Moto);
 		rep.setVehiculo(veh);
 		Optional<Vehiculo> vehOp = Optional.of(veh);
+		
+		veh1 = new Vehiculo();
+		veh1.setId(2);
+		veh1.setMatricula("0000ZZC");
+		veh1.setTipovehiculo(TipoVehiculo.Moto);
+//		rep.setVehiculo(veh);
+		Optional<Vehiculo> veh1Op = Optional.of(veh1);
 		
 		// Todos los metodos de los servicios que se usaran estan a continuacion
 		given(this.repaService.findRepartidorById(TEST_REP_ID)).willReturn(repOp);
@@ -153,7 +162,8 @@ public class RepartidorControllerTests {
 //					.param("nombre", "Ismael")
 //					.param("dni", "23441333T")
 //					.param("sueldo", "1234")
-//					.param("fechanacimiento", "1998/01/01"))
+//					.param("fechanacimiento", "1998/01/01")
+//					.param("vehiculo", "2"))
 //		.andExpect(status().is2xxSuccessful())
 //		.andExpect(view().name("redirect:/empleados"));
 //		
