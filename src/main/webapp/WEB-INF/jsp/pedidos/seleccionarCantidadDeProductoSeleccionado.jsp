@@ -7,7 +7,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <petclinic:layout pageName="pedidos">
-    <h2>Nueva linea de Pedido</h2>
+    <h1>Nueva linea de Pedido</h1>
     <h2><c:out value="${productos.name}, ${productos.precio}"/>€</h2>
 	<form:form modelAttribute="lineapedidos" class="form-horizontal" id="add-lineaPedidos-form">
         <div class="form-group has-feedback">

@@ -25,7 +25,7 @@
 		<form:form>
 		
 			<div>
-				<a href="/pedidos" class="btn btn-outline-secondary">Volver al listado de pedidos</a>
+				<a href="/pedidos" class="enlancea">Volver al listado de pedidos</a>
 			</div>
 		</form:form>
 </currogas:layout>

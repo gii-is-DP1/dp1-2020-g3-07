@@ -25,7 +25,16 @@
 						<fmt:parseDate value="${pedido.fecha}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
 						<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${ parsedDateTime }" />
 					</td>
-	                <td><c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
+	                <td>
+						<c:choose>
+							<c:when test="${pedido.cliente.id==1}">
+								<c:out value="${pedido.nombreClienteGenerico}"></c:out>
+							</c:when>    
+							<c:otherwise>
+								<c:out value="${pedido.cliente.nombre} ${pedido.cliente.apellidos}"></c:out>
+							</c:otherwise>
+						</c:choose>
+					</td>
 	            </tr>
 	        </c:forEach>
 		</table>
