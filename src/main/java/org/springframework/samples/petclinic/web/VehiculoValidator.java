@@ -29,9 +29,10 @@ public class VehiculoValidator implements Validator{
 			errors.rejectValue("matricula", "requerido_vehiculo", "El dato introducido no debe ser nulo");
 		}else if(!vehiculo.getMatricula().matches("^[0-9]{4}[A-Z]{3}")) {
 			errors.rejectValue("matricula", "requerido_vehiculo_matricula", "El dato introducido debe ser una matricula");
-		}else if(vehSer.findByMatricula(vehiculo.getMatricula()).isPresent()) {
-			errors.rejectValue("matricula", "requerido_vehiculo_matricula_repetida", "Ya existe un vehiculo con esa matricula");
 		}
+//		else if(vehSer.findByMatricula(vehiculo.getMatricula()).isPresent()) {
+//			errors.rejectValue("matricula", "requerido_vehiculo_matricula_repetida", "Ya existe un vehiculo con esa matricula");
+//		}
 		
 		if(vehiculo.getTipovehiculo()==null) {
 			errors.rejectValue("tipovehiculo", "requerido_vehiculo", "El dato introducido no debe ser nulo");
