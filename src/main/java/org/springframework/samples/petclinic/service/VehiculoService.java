@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.TipoVehiculo;
 import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.samples.petclinic.repository.VehiculoRepository;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,16 @@ public class VehiculoService {
 	@Transactional
 	public void deleteVehiculo(Vehiculo vehiculo) throws DataAccessException {
 		VehiculoRepo.delete(vehiculo);	
+	}
+	
+	@Transactional
+	public int countTipo(TipoVehiculo tipovehiculo) {
+		return VehiculoRepo.findByTipovehiculo(tipovehiculo).size();
+	}
+	
+	@Transactional
+	public Optional<Vehiculo> findByMatricula(String matricula){
+		return this.VehiculoRepo.findByMatricula(matricula);
 	}
 	
 }
