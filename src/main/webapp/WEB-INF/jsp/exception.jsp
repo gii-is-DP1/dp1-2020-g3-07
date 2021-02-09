@@ -4,8 +4,8 @@
 
 <currogas:layout pageName="error">
 
-    <spring:url value="/resources/images/pets.png" var="petsImage"/>
-    <img src="${petsImage}"/>
+    <spring:url value="/resources/images/error.png" var="errorImage"/>
+    <img src="${errorImage}"/>
 
     <h2>Something happened...</h2>
 

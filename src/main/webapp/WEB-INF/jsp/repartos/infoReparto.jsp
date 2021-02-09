@@ -45,7 +45,7 @@
 							<spring:param name="pedidoId" value="${pedido.id}"/>
 							<spring:param name="repartidorId" value="${repartidor.id}"/>
 						</spring:url>
-						<a href="${fn:escapeXml(clienteUrl)}" class="btn btn-outline-secondary">
+						<a href="${fn:escapeXml(clienteUrl)}" class="enlacea">
 							<c:choose>
 								<c:when test="${pedido.cliente.id==1}">
 									<c:out value="${pedido.nombreClienteGenerico}"></c:out>
@@ -67,7 +67,7 @@
 							<spring:param name="repartoId" value="${reparto.id}"/>
 							<spring:param name="repartidorId" value="${repartidor.id}"/>
 						</spring:url>
-						<a href="${fn:escapeXml(detallesUrl)}" class="btn btn-outline-secondary">Detalles del pedido</a>
+						<a href="${fn:escapeXml(detallesUrl)}" class="enlacea">Detalles del pedido</a>
 					</td>
 					<td>
 						<spring:url value="/repartidores/{repartidorId}/repartos/{repartoId}/{pedidoId}/entregado" var="entregadoUrl">
@@ -76,7 +76,7 @@
 							<spring:param name="repartidorId" value="${repartidor.id}"/>
 						</spring:url>
 						<c:if test = "${pedido.estadopedido != 'Entregado'}">
-							<a href="${fn:escapeXml(entregadoUrl)}" class="btn btn-outline-secondary">Marcar como entregado</a>
+							<a href="${fn:escapeXml(entregadoUrl)}" class="enlacea">Marcar como entregado</a>
 						</c:if>
 					</td>
 				</tr>
